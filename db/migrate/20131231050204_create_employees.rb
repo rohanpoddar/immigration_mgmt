@@ -9,7 +9,6 @@ class CreateEmployees < ActiveRecord::Migration
       t.date :date_of_joining
       t.date :exit_date
       t.string :location
-
       t.timestamps
     end
   end
