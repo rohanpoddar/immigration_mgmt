@@ -1,1 +1,38 @@
-<h1>Hello Employees</h1>
+<h1>Hello</h1>
+<table>
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Employee ID</th>
+      <th>Category</th>
+      <th>Date Of Joining</th>
+      <th>Exit Date</th>
+      <th>position</th>
+      <th>Location</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  <%@employees.each do |employee| %>
+  <tr>
+    <td><%= employee.first_name %></td>
+    <td><%= employee.last_name %></td>
+    <td><%= employee.employee_id %></td>
+    <td><%= employee.category %></td>
+    <td><%= employee.date_of_joining %></td>
+    <td><%= employee.exit_date %></td>
+    <td><%= employee.position %></td>
+    <td><%= employee.location %></td>
+    <td><%= link_to "Show", employee %>
+        <%= link_to "Edit", edit_employee_path(employee) %>
+        <%= link_to "Destroy", employee, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to "New", new_employee_path%>
+
+
+
