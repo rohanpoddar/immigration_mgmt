@@ -1,3 +1,3 @@
 class VisaType < ActiveRecord::Base
-  attr_accessible :country, :visa_type
+  attr_accessible :country, :type
 end

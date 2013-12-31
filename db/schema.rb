@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131231051457) do
+ActiveRecord::Schema.define(:version => 20131231063411) do
 
   create_table "employees", :force => true do |t|
     t.string   "employee_id"
@@ -25,6 +25,10 @@ ActiveRecord::Schema.define(:version => 20131231051457) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
+
+  add_index "employees", ["employee_id"], :name => "index_employees_on_employee_id"
+  add_index "employees", ["location"], :name => "index_employees_on_location"
+  add_index "employees", ["position"], :name => "index_employees_on_position"
 
   create_table "immigrations", :force => true do |t|
     t.integer  "visa_id"
@@ -60,5 +64,7 @@ ActiveRecord::Schema.define(:version => 20131231051457) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
+
+  add_index "visas", ["visa_type_id"], :name => "index_visas_on_visa_type_id"
 
 end
