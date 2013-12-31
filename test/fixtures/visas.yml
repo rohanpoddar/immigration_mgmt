@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  visa_id: MyString
+  issue_date: 2013-12-31
+  epiry_date: 2013-12-31
+
+two:
+  visa_id: MyString
+  issue_date: 2013-12-31
+  epiry_date: 2013-12-31

@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  visa_type: MyString
+  country: MyString
+
+two:
+  visa_type: MyString
+  country: MyString

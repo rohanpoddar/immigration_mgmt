@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  passport_number: MyString
+  citizenship: MyString
+  date_of_expiry: 2013-12-31
+
+two:
+  passport_number: MyString
+  citizenship: MyString
+  date_of_expiry: 2013-12-31

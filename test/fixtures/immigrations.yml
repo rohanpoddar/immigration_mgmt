@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  date_of_journey: 2013-12-31
+  date_of_return: 2013-12-31
+  city: MyString
+
+two:
+  date_of_journey: 2013-12-31
+  date_of_return: 2013-12-31
+  city: MyString
