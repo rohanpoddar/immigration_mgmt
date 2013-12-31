@@ -16,5 +16,3 @@
 /tmp
 .idea/
 .ruby-version
-
-config/database.yml
