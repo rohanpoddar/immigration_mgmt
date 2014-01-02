@@ -2,8 +2,7 @@
 
 one:
   employee_id: MyString
-  first_name: MyString
-  last_name: MyString
+  name: MyString
   position: MyString
   category: MyString
   date_of_joining: 2013-12-31
@@ -12,8 +11,7 @@ one:
 
 two:
   employee_id: MyString
-  first_name: MyString
-  last_name: MyString
+  name: MyString
   position: MyString
   category: MyString
   date_of_joining: 2013-12-31
