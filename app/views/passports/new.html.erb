@@ -1,0 +1,27 @@
+<h1>hi in new page</h1>
+<%= form_tag( { :action => :create, }, { :method => :post }) do |f| %>
+    <div class='form-block'>
+      <div class="row-fluid">
+        <div class="span2">
+          <%= label :passport_number, "passport number" %>
+          <%= text_field :passport_number, required: true, maxlength: '20' %>
+        </div>
+        <div class="span2">
+          <%= label :date_of_expiry, "date_of_expiry" %>
+          <%=date_select :date_of_expiry, :start_year => 2014,
+                           :use_month_numbers => true,
+                           :order => [:day, :month, :year]%>
+
+          <%= submit_tag( "save passport" ) %>
+        </div>
+      </div>
+    </div>
+
+<% end %>
+
+
+
+
+
+
+
