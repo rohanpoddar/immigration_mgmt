@@ -6,8 +6,8 @@ class CreateEmployees < ActiveRecord::Migration
       t.string :position, :null => false
       t.string :category, :null => false
       t.date :date_of_joining, :null => false
-      t.date :exit_date
       t.string :location, :null => false
+      t.date :exit_date
       t.timestamps
     end
   end
