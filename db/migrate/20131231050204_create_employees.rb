@@ -1,14 +1,13 @@
 class CreateEmployees < ActiveRecord::Migration
   def change
     create_table :employees do |t|
-      t.string :employee_id
-      t.string :first_name
-      t.string :last_name
-      t.string :position
-      t.string :category
-      t.date :date_of_joining
+      t.integer :employee_id, :null => false, :unique => true
+      t.string :name, :null => false
+      t.string :position, :null => false
+      t.string :category, :null => false
+      t.date :date_of_joining, :null => false
       t.date :exit_date
-      t.string :location
+      t.string :location, :null => false
       t.timestamps
     end
   end
