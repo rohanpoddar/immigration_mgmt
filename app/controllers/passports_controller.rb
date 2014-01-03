@@ -1,12 +1,11 @@
 class PassportsController < ApplicationController
   def index
-    #redirect_to(new_passports_path)
+    @passports= Passport.all
   end
   def new
 
   end
   def create
-    puts "$$$$$$$$ in create"
     @passport = Passport.new(params[:bed])
     @passport.save
     #  redirect_to(passports_path)

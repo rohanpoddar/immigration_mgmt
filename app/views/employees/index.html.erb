@@ -1,13 +1,19 @@
-<h1>Hello</h1>
+<h1>Employee List</h1>
+<%= form_tag search_employees_path, :method => 'get' do %>
+    <p>
+      <%= text_field_tag :search, params[:search], :placeholder => 'Name' %>
+      <%= submit_tag "Search By Name", :name => nil %>
+    </p>
+<% end %>
 <table>
   <thead>
     <tr>
-      <th>Name</th>
       <th>Employee ID</th>
+      <th>Name</th>
       <th>Category</th>
       <th>Date Of Joining</th>
       <th>Exit Date</th>
-      <th>position</th>
+      <th>Position</th>
       <th>Location</th>
       <th>Action</th>
     </tr>
@@ -15,8 +21,8 @@
   <tbody>
   <%@employees.each do |employee| %>
   <tr>
-    <td><%= employee.name %></td>
     <td><%= employee.employee_id %></td>
+    <td><%= employee.name %></td>
     <td><%= employee.category %></td>
     <td><%= employee.date_of_joining %></td>
     <td><%= employee.exit_date %></td>

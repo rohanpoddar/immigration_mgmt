@@ -1,1 +1,32 @@
-<h1> hello hi</h1>
+<h1>Passports</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Employee ID</th>
+    <th>Employee Name</th>
+    <th>Employee Citizenship</th>
+    <th>Passport Number</th>
+    <th>Passport Expiry</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <%@passports.each do |passport| %>
+      <tr>
+        <td><%= passport.employee.employee_id %></td>
+        <td><%= passport.employee.name %></td>
+        <td><%= passport.citizenship %></td>
+        <td><%= passport.passport_number %></td>
+        <td><%= passport.date_of_expiry %></td>
+        <td><%= link_to "Show", passport %>
+          <%= link_to "Edit", edit_passport_path(passport) %>
+          <%= link_to "Destroy", passport, :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to "New", new_passport_path%>
+
+
+
