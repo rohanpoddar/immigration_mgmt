@@ -32,4 +32,9 @@ class EmployeesController < ApplicationController
     @employee.update_attributes(params[:employee])
     redirect_to :action => 'index'
   end
+
+  def search
+    @employees=Employee.search(params[:search])
+  end
+
 end

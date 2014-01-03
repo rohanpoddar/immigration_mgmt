@@ -1,10 +1,14 @@
 ImmigrationMgmt::Application.routes.draw do
 
-  resources :employees
+  resources :employees do
+    collection do
+      get :search
+    end
+  end
 
 
 
-  resources :passports, only: [:index, :new, :create]
+  resources :passports
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -54,7 +58,7 @@ ImmigrationMgmt::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'passports#new'
+  root to: 'home#index'
 
   # See how all your routes lay out with "rake routes"
 

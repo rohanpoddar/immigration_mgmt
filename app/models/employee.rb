@@ -13,4 +13,9 @@ class Employee < ActiveRecord::Base
       write_attribute(:location,location.upcase)
     end
   end
+
+  def self.search(search)
+      find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
+  end
+
 end
