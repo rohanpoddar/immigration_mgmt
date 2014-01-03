@@ -114,9 +114,7 @@ require 'roo'
 #ZA Work Visa Status
 #ZA Work Visa Issued On
 #ZA Work Visa Expiry Date
-#
-#
-#
+
 class CreateEmployees < ActiveRecord::Migration
   def change
     create_table :employees do |t|
@@ -137,24 +135,54 @@ data=Roo::Excelx.new('db/content.xlsx')
 data.default_sheet= data.sheets.first
 puts "FOUND SPREADSHEET"
 puts "#{data.info}"
-for row in 3..data.last_row
-  puts "Putting in row  #{data.row(row).inspect}"
-  id= data.cell(row,4)
-  name= data.cell(row,5)
-  position= data.cell(row,6)
-  category= data.cell(row,7)
-  date_of_joining= data.cell(row,8)
-  date_of_expiry= data.cell(row,9)
-  passport_number= data.cell(row,10)
-  exit_date=data.cell(row,11)
-  location= data.cell(row,12)
-  citizenship= data.cell(row,13)
-  a= Employee.new({:employee_id => id,:name => name, :position => position, :category => category, :date_of_joining => date_of_joining, :exit_date => exit_date, :location => location} )
-  a.passport= Passport.new({:passport_number => passport_number, :citizenship => citizenship,:date_of_expiry => date_of_expiry}) if passport_number!=nil
-  a.save!
 
+
+
+class EmployeeSeeder
+  def EmployeeSeeder.seed
+    for row in 3..data.last_row
+      puts "Putting in row  #{data.row(row).inspect}"
+      id= data.cell(row,4)
+      name= data.cell(row,5)
+      position= data.cell(row,6)
+      category= data.cell(row,7)
+      date_of_joining= data.cell(row,8)
+      date_of_expiry= data.cell(row,9)
+      passport_number= data.cell(row,10)
+      exit_date=data.cell(row,11)
+      location= data.cell(row,12)
+      citizenship= data.cell(row,13)
+      currentEmp= Employee.new({:employee_id => id,:name => name, :position => position, :category => category, :date_of_joining => date_of_joining, :exit_date => exit_date, :location => location} )
+      currentEmp.passport= Passport.new({:passport_number => passport_number, :citizenship => citizenship,:date_of_expiry => date_of_expiry}) if passport_number!=nil
+      currentPass=currentEmp.passport
+      passport.visas.new()
+      currentEmp.save!
+
+    end
+  end
 end
 
+class VisaTypeSeeder
+  def VisaTypeSeeder.seed
+    VisaType.create(:country => '', :type => 'B1')
+    VisaType.create(:country => '', :type => 'L1A')
+    VisaType.create(:country => '', :type => 'L1B')
+    VisaType.create(:country => 'UK', :type => 'UK Work Visa')
+    VisaType.create(:country => 'UK', :type => 'UK Business Visa')
+    VisaType.create(:country => 'China', :type => 'Shengan Visa')
+    VisaType.create(:country => 'Australia', :type => 'Oz Business Visa')
+    VisaType.create(:country => 'Australia', :type => 'Oz Work Permit')
+    VisaType.create(:country => 'Canada', :type => 'Canadian Work Permit')
+    VisaType.create(:country => 'Canada', :type => 'Canadian Work Visa')
+    VisaType.create(:country => 'China', :type => 'Chineese Visa')
+    VisaType.create(:country => 'Singapore', :type => 'Singapore Visa')
+    VisaType.create(:country => 'Singapore', :type => 'Singapore Work Visa')
+    VisaType.create(:country => 'Uganda', :type => 'Uganda Special Pass')
+    VisaType.create(:country => 'India', :type => 'India Employment Visa')
+    VisaType.create(:country => 'Zimbabwe', :type => 'ZA Business Visa')
+    VisaType.create(:country => 'Zimbabwe', :type => 'ZA Work Visa')
+  end
+end
 
 
 
