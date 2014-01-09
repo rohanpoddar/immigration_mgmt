@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  visa_id: MyString
+  visa_type: 'L1A'
   issue_date: 2013-12-31
   expiry_date: 2013-12-31
 
 two:
-  visa_id: MyString
+  visa_type: 'L1B'
   issue_date: 2013-12-31
   expiry_date: 2013-12-31

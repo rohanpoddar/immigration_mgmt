@@ -1,6 +1,6 @@
 class CreateEmployees < ActiveRecord::Migration
   def change
-    create_table :employees do |t|
+    create_table :employees, :id =>false, :primary_key => 'employee_id' do |t|
       t.integer :employee_id, :null => false, :unique => true
       t.string :name, :null => false
       t.string :position, :null => false
@@ -10,5 +10,8 @@ class CreateEmployees < ActiveRecord::Migration
       t.date :exit_date
       t.timestamps
     end
+    add_index :employees, :employee_id
+    add_index :employees, :position
+
   end
 end
