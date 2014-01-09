@@ -138,7 +138,7 @@ class EmployeeSeeder
       currentEmp = Employee.new({:employee_id => id,:name => name, :position => position, :category => category, :date_of_joining => date_of_joining, :exit_date => exit_date, :location => location} )
       currentEmp.passport= Passport.new({:passport_number => passport_number, :citizenship => citizenship,:date_of_expiry => date_of_expiry}) if passport_number!=nil
       currentPass=currentEmp.passport
-      currentPass.visas.add(Visa.new(:visa_type => 'L1A'))
+      currentPass.visas<< Visa.new(:visa_type => VisaType.find('L1A'))
       puts "Putting in #{currentEmp.inspect}"
       currentEmp.save!
 

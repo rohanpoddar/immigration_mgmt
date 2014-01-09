@@ -1,6 +1,5 @@
 #!/bin/sh
-pid=`ps auxw | grep [r]ails | sed -n '1 p'|awk '{print $2}'`
-kill -KILL $pid
+sh kill-server.sh
 rake db:migrate
 rake db:drop
 rake db:create
