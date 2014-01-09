@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 20140102054256) do
   add_index "employees", ["position"], :name => "index_employees_on_position"
 
   create_table "immigrations", :force => true do |t|
-    t.integer  "visa_id"
+    t.string   "visa_id",         :null => false
     t.date     "date_of_journey"
     t.date     "date_of_return"
     t.string   "city"
@@ -53,15 +53,18 @@ ActiveRecord::Schema.define(:version => 20140102054256) do
   end
 
   create_table "visas", :force => true do |t|
-    t.string   "passport_number"
-    t.string   "visa_type"
-    t.string   "status",          :null => false
+    t.string   "visa_type_id", :null => false
+    t.string   "passport_id",  :null => false
+    t.string   "status",       :null => false
     t.date     "issue_date"
     t.date     "expiry_date"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   add_foreign_key "passports", "employees", name: "passports_employee_id_fk", primary_key: "employee_id", dependent: :delete
+
+  add_foreign_key "visas", "passports", name: "visas_passport_id_fk", primary_key: "passport_number", dependent: :delete
+  add_foreign_key "visas", "visa_types", name: "visas_visa_type_id_fk", primary_key: "visa_type", dependent: :delete
 
 end
