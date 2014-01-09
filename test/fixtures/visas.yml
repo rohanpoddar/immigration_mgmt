@@ -1,13 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  visa_type_id: '1'
+  visa_type_id: 1
   status: 'Pending'
+  passport_id: MyString
   issue_date: 2013-12-31
   expiry_date: 2013-12-31
 
 two:
-  visa_type_id: '2'
+  visa_type_id: 2
   status: 'Stamped'
+  passport_id: MyString2
   issue_date: 2013-12-31
   expiry_date: 2013-12-31

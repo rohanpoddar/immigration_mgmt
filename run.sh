@@ -1,10 +1,10 @@
 #!/bin/sh
 sh kill-server.sh
-rake db:migrate
 rake db:drop
 rake db:create
-rake db:migrate
+rake db:migrate:reset
 rake db:seed
+rake db:test:load
 rake test
 echo "STARTING SERVER"
 nohup rails s > server.out &

@@ -25,6 +25,8 @@ gem 'jquery-rails'
 gem 'foreigner'
 
 gem 'roo'
+
+#gem 'immigrant'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

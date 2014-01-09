@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20140102054256) do
     t.datetime "updated_at",      :null => false
   end
 
+  add_index "employees", ["employee_id"], :name => "index_employees_on_employee_id", :unique => true
   add_index "employees", ["position"], :name => "index_employees_on_position"
 
   create_table "immigrations", :force => true do |t|
@@ -40,10 +41,12 @@ ActiveRecord::Schema.define(:version => 20140102054256) do
     t.string   "passport_number", :null => false
     t.integer  "employee_id",     :null => false
     t.string   "citizenship"
-    t.date     "date_of_expiry",  :null => false
+    t.date     "date_of_expiry"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
+
+  add_index "passports", ["passport_number"], :name => "index_passports_on_passport_number", :unique => true
 
   create_table "visa_types", :id => false, :force => true do |t|
     t.string   "visa_type",  :null => false
@@ -51,6 +54,8 @@ ActiveRecord::Schema.define(:version => 20140102054256) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "visa_types", ["visa_type"], :name => "index_visa_types_on_visa_type", :unique => true
 
   create_table "visas", :force => true do |t|
     t.string   "visa_type_id", :null => false
