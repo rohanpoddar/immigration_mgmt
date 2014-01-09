@@ -168,7 +168,7 @@ class EmployeeSeeder
           if status!=nil && status!= "" && currentEmp.passport!=nil
             visa = Visa.new(:status => status)
             visa.visa_type = visaTypeList[visaTypeCount]
-            #currentEmp.passport.visas << visa
+            currentEmp.passport.visas << visa
           end
           currentPos+=visaTypeConfig[visaTypeCount]
         end

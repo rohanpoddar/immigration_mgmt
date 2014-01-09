@@ -10,6 +10,7 @@ class CreateEmployees < ActiveRecord::Migration
       t.date :exit_date
       t.timestamps
     end
+    #PKEY HAS TO BE SET WITH EXECUTE ONLY. RAILS METHOD DOESN'T WORK WITH NON INTEGER STRINGS
     execute "ALTER TABLE employees ADD PRIMARY KEY (employee_id);"
     add_index :employees, :position
   end

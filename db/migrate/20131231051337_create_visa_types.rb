@@ -1,7 +1,7 @@
 class CreateVisaTypes < ActiveRecord::Migration
   def change
     create_table :visa_types, {:id => false} do |t|
-      t.string :visa_type, :null => false, :unique => true
+      t.string :visa_type, :null => false
       t.string :country
       t.timestamps
     end
