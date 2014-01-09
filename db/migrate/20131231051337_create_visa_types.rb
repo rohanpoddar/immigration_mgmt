@@ -6,5 +6,6 @@ class CreateVisaTypes < ActiveRecord::Migration
       t.timestamps
     end
     execute "ALTER TABLE visa_types ADD PRIMARY KEY (visa_type);"
+    add_index :visa_types, :visa_type, :unique => true
   end
 end
