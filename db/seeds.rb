@@ -115,31 +115,14 @@ require 'roo'
 #ZA Work Visa Issued On
 #ZA Work Visa Expiry Date
 
-class CreateEmployees < ActiveRecord::Migration
-  def change
-    create_table :employees do |t|
-      t.integer :employee_id, :null => false, :unique => true
-      t.string :name, :null => false
-      t.string :position, :null => false
-      t.string :category, :null => false
-      t.date :date_of_joining, :null => false
-      t.date :exit_date
-      t.string :location, :null => false
-      t.timestamps
-    end
-  end
-end
-
-
-data=Roo::Excelx.new('db/content.xlsx')
-data.default_sheet= data.sheets.first
-puts "FOUND SPREADSHEET"
-puts "#{data.info}"
-
 
 
 class EmployeeSeeder
   def EmployeeSeeder.seed
+    data=Roo::Excelx.new('db/content.xlsx')
+    data.default_sheet= data.sheets.first
+    puts "FOUND SPREADSHEET"
+    puts "#{data.info}"
     for row in 3..data.last_row
       puts "Putting in row  #{data.row(row).inspect}"
       id= data.cell(row,4)
@@ -152,10 +135,11 @@ class EmployeeSeeder
       exit_date=data.cell(row,11)
       location= data.cell(row,12)
       citizenship= data.cell(row,13)
-      currentEmp= Employee.new({:employee_id => id,:name => name, :position => position, :category => category, :date_of_joining => date_of_joining, :exit_date => exit_date, :location => location} )
+      currentEmp = Employee.new({:employee_id => id,:name => name, :position => position, :category => category, :date_of_joining => date_of_joining, :exit_date => exit_date, :location => location} )
       currentEmp.passport= Passport.new({:passport_number => passport_number, :citizenship => citizenship,:date_of_expiry => date_of_expiry}) if passport_number!=nil
       currentPass=currentEmp.passport
-      passport.visas.new()
+      currentPass.visas.add(Visa.new(:visa_type => 'L1A'))
+      puts "Putting in #{currentEmp.inspect}"
       currentEmp.save!
 
     end
@@ -184,6 +168,8 @@ class VisaTypeSeeder
   end
 end
 
+VisaTypeSeeder.seed
+EmployeeSeeder.seed
 
 
 
