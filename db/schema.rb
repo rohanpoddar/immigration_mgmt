@@ -37,9 +37,7 @@ ActiveRecord::Schema.define(:version => 20140102054256) do
     t.datetime "updated_at",      :null => false
   end
 
-  add_index "immigrations", ["city"], :name => "index_immigrations_on_city"
-
-  create_table "passports", :force => true do |t|
+  create_table "passports", :id => false, :force => true do |t|
     t.integer  "employee_id"
     t.string   "passport_number", :null => false
     t.string   "citizenship"
@@ -55,7 +53,6 @@ ActiveRecord::Schema.define(:version => 20140102054256) do
     t.datetime "updated_at", :null => false
   end
 
-  add_index "visa_types", ["country"], :name => "index_visa_types_on_country"
   add_index "visa_types", ["type"], :name => "index_visa_types_on_type", :unique => true
 
   create_table "visas", :force => true do |t|
