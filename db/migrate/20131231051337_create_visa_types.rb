@@ -1,10 +1,10 @@
 class CreateVisaTypes < ActiveRecord::Migration
   def change
-    create_table :visa_types, :id => false, :primary_key => 'type' do |t|
-      t.string :type, :null => false
+    create_table :visa_types, {:id => false} do |t|
+      t.string :visa_type, :null => false, :unique => true
       t.string :country
       t.timestamps
     end
-    add_index :visa_types, :type, :unique => true
+    execute "ALTER TABLE visa_types ADD PRIMARY KEY (visa_type);"
   end
 end
