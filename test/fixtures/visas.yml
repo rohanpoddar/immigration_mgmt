@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  visa_type: 'L1A'
+  visa_type_id: '1'
+  status: 'Pending'
   issue_date: 2013-12-31
   expiry_date: 2013-12-31
 
 two:
-  visa_type: 'L1B'
+  visa_type_id: '2'
+  status: 'Stamped'
   issue_date: 2013-12-31
   expiry_date: 2013-12-31

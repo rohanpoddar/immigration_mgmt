@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  type: L1A
+  visa_type: L1A
   country: MyString
 
 two:
-  type: L1B
+  visa_type: L1B
   country: MyString
