@@ -7,5 +7,6 @@ class CreateVisas < ActiveRecord::Migration
       t.date :expiry_date
       t.timestamps
     end
+    add_index :visas, :visa_type
   end
 end

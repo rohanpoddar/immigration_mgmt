@@ -1,6 +1,6 @@
 class CreatePassports < ActiveRecord::Migration
   def change
-    create_table :passports do |t|
+    create_table :passports, :id => false, :primary_key => 'passport_number' do |t|
       t.references :employee
       t.string :passport_number , :null=> false, :unique => true
       t.string :citizenship

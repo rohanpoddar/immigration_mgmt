@@ -116,6 +116,27 @@ require 'roo'
 #ZA Work Visa Expiry Date
 
 
+class VisaTypeSeeder
+  def VisaTypeSeeder.seed
+    VisaType.create(:country => '', :type => 'B1')
+    VisaType.create(:country => '', :type => 'L1A')
+    VisaType.create(:country => '', :type => 'L1B')
+    VisaType.create(:country => 'UK', :type => 'UK Work Visa')
+    VisaType.create(:country => 'UK', :type => 'UK Business Visa')
+    VisaType.create(:country => 'China', :type => 'Shengan Visa')
+    VisaType.create(:country => 'Australia', :type => 'Oz Business Visa')
+    VisaType.create(:country => 'Australia', :type => 'Oz Work Permit')
+    VisaType.create(:country => 'Canada', :type => 'Canadian Work Permit')
+    VisaType.create(:country => 'Canada', :type => 'Canadian Work Visa')
+    VisaType.create(:country => 'China', :type => 'Chineese Visa')
+    VisaType.create(:country => 'Singapore', :type => 'Singapore Visa')
+    VisaType.create(:country => 'Singapore', :type => 'Singapore Work Visa')
+    VisaType.create(:country => 'Uganda', :type => 'Uganda Special Pass')
+    VisaType.create(:country => 'India', :type => 'India Employment Visa')
+    VisaType.create(:country => 'Zimbabwe', :type => 'ZA Business Visa')
+    VisaType.create(:country => 'Zimbabwe', :type => 'ZA Work Visa')
+  end
+end
 
 class EmployeeSeeder
   def EmployeeSeeder.seed
@@ -138,33 +159,9 @@ class EmployeeSeeder
       currentEmp = Employee.new({:employee_id => id,:name => name, :position => position, :category => category, :date_of_joining => date_of_joining, :exit_date => exit_date, :location => location} )
       currentEmp.passport= Passport.new({:passport_number => passport_number, :citizenship => citizenship,:date_of_expiry => date_of_expiry}) if passport_number!=nil
       currentPass=currentEmp.passport
-      currentPass.visas<< Visa.new(:visa_type => VisaType.find('L1A'))
       puts "Putting in #{currentEmp.inspect}"
       currentEmp.save!
-
     end
-  end
-end
-
-class VisaTypeSeeder
-  def VisaTypeSeeder.seed
-    VisaType.create(:country => '', :type => 'B1')
-    VisaType.create(:country => '', :type => 'L1A')
-    VisaType.create(:country => '', :type => 'L1B')
-    VisaType.create(:country => 'UK', :type => 'UK Work Visa')
-    VisaType.create(:country => 'UK', :type => 'UK Business Visa')
-    VisaType.create(:country => 'China', :type => 'Shengan Visa')
-    VisaType.create(:country => 'Australia', :type => 'Oz Business Visa')
-    VisaType.create(:country => 'Australia', :type => 'Oz Work Permit')
-    VisaType.create(:country => 'Canada', :type => 'Canadian Work Permit')
-    VisaType.create(:country => 'Canada', :type => 'Canadian Work Visa')
-    VisaType.create(:country => 'China', :type => 'Chineese Visa')
-    VisaType.create(:country => 'Singapore', :type => 'Singapore Visa')
-    VisaType.create(:country => 'Singapore', :type => 'Singapore Work Visa')
-    VisaType.create(:country => 'Uganda', :type => 'Uganda Special Pass')
-    VisaType.create(:country => 'India', :type => 'India Employment Visa')
-    VisaType.create(:country => 'Zimbabwe', :type => 'ZA Business Visa')
-    VisaType.create(:country => 'Zimbabwe', :type => 'ZA Work Visa')
   end
 end
 
