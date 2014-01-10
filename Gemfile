@@ -7,7 +7,11 @@ gem 'rails', '3.2.13'
 
 
 gem 'pg'
+gem 'rspec-rails'
+gem 'shoulda-matchers'
 
+
+gem "factory_girl_rails", "~> 4.0"
 
 # Gems used only for assets and not required
 # in production environments by default.
