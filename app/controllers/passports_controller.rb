@@ -3,14 +3,14 @@ class PassportsController < ApplicationController
     @passports= Passport.all
   end
   def new
-
+    @passport = Passport.new
   end
   def create
-    @passport = Passport.new(params[:bed])
-    @passport.save
-    #  redirect_to(passports_path)
-    #else
-    #  redirect_to(new_passports_path)
-    #end
+    @passport = Passport.new(params[:passport])
+      if @passport.save
+        redirect_to :action => 'index'
+    else
+      redirect_to :action => 'index'
+      end
   end
 end

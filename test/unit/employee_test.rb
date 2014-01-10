@@ -1,7 +1,9 @@
 require 'test_helper'
 
 class EmployeeTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "factory" do
+    @emp = FactoryGirl.create(:employee)
+    assert_equal(@emp.name,"abc","name does not match")
+  end
+
 end
