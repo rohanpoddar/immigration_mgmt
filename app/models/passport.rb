@@ -4,4 +4,5 @@ class Passport < ActiveRecord::Base
   has_many :visas, :autosave => true
   validates_uniqueness_of :passport_number
   validates_associated :employee
+  validates_presence_of :employee_id
 end

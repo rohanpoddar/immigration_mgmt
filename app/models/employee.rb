@@ -1,8 +1,8 @@
 class Employee < ActiveRecord::Base
-  attr_accessible :category, :date_of_joining, :employee_id, :exit_date, :name, :location, :position
+  attr_accessible :category, :date_of_joining, :employee_number, :exit_date, :name, :location, :position
   has_one :passport, :autosave => true, :dependent => :destroy
   has_many :visas, :through => :passport, :autosave => true
-  validates_uniqueness_of :employee_id
+  validates_uniqueness_of :employee_number, :null=>true
   validates_presence_of :category
 
   def location=(location)
