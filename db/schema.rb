@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(:version => 20140102054256) do
 
-  create_table "employees", :id => false, :force => true do |t|
+  create_table "employees", :force => true do |t|
     t.integer  "employee_id",     :null => false
     t.string   "name",            :null => false
     t.string   "position",        :null => false
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20140102054256) do
   add_index "employees", ["position"], :name => "index_employees_on_position"
 
   create_table "immigrations", :force => true do |t|
-    t.string   "visa_id",         :null => false
+    t.integer  "visa_id"
     t.date     "date_of_journey"
     t.date     "date_of_return"
     t.string   "city"
@@ -39,9 +39,9 @@ ActiveRecord::Schema.define(:version => 20140102054256) do
 
   add_index "immigrations", ["city"], :name => "index_immigrations_on_city"
 
-  create_table "passports", :id => false, :force => true do |t|
+  create_table "passports", :force => true do |t|
     t.string   "passport_number", :null => false
-    t.integer  "employee_id",     :null => false
+    t.integer  "employee_id"
     t.string   "citizenship"
     t.date     "date_of_expiry"
     t.datetime "created_at",      :null => false
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(:version => 20140102054256) do
 
   add_index "passports", ["passport_number"], :name => "index_passports_on_passport_number", :unique => true
 
-  create_table "visa_types", :id => false, :force => true do |t|
+  create_table "visa_types", :force => true do |t|
     t.string   "visa_type",  :null => false
     t.string   "country"
     t.datetime "created_at", :null => false
@@ -61,8 +61,8 @@ ActiveRecord::Schema.define(:version => 20140102054256) do
   add_index "visa_types", ["visa_type"], :name => "index_visa_types_on_visa_type", :unique => true
 
   create_table "visas", :force => true do |t|
-    t.string   "visa_type_id", :null => false
-    t.string   "passport_id",  :null => false
+    t.integer  "visa_type_id"
+    t.integer  "passport_id"
     t.string   "status",       :null => false
     t.date     "issue_date"
     t.date     "expiry_date"
@@ -70,9 +70,9 @@ ActiveRecord::Schema.define(:version => 20140102054256) do
     t.datetime "updated_at",   :null => false
   end
 
-  add_foreign_key "passports", "employees", name: "passports_employee_id_fk", primary_key: "employee_id", dependent: :delete
+  add_foreign_key "passports", "employees", name: "passports_employee_id_fk", dependent: :delete
 
-  add_foreign_key "visas", "passports", name: "visas_passport_id_fk", primary_key: "passport_number", dependent: :delete
-  add_foreign_key "visas", "visa_types", name: "visas_visa_type_id_fk", primary_key: "visa_type", dependent: :delete
+  add_foreign_key "visas", "passports", name: "visas_passport_id_fk", dependent: :delete
+  add_foreign_key "visas", "visa_types", name: "visas_visa_type_id_fk", dependent: :delete
 
 end
