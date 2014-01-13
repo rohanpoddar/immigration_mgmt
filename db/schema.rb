@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(:version => 20140102054256) do
 
   create_table "employees", :force => true do |t|
-    t.integer  "employee_id",     :null => false
+    t.integer  "employee_number", :null => false
     t.string   "name",            :null => false
     t.string   "position",        :null => false
     t.string   "category",        :null => false
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(:version => 20140102054256) do
     t.datetime "updated_at",      :null => false
   end
 
-  add_index "employees", ["employee_id"], :name => "index_employees_on_employee_id", :unique => true
+  add_index "employees", ["employee_number"], :name => "index_employees_on_employee_number", :unique => true
   add_index "employees", ["position"], :name => "index_employees_on_position"
 
   create_table "immigrations", :force => true do |t|

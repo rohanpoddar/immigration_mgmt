@@ -160,7 +160,7 @@ class EmployeeSeeder
         exit_date=data.cell(row,11)
         location= data.cell(row,12)
         citizenship= data.cell(row,13)
-        currentEmp = Employee.new({:employee_id => id,:name => name, :position => position, :category => category, :date_of_joining => date_of_joining, :exit_date => exit_date, :location => location} )
+        currentEmp = Employee.new({:employee_number => id,:name => name, :position => position, :category => category, :date_of_joining => date_of_joining, :exit_date => exit_date, :location => location} )
         currentEmp.passport= Passport.new({:passport_number => passport_number, :citizenship => citizenship,:date_of_expiry => date_of_expiry}) if passport_number!=nil
         currentPos=14
         for visaTypeCount in 0...visaTypeList.size

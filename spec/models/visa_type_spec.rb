@@ -9,7 +9,6 @@ describe VisaType do
 
     it "should not create visa type with nill visa type value" do
       expect{FactoryGirl.create(:visa_type, visa_type:nil)}.to raise_error
-
     end
 
   end
