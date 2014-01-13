@@ -10,7 +10,7 @@ class CreateEmployees < ActiveRecord::Migration
       t.date :exit_date
       t.timestamps
     end
-    add_index :employees, :position
     add_index :employees, :employee_id, :unique => true
+    add_index :employees, :position
   end
 end
