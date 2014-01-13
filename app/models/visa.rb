@@ -1,6 +1,7 @@
 class Visa < ActiveRecord::Base
-  attr_accessible :expiry_date, :issue_date, :visa_type_id, :status, :passport_id
-  belongs_to :passport, :foreign_key => 'passport_id'
-  belongs_to :visa_type, :foreign_key => 'visa_type_id'
+  attr_accessible :expiry_date, :issue_date, :visa_type_id, :status
+  belongs_to :passport
+  belongs_to :visa_type
   has_one :immigration, :autosave => true
+  validates_presence_of :passport
 end
