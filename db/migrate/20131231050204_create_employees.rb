@@ -1,6 +1,6 @@
 class CreateEmployees < ActiveRecord::Migration
   def change
-    create_table :employees, {:id => false} do |t|
+    create_table :employees do |t|
       t.integer :employee_id, :null => false
       t.string :name, :null => false
       t.string :position, :null => false
@@ -10,7 +10,6 @@ class CreateEmployees < ActiveRecord::Migration
       t.date :exit_date
       t.timestamps
     end
-    execute "ALTER TABLE employees ADD PRIMARY KEY (employee_id);"
     add_index :employees, :position
     add_index :employees, :employee_id, :unique => true
   end

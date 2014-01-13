@@ -4,6 +4,7 @@ class EmployeeTest < ActiveSupport::TestCase
   test "factory" do
     @emp = FactoryGirl.create(:employee)
     assert_equal(@emp.name,"abc","name does not match")
+    puts "#{@emp.class.inspect}"
   end
 
 end
