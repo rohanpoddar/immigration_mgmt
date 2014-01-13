@@ -6,11 +6,18 @@ rake db:migrate:reset
 rake db:seed
 rake db:test:load
 rake test
-echo "STARTING SERVER"
-nohup rails s > server.out &
+rake spec
 RETURNVALUE=$?
 if [ $RETURNVALUE -gt 0 ] ; then
-    echo "FAILED TO START"
+    echo "TEST FAILED"
 else
-    echo "STARTED SERVER"
+    echo "TEST PASSED"
+    echo "STARTING SERVER"
+    nohup rails s > server.out &
+    RETURNVALUE=$?
+    if [ $RETURNVALUE -gt 0 ] ; then
+        echo "FAILED TO START"
+    else
+        echo "STARTED SERVER"
+    fi
 fi
