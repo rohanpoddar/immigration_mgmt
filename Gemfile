@@ -8,8 +8,8 @@ gem 'rails', '3.2.13'
 
 gem 'pg'
 gem 'rspec-rails'
-gem 'shoulda-matchers'
-
+gem "shoulda-matchers", "~> 2.5.0"
+gem 'pry'
 
 gem "factory_girl_rails", "~> 4.0"
 
