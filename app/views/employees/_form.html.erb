@@ -22,18 +22,28 @@
 
     <div class="form-group">
       <%= f.label :date_of_joining%>
-      <%= f.date_select(:date_of_joining, :order => [:day, :month, :year], :start_year => 1989, :end_year => Time.now.year, class: "form-control")%>
+      <%= f.text_field :date_of_joining, :class=>"form-control", 'data-behaviour'=>"datepicker_doj",'placeholder'=>"Select Date of Joining"%>
+      <script type="text/javascript">
+          $(document).ready(function(){
+              $('[data-behaviour~=datepicker_doj]').datepicker();
+          })
+      </script>
     </div>
 
     <div class="form-group">
         <%= f.label :exit_date%>
-      <%= f.date_select(:exit_date, :order => [:day, :month, :year], :start_year => 1989, :end_year => Time.now.year, class: "form-control")%>
+        <%= f.text_field :exit_date, :class=>"form-control", 'data-behaviour'=>"datepicker_exit_date",'placeholder'=>"Select Exit Date"%>
+        <script type="text/javascript">
+              $(document).ready(function(){
+                  $('[data-behaviour~=datepicker_exit_date]').datepicker();
+            })
+        </script>
     </div>
 
     <div class="form-group">
       <%= f.label :location%>
       <%= f.text_field :location, class: "form-control"%>
     </div>
-  <%= f.submit class: 'btn btn-default'%>
+  <%= f.submit class: 'btn btn-primary'%>
 <%end%>
 

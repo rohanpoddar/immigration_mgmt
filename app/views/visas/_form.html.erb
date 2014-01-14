@@ -7,8 +7,7 @@
 
     <div class="form-group">
       <%= f.label :visa_type%>
-      <% visa_types_array = VisaType.all.map { |visa_type| [visa_type.name,visa_type.id] } %>
-      <%= f.select :visa_type_id,visa_types_array, class: "form-control"%>
+      <%= collection_select(:visa,:visa_type_id,VisaType.all,:id,:name,{},{:class => "form-control"})%>
     </div>
 
     <div class="form-group">
@@ -18,14 +17,24 @@
 
     <div class="form-group">
       <%= f.label :issue_date%>
-      <%= f.date_select(:issue_date, :order => [:day, :month, :year], :start_year => 1980, :end_year => Time.now.year, class: "form-control")%>
+      <%= f.text_field :issue_date, :class=>"form-control", 'data-behaviour'=>"datepicker_id",'placeholder'=>"Select Issue Date"%>
+      <script type="text/javascript">
+          $(document).ready(function(){
+              $('[data-behaviour~=datepicker_id]').datepicker();
+          })
+      </script>
     </div>
 
     <div class="form-group">
       <%= f.label :expiry_date%>
-      <%= f.date_select(:expiry_date, :order => [:day, :month, :year], :start_year => 1989, :end_year => Time.now.year+30, class: "form-control")%>
+      <%= f.text_field :expiry_date, :class=>"form-control", 'data-behaviour'=>"datepicker_ed",'placeholder'=>"Select Expiry Date"%>
+      <script type="text/javascript">
+          $(document).ready(function(){
+              $('[data-behaviour~=datepicker_ed]').datepicker();
+          })
+      </script>
     </div>
 
-    <%= f.submit class:"btn btn-default" %>
+    <%= f.submit class:"btn btn-primary" %>
 <%end%>
 

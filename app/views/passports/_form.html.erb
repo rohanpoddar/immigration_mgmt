@@ -11,7 +11,12 @@
 
     <div class="form-group">
       <%= f.label :date_of_expiry%>
-      <%= f.date_select(:date_of_expiry, :order => [:day, :month, :year], :start_year => 2014, :end_year => Time.now.year, class: "form-control")%>
+      <%= f.text_field :date_of_expiry, :class=>"form-control", 'data-behaviour'=>"datepicker_doe",'placeholder'=>"Select Date of Expiry"%>
+      <script type="text/javascript">
+          $(document).ready(function(){
+              $('[data-behaviour~=datepicker_doe]').datepicker();
+          })
+      </script>
     </div>
 
     <div class="form-group">
@@ -19,5 +24,5 @@
       <%= f.text_field :citizenship, class: "form-control"%>
     </div>
 
-    <%= f.submit class: 'btn btn-default'%>
+    <%= f.submit class: 'btn btn-primary'%>
 <%end%>
