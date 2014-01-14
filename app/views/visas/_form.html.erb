@@ -10,8 +10,18 @@
           </ul>
         </div>
     <% end %>
-    <input type="hidden" id="passportId" value="<%= params[:passport_number]%>"/>
+    <!--<input type="hidden" id="passportId" value="<%= params[:passport_number]%>"/>-->
 
+    <div class="field">
+      <%= f.label :passport_number%>
+      <%= f.text_field :passport_id%>
+    </div>
+
+    <div class="field">
+      <%= f.label :visa_type%>
+      <% visa_types_array = VisaType.all.map { |visa_type| [visa_type.name,visa_type.id] } %>
+      <%= f.select :visa_type_id,visa_types_array%>
+    </div>
 
     <div class="field">
       <%= f.label :status%>
