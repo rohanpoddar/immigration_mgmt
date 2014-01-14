@@ -10,7 +10,7 @@ class Employee < ActiveRecord::Base
 
   #VALIDATIONS
   validates_uniqueness_of :employee_number
-  validates_presence_of :category
+  validates_presence_of :date_of_joining, :employee_number, :name
 
   #METHODS
   def location=(location)
