@@ -37,7 +37,7 @@ class VisasController < ApplicationController
 
   def update
     @visa=Visa.find(params[:id])
-    @visa.update_attributes(params[:employee])
+    @visa.update_attributes(params[:visa])
     redirect_to :action => 'index'
   end
 end

@@ -11,6 +11,8 @@ ImmigrationMgmt::Application.routes.draw do
   resources :passports
 
   resources :visas
+
+  resources :visa_types
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
