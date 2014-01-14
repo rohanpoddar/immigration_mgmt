@@ -27,3 +27,12 @@ div.header_middle{
     width: 50%;
     font-size: 30px;
 }
+
+a{
+    font-family: helvetica, verdana, arial, sans-serif;
+}
+
+hr{
+    height: 2px;
+    color: black;
+}
