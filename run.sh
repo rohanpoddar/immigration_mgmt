@@ -4,8 +4,6 @@ rake db:drop
 rake db:create
 rake db:migrate:reset
 rake db:seed
-rake db:test:load
-rake test
 rake spec
 RETURNVALUE=$?
 if [ $RETURNVALUE -gt 0 ] ; then

@@ -1,4 +1,38 @@
+<h1>Visa Details</h1>
+
+<div class="field">
+  <strong><%= label_tag :employee_id, "Employee Number"%>:</strong>
+  <%=@visa.passport.employee.employee_number%>
+</div>
+
 <div class="field">
   <strong><%= label_tag :passport_number, "Passport Number"%>:</strong>
   <%=@visa.passport.passport_number%>
 </div>
+
+<div class="field">
+  <strong><%= label_tag :visa_type, "Visa Type"%>:</strong>
+  <%=@visa.visa_type.name%>
+</div>
+
+<div class="field">
+  <strong><%= label_tag :country, "Country"%>:</strong>
+  <%=@visa.visa_type.country%>
+</div>
+
+<div class="field">
+  <strong><%= label_tag :status, "Status"%>:</strong>
+  <%=@visa.status%>
+</div>
+
+<div class="field">
+  <strong><%= label_tag :issue_date, "Issue Date"%>:</strong>
+  <%=@visa.issue_date%>
+</div>
+
+<div class="field">
+  <strong><%= label_tag :expiry_date, "Expiry Date"%>:</strong>
+  <%=@visa.expiry_date.to_s%>
+</div>
+
+
