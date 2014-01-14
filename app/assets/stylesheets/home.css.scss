@@ -2,17 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#container {
-  width: 600px;
-}
-
-div.header_left{
-  float:left;
-}
-
-div.header_middle{
+#home_list
+{
+  font-family: helvetica, verdana, arial, sans-serif;
+  font-size: large;
+  color: black;
+  align-content: center;
   text-align: center;
-  margin: 0 auto;
-  width: 50%;
-  font-size: 30px;
+  width:100%;
 }
+
