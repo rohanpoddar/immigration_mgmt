@@ -1,7 +1,7 @@
 <%= form_for @visa do |f| %>
     <% if @visa.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this Visa from being saved:</h2>
+          <h2><%= pluralize(@visa.errors.count, "error") %> prohibited this Visa from being saved:</h2>
 
           <ul>
             <% @visa.errors.full_messages.each do |msg| %>
@@ -10,8 +10,8 @@
           </ul>
         </div>
     <% end %>
+    <input type="hidden" id="passportId" value="<%= params[:passport_number]%>"/>
 
-    <input type="hidden" value="<%= params[:passport_number]%>"/>
 
     <div class="field">
       <%= f.label :status%>
@@ -20,12 +20,12 @@
 
     <div class="field">
       <%= f.label :issue_date%>
-      <%= f.date_select(:issue_date, :order => [:day, :month, :year, :start_year => 1980, :end_year => Time.now.year])%>
+      <%= f.date_select(:issue_date, :order => [:day, :month, :year], :start_year => 1980, :end_year => Time.now.year)%>
     </div>
 
     <div class="field">
       <%= f.label :expiry_date%>
-      <%= f.date_select(:expiry_date, :order => [:day, :month, :year, :start_year => 1989, :end_year => Time.now.year+30])%>
+      <%= f.date_select(:expiry_date, :order => [:day, :month, :year], :start_year => 1989, :end_year => Time.now.year+30)%>
     </div>
 
     <div class="action">
