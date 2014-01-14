@@ -1,9 +1,9 @@
 <h2>Employee List</h2>
-<%= form_tag search_employees_path, :method => 'get' do %>
-    <p>
-      <%= text_field_tag :search, params[:search], :placeholder => 'Name' %>
-      <%= submit_tag "Search By Name", :name => nil %>
-    </p>
+<%= form_tag search_employees_path, :method => 'get',class:"navbar-form navbar-left",role:"search" do %>
+    <div class="form-group">
+      <%= text_field_tag :search, params[:search], :placeholder => 'Search', :class=>"form-control" %>
+    </div>
+      <%= submit_tag "Search By Name", :class=>"btn btn-default"%>
 <% end %>
 <table class="table table-hover">
   <thead>
