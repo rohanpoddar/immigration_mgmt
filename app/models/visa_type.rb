@@ -5,6 +5,7 @@ class VisaType < ActiveRecord::Base
 
   #ASSOCIATIONS
   has_many :visas
+  accepts_nested_attributes_for :visas
 
   #VALIDATIONS
   validates_uniqueness_of :name

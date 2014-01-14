@@ -1,0 +1,15 @@
+<h1>Visa Type Details</h1>
+
+<div class="field">
+  <strong><%= label_tag :name, "Visa Type Name"%>:</strong>
+  <%=@visa_type.name%>
+</div>
+
+<div class="field">
+  <strong><%= label_tag :country, "Country"%>:</strong>
+  <%=@visa_type.country%>
+</div>
+
+<%= @visas=@visa_type.visas
+    render partial:"visas/visa_sublist", locals: {object: @visas}
+%>
