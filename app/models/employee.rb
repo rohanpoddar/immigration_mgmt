@@ -1,10 +1,18 @@
 class Employee < ActiveRecord::Base
+
+  #ATTRIBUTES
   attr_accessible :category, :date_of_joining, :employee_number, :exit_date, :name, :location, :position
+
+  #ASSOCIATIONS
   has_one :passport, :autosave => true, :dependent => :destroy
   has_many :visas, :through => :passport, :autosave => true
-  validates_uniqueness_of :employee_number, :null=>true
+  accepts_nested_attributes_for :passport, :visas
+
+  #VALIDATIONS
+  validates_uniqueness_of :employee_number
   validates_presence_of :category
 
+  #METHODS
   def location=(location)
     if location==nil
       write_attribute(:location,"Unknown")
