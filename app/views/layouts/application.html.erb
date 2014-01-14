@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Immigration Management for ThoughtWorks&#8482</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-  <div>
-    <div class="header_middle"><%= image_tag 'TW_logo.png' %><sup><sup><sup>&#8482</sup></sup></sup></div>
-    <div class="header_middle"><a href="/">Immigration & Mobility Portal</a></div>
-  </div>
-  <hr/>
-</head>
-<body>
-<%= yield %>
-</body>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Immigration Mgmt" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Immigration Mgmt" %>">
+    <%= stylesheet_link_tag "application", media: "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <header>
+      <%= render 'layouts/navigation' %>
+    </header>
+    <main role="main">
+       <%= render 'layouts/messages' %>
+    </main>
+    <%= yield %>
+  </body>
 </html>

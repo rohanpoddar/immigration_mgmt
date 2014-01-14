@@ -30,6 +30,10 @@ gem 'foreigner'
 
 gem 'roo'
 
+gem 'bootstrap-sass'
+group :development do
+  gem 'rails_layout'
+end
 #gem 'immigrant'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
