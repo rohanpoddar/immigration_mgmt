@@ -9,14 +9,18 @@ class VisasController < ApplicationController
 
   def create
     @visa=Visa.new(params[:visa])
-    passport= Passport.find_by_passport_number(params[:passportId])
-    if passport==nil || params[:visa_type_id].empty?
-      flash[:error]='Lol'
+    passport= Passport.find_by_passport_number(params[:visa][:passport_id])
+    if passport==nil
+      flash[:notice]="Invalid Passport Number"
       render :new
     else
       @visa.passport=passport
-      @visa.visa_type_id=params[:visa_type_id]
-      @visa.save
+      @visa.visa_type_id=params[:visa][:visa_type_id]
+      if @visa.save
+        flash[:success]="Successfully Inserted Visa!!!"
+      else
+        flash[:error]="Failed to create"
+      end
       redirect_to :action => 'index'
     end
   end
@@ -27,7 +31,11 @@ class VisasController < ApplicationController
 
   def destroy
     @visa=Visa.find(params[:id])
-    @visa.destroy
+    if @visa.destroy
+      flash[:success]="Successfully deleted Visa!!!"
+    else
+      flash[:error]="Failed to delete !!!"
+    end
     redirect_to :action => 'index'
   end
 
