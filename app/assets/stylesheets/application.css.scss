@@ -11,28 +11,3 @@
  *= require_self
  *= require_tree .
  */
-
-
-#container {
-    width: 600px;
-}
-
-div.header_left{
-    float:left;
-}
-
-div.header_middle{
-    text-align: center;
-    margin: 0 auto;
-    width: 50%;
-    font-size: 30px;
-}
-
-a{
-    font-family: helvetica, verdana, arial, sans-serif;
-}
-
-hr{
-    height: 2px;
-    color: black;
-}

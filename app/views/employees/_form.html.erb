@@ -1,54 +1,39 @@
-<%= form_for @employee do |f| %>
-    <% if @employee.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this Employee from being saved:</h2>
+<%= form_for @employee, html:{role:"form"} do |f| %>
 
-          <ul>
-            <% @employee.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
-
-
-    <div class="field">
+    <div class="form-group">
       <%= f.label :employee_number, "Employee ID"%>
-      <%= f.text_field :employee_number%>
+      <%= f.text_field :employee_number, class: "form-control"%>
     </div>
 
-    <div class="field">
+    <div class="form-group">
       <%= f.label :name%>
-      <%= f.text_field :name%>
+      <%= f.text_field :name, class: "form-control"%>
     </div>
 
-    <div class="field">
+    <div class="form-group">
       <%= f.label :position%>
-      <%= f.text_field :position%>
+      <%= f.text_field :position, class: "form-control"%>
     </div>
 
-    <div class="field">
+    <div class="form-group">
       <%= f.label :category%>
-      <%= f.text_field :category%>
+      <%= f.text_field :category, class: "form-control"%>
     </div>
 
-    <div class="field">
+    <div class="form-group">
       <%= f.label :date_of_joining%>
-      <%= f.date_select(:date_of_joining, :order => [:day, :month, :year], :start_year => 1989, :end_year => Time.now.year)%>
+      <%= f.date_select(:date_of_joining, :order => [:day, :month, :year], :start_year => 1989, :end_year => Time.now.year, class: "form-control")%>
     </div>
 
-    <div class="field">
-      <%= f.label :exit_date%>
-      <%= f.date_select(:exit_date, :order => [:day, :month, :year], :start_year => 1989, :end_year => Time.now.year)%>
+    <div class="form-group">
+        <%= f.label :exit_date%>
+      <%= f.date_select(:exit_date, :order => [:day, :month, :year], :start_year => 1989, :end_year => Time.now.year, class: "form-control")%>
     </div>
 
-    <div class="field">
+    <div class="form-group">
       <%= f.label :location%>
-      <%= f.text_field :location%>
+      <%= f.text_field :location, class: "form-control"%>
     </div>
-
-    <div class="action">
-      <%= f.submit %>
-    </div>
+  <%= f.submit class: 'btn btn-default'%>
 <%end%>
 

@@ -9,11 +9,12 @@ class VisaTypesController < ApplicationController
 
   def create
     @visa_type=VisaType.new(params[:visa_type])
-    if  params[:visa_type]==nil
-      flash[:error]='Lol'
+    if  params[:name]==""|| params[:name]==nil
+      flash[:alert]="Please Enter a Visa Type Name !!!"
       render :new
     else
       @visa_type.save
+      flash[:success]="Your Visa Type was created !!!"
       redirect_to :action => 'index'
     end
   end
