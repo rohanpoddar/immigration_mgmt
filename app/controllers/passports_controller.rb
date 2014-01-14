@@ -13,4 +13,13 @@ class PassportsController < ApplicationController
       redirect_to :action => 'index'
       end
   end
+  def edit
+    @passport = Passport.find(params[:id])
+  end
+
+  def update
+    @passport = Passport.find(params[:id])
+    @passport.update_attributes(params[:passport])
+    redirect_to :action => 'index'
+  end
 end
