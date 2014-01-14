@@ -1,0 +1,23 @@
+<h1>Visa List</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Passport Number</th>
+  </tr>
+  </thead>
+  <tbody>
+  <%= @visas.each do |visa| %>
+      <tr>
+        <td><%= visa.passport.passport_number %></td>
+        <td><%= link_to "Show", visa %>
+          <%= link_to "Edit", edit_visa_path(visa) %>
+          <%= link_to "Destroy", visa, :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to "New", new_visa_path%>
+
+
+

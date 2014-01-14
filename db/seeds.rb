@@ -118,25 +118,25 @@ require 'roo'
 
 class VisaTypeSeeder
   def VisaTypeSeeder.seed
-    VisaType.create(:country => '', :visa_type => 'B1')
-    VisaType.create(:country => '', :visa_type => 'L1A')
-    VisaType.create(:country => '', :visa_type => 'L1B')
-    VisaType.create(:country => 'UK', :visa_type => 'UK Work Visa')
-    VisaType.create(:country => 'UK', :visa_type => 'UK Business Visa')
-    VisaType.create(:country => 'China', :visa_type => 'Shengan Visa')
-    VisaType.create(:country => 'Australia', :visa_type => 'Oz Business Visa')
-    VisaType.create(:country => 'Australia', :visa_type => 'Oz Work Permit')
-    VisaType.create(:country => 'Canada', :visa_type => 'Canadian Work Permit')
-    VisaType.create(:country => 'Canada', :visa_type => 'Canadian Work Visa')
-    VisaType.create(:country => 'Brazil', :visa_type => 'Brazil Work Permit')
-    VisaType.create(:country => 'Brazil', :visa_type => 'Brazil Business Visa')
-    VisaType.create(:country => 'China', :visa_type => 'Chinese Visa')
-    VisaType.create(:country => 'Singapore', :visa_type => 'Singapore Visa')
-    VisaType.create(:country => 'Singapore', :visa_type => 'Singapore Work Visa')
-    VisaType.create(:country => 'Uganda', :visa_type => 'Uganda Special Pass')
-    VisaType.create(:country => 'India', :visa_type => 'India Employment Visa')
-    VisaType.create(:country => 'Zimbabwe', :visa_type => 'ZA Business Visa')
-    VisaType.create(:country => 'Zimbabwe', :visa_type => 'ZA Work Visa')
+    VisaType.create(:country => '', :name => 'B1')
+    VisaType.create(:country => '', :name => 'L1A')
+    VisaType.create(:country => '', :name => 'L1B')
+    VisaType.create(:country => 'UK', :name => 'UK Work Visa')
+    VisaType.create(:country => 'UK', :name => 'UK Business Visa')
+    VisaType.create(:country => 'China', :name => 'Shengan Visa')
+    VisaType.create(:country => 'Australia', :name=> 'Oz Business Visa')
+    VisaType.create(:country => 'Australia', :name => 'Oz Work Permit')
+    VisaType.create(:country => 'Canada', :name => 'Canadian Work Permit')
+    VisaType.create(:country => 'Canada', :name => 'Canadian Work Visa')
+    VisaType.create(:country => 'Brazil', :name => 'Brazil Work Permit')
+    VisaType.create(:country => 'Brazil', :name => 'Brazil Business Visa')
+    VisaType.create(:country => 'China', :name => 'Chinese Visa')
+    VisaType.create(:country => 'Singapore', :name => 'Singapore Visa')
+    VisaType.create(:country => 'Singapore', :name => 'Singapore Work Visa')
+    VisaType.create(:country => 'Uganda', :name => 'Uganda Special Pass')
+    VisaType.create(:country => 'India', :name => 'India Employment Visa')
+    VisaType.create(:country => 'Zimbabwe', :name => 'ZA Business Visa')
+    VisaType.create(:country => 'Zimbabwe', :name => 'ZA Work Visa')
   end
 end
 
@@ -149,7 +149,7 @@ class EmployeeSeeder
     visaTypeConfig = [3,3,3,6,3,4,4,4,4,4,4,4,4,4,3,3,4,3,3]
     visaTypeList = VisaType.all(:order => 'created_at')
     if visaTypeConfig.size == visaTypeList.size
-      for row in 3..data.last_row
+      for row in 3...data.last_row
         id= data.cell(row,4)
         name= data.cell(row,5)
         position= data.cell(row,6)
@@ -161,18 +161,23 @@ class EmployeeSeeder
         location= data.cell(row,12)
         citizenship= data.cell(row,13)
         currentEmp = Employee.new({:employee_number => id,:name => name, :position => position, :category => category, :date_of_joining => date_of_joining, :exit_date => exit_date, :location => location} )
-        currentEmp.passport= Passport.new({:passport_number => passport_number, :citizenship => citizenship,:date_of_expiry => date_of_expiry}) if passport_number!=nil
-        currentPos=14
-        for visaTypeCount in 0...visaTypeList.size
-          status=data.cell(row,currentPos)
-          if status!=nil && status!= "" && currentEmp.passport!=nil
-            visa = Visa.new(:status => status)
-            visa.visa_type = visaTypeList[visaTypeCount]
-            currentEmp.passport.visas << visa
+        currentEmp.save!
+        if passport_number==nil || passport_number==""
+        else
+          passport=currentEmp.build_passport({:passport_number => passport_number, :citizenship => citizenship,:date_of_expiry => date_of_expiry})
+          passport.save!
+          currentPos=14
+          for visaTypeCount in 0...visaTypeList.size
+            status=data.cell(row,currentPos)
+            if status!=nil && status!= ""
+              visa = Visa.new(:status => status)
+              visa.visa_type = visaTypeList[visaTypeCount]
+              visa.passport=passport
+              visa.save!
+            end
+            currentPos+=visaTypeConfig[visaTypeCount]
           end
-          currentPos+=visaTypeConfig[visaTypeCount]
         end
-        currentEmp.save
         puts "JUST PUT #{currentEmp}"
       end
     else
