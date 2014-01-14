@@ -1,8 +1,13 @@
 <%= form_for @visa, html: {role:"form"} do |f| %>
 
     <div class="form-group">
-      <%= f.label :passport_number%>
-      <%= f.text_field :passport_id, class: "form-control"%>
+      <%if(params[:passport_number]==nil)%>
+          <%= f.label :passport_number, class: "sr-only"%>
+          <%= f.text_field :passport_id, class: "form-control",'placeholder' => "Passport Number here"%>
+      <%else%>
+          <%= f.label :passport_number%>
+          <%= f.text_field :passport_id, class: "form-control", 'value' => "#{params[:passport_number]}", 'disabled'=> "" %>
+      <%end%>
     </div>
 
     <div class="form-group">
@@ -11,12 +16,12 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :status%>
-      <%= f.text_field :status, class: "form-control"%>
+      <%= f.label :status, class: "sr-only"%>
+      <%= f.text_field :status, class: "form-control",'placeholder' => "Current Visa Status"%>
     </div>
 
     <div class="form-group">
-      <%= f.label :issue_date%>
+      <%= f.label :issue_date, class: "sr-only"%>
       <%= f.text_field :issue_date, :class=>"form-control", 'data-behaviour'=>"datepicker_id",'placeholder'=>"Select Issue Date"%>
       <script type="text/javascript">
           $(document).ready(function(){
@@ -26,7 +31,7 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :expiry_date%>
+      <%= f.label :expiry_date, class: "sr-only"%>
       <%= f.text_field :expiry_date, :class=>"form-control", 'data-behaviour'=>"datepicker_ed",'placeholder'=>"Select Expiry Date"%>
       <script type="text/javascript">
           $(document).ready(function(){

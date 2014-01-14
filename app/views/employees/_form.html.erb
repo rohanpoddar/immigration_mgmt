@@ -1,27 +1,27 @@
 <%= form_for @employee, html:{role:"form"} do |f| %>
 
     <div class="form-group">
-      <%= f.label :employee_number, "Employee ID"%>
-      <%= f.text_field :employee_number, class: "form-control"%>
+      <%= f.label :employee_number, "Employee ID", class: "sr-only"%>
+      <%= f.text_field :employee_number, class: "form-control", 'placeholder' => "Employee ID"%>
     </div>
 
     <div class="form-group">
-      <%= f.label :name%>
-      <%= f.text_field :name, class: "form-control"%>
+      <%= f.label :name, class: "sr-only"%>
+      <%= f.text_field :name, class: "form-control",'placeholder' => "Name of Employee"%>
     </div>
 
     <div class="form-group">
-      <%= f.label :position%>
-      <%= f.text_field :position, class: "form-control"%>
+      <%= f.label :position, class: "sr-only"%>
+      <%= f.text_field :position, class: "form-control",'placeholder' => "Position"%>
     </div>
 
     <div class="form-group">
-      <%= f.label :category%>
-      <%= f.text_field :category, class: "form-control"%>
+      <%= f.label :category, class: "sr-only"%>
+      <%= f.text_field :category, class: "form-control",'placeholder' => "Category"%>
     </div>
 
     <div class="form-group">
-      <%= f.label :date_of_joining%>
+      <%= f.label :date_of_joining, class: "sr-only"%>
       <%= f.text_field :date_of_joining, :class=>"form-control", 'data-behaviour'=>"datepicker_doj",'placeholder'=>"Select Date of Joining"%>
       <script type="text/javascript">
           $(document).ready(function(){
@@ -31,7 +31,7 @@
     </div>
 
     <div class="form-group">
-        <%= f.label :exit_date%>
+        <%= f.label :exit_date, class: "sr-only"%>
         <%= f.text_field :exit_date, :class=>"form-control", 'data-behaviour'=>"datepicker_exit_date",'placeholder'=>"Select Exit Date"%>
         <script type="text/javascript">
               $(document).ready(function(){
@@ -41,8 +41,8 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :location%>
-      <%= f.text_field :location, class: "form-control"%>
+      <%= f.label :location, class: "sr-only"%>
+      <%= f.text_field :location, class: "form-control",'placeholder' => "Home Office Location"%>
     </div>
   <%= f.submit class: 'btn btn-primary'%>
 <%end%>

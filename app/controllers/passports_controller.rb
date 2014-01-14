@@ -9,8 +9,9 @@ class PassportsController < ApplicationController
     @passport = Passport.new(params[:passport])
       if @passport.save
         redirect_to :action => 'index'
-    else
-      redirect_to :action => 'index'
+      else
+        flash[:error]="Failed to create passport"
+        redirect_to :action => 'index'
       end
   end
   def edit
