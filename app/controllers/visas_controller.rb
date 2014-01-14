@@ -1,6 +1,6 @@
 class VisasController < ApplicationController
   def index
-    @visas= Visa.all
+    @visas= Visa.all( :order=> :visa_type_id)
   end
 
   def new

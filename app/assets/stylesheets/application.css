@@ -11,3 +11,14 @@
  *= require_self
  *= require_tree .
  */
+
+#home_list
+{
+    font-family: helvetica, verdana, arial, sans-serif;
+    font-size: large;
+    color: black;
+    align-content: center;
+    text-align: center;
+    width:100%;
+}
+
