@@ -5,7 +5,7 @@ describe Visa do
   describe "Factory" do
     it "should create Visa" do
       visa = FactoryGirl.create(:visa)
-      visa.should_not be_nil
+      visa.should be_valid
     end
   end
 

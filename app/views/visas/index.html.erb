@@ -6,7 +6,7 @@
   </tr>
   </thead>
   <tbody>
-  <%= @visas.each do |visa| %>
+  <% @visas.each do |visa| %>
       <tr>
         <td><%= visa.passport.passport_number %></td>
         <td><%= link_to "Show", visa %>
