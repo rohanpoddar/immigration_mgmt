@@ -17,7 +17,7 @@ class EmployeesController < ApplicationController
         redirect_to "/passports/new?employee_number=#{@employee.employee_number}"
       end
     else
-      flash[:danger]="#{params.inspect}"
+      flash[:danger]="#{params.inspect}<br/>#{@employee.errors.full_messages}"
       redirect_to :action => 'index'
     end
   end

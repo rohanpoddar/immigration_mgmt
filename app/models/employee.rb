@@ -1,3 +1,11 @@
+class EmployeeValidator < ActiveModel::Validator
+  def validate(record)
+    if record.exit_date!=nil
+      record.errors[:date_of_joining]<<": Exit Date comes before Date of joining" unless record.date_of_joining<record.exit_date
+    end
+  end
+end
+
 class Employee < ActiveRecord::Base
 
   #ATTRIBUTES
@@ -9,9 +17,10 @@ class Employee < ActiveRecord::Base
   accepts_nested_attributes_for :passport, :visas
 
   #VALIDATIONS
+  include ActiveModel::Validations
   validates_uniqueness_of :employee_number
   validates_presence_of :date_of_joining, :employee_number, :name
-
+  validates_with EmployeeValidator
   #METHODS
   def location=(location)
     if location==nil
@@ -26,5 +35,5 @@ class Employee < ActiveRecord::Base
   def self.search(search)
       find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
   end
-
 end
+

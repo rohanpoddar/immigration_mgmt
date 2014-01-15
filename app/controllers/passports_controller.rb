@@ -24,6 +24,7 @@ class PassportsController < ApplicationController
   end
   def edit
     @passport = Passport.find_by_id(params[:id])
+    @passport.employee_id=Employee.find_by_id(@passport.employee_id).employee_number
   end
 
   def update
