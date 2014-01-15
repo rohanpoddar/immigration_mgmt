@@ -1,5 +1,4 @@
-
-
+<h2>Employee Details: <%= @employee.name %></h2>
 <div class="field">
   <strong><%= label_tag :employee_id, "Employee ID"%>:</strong>
   <%=@employee.employee_number%>
@@ -34,3 +33,5 @@
   <strong><%= label_tag :location%>:</strong>
   <%= @employee.location%>
 </div>
+
+<a href="/passports/new?employee_id=<%=@employee.employee_number%>">Add Passport</a>

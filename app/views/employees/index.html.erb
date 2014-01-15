@@ -20,7 +20,9 @@
   </thead>
   <tbody>
   <%@employees.each do |employee| %>
-  <tr>
+  <tr class="<%if employee.passport==nil%>danger<%
+     else%>success<%
+     end%>">
     <td><%= employee.employee_number %></td>
     <td><%= employee.name %></td>
     <td><%= employee.category %></td>

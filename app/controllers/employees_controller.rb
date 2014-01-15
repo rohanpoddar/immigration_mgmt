@@ -9,8 +9,13 @@ class EmployeesController < ApplicationController
 
   def create
     @employee=Employee.new(params[:employee])
-    @employee.save
-    redirect_to :action => 'index'
+    if @employee.save
+      flash[:success]="success"
+      redirect_to :action => 'index'
+    else
+      flash[:danger]="#{params.inspect}"
+      redirect_to :action => 'index'
+      end
   end
 
   def show

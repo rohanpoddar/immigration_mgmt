@@ -1,7 +1,12 @@
 <h2>Visa Details</h2>
 
 <div class="field">
-  <strong><%= label_tag :employee_id, "Employee Number"%>:</strong>
+  <strong><%= label_tag :employee_name, "Employee Name"%>:</strong>
+  <%=@visa.passport.employee.name%>
+</div>
+
+<div class="field">
+  <strong><%= label_tag :employee_number, "Employee Number"%>:</strong>
   <%=@visa.passport.employee.employee_number%>
 </div>
 
