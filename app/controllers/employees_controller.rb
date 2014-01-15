@@ -14,21 +14,21 @@ class EmployeesController < ApplicationController
   end
 
   def show
-    @employee=Employee.find(params[:id])
+    @employee=Employee.find_by_id(params[:id])
   end
 
   def destroy
-    @employee=Employee.find(params[:id])
+    @employee=Employee.find_by_id(params[:id])
     @employee.destroy
     redirect_to :action => 'index'
   end
 
   def edit
-    @employee=Employee.find(params[:id])
+    @employee=Employee.find_by_id(params[:id])
   end
 
   def update
-    @employee=Employee.find(params[:id])
+    @employee=Employee.find_by_id(params[:id])
     @employee.update_attributes(params[:employee])
     redirect_to :action => 'index'
   end
