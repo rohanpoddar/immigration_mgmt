@@ -17,3 +17,4 @@
 .idea/
 .ruby-version
 server.out
+/db/content.xlsx
