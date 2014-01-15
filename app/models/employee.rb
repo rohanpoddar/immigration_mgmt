@@ -10,9 +10,9 @@ class Employee < ActiveRecord::Base
 
   #ATTRIBUTES
   attr_accessible :category, :date_of_joining, :employee_number, :exit_date, :name, :location, :position
-
+  self.primary_key = 'employee_number'
   #ASSOCIATIONS
-  has_one :passport, :autosave => true, :dependent => :destroy
+  has_one :passport, :foreign_key => "employee_number", :autosave => true, :dependent => :destroy
   has_many :visas, :through => :passport, :autosave => true
   accepts_nested_attributes_for :passport, :visas
 

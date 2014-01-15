@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(:version => 20140102054256) do
 
-  create_table "employees", :force => true do |t|
+  create_table "employees", :id => false, :force => true do |t|
     t.integer  "employee_number", :null => false
     t.string   "name",            :null => false
     t.string   "position"
@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(:version => 20140102054256) do
 
   add_index "immigrations", ["city"], :name => "index_immigrations_on_city"
 
-  create_table "passports", :force => true do |t|
-    t.integer  "employee_id"
+  create_table "passports", :id => false, :force => true do |t|
+    t.integer  "employee_number", :null => false
     t.string   "passport_number", :null => false
     t.string   "citizenship"
     t.date     "date_of_expiry"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(:version => 20140102054256) do
     t.datetime "updated_at",      :null => false
   end
 
-  add_index "passports", ["employee_id"], :name => "index_passports_on_employee_id", :unique => true
+  add_index "passports", ["employee_number"], :name => "index_passports_on_employee_number", :unique => true
   add_index "passports", ["passport_number"], :name => "index_passports_on_passport_number", :unique => true
 
   create_table "visa_types", :force => true do |t|
@@ -62,21 +62,21 @@ ActiveRecord::Schema.define(:version => 20140102054256) do
   add_index "visa_types", ["name"], :name => "index_visa_types_on_name", :unique => true
 
   create_table "visas", :force => true do |t|
+    t.string   "passport_number", :null => false
     t.integer  "visa_type_id"
-    t.integer  "passport_id"
-    t.string   "status",       :null => false
+    t.string   "status",          :null => false
     t.date     "issue_date"
     t.date     "expiry_date"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
-  add_index "visas", ["passport_id"], :name => "index_visas_on_passport_id"
+  add_index "visas", ["passport_number"], :name => "index_visas_on_passport_number"
   add_index "visas", ["visa_type_id"], :name => "index_visas_on_visa_type_id"
 
-  add_foreign_key "passports", "employees", name: "passports_employee_id_fk", dependent: :delete
+  add_foreign_key "passports", "employees", name: "passports_employee_number_fk", column: "employee_number", primary_key: "employee_number", dependent: :delete
 
-  add_foreign_key "visas", "passports", name: "visas_passport_id_fk", dependent: :delete
+  add_foreign_key "visas", "passports", name: "visas_passport_number_fk", column: "passport_number", primary_key: "passport_number", dependent: :delete
   add_foreign_key "visas", "visa_types", name: "visas_visa_type_id_fk", dependent: :delete
 
 end

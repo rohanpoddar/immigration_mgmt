@@ -1,15 +1,16 @@
 class Passport < ActiveRecord::Base
 
   #ATTRIBUTES
-  attr_accessible :citizenship, :date_of_expiry, :passport_number, :employee_id
+  attr_accessible :citizenship, :date_of_expiry, :passport_number, :employee_number
+  self.primary_key = 'passport_number'
 
   #ASSOCIATIONS
-  belongs_to :employee, :foreign_key => 'employee_id', :autosave => true
-  has_many :visas, :autosave => true
+  belongs_to :employee, :foreign_key => "employee_number",:primary_key => "employee_number", :autosave => true
+  has_many :visas, :foreign_key => "passport_number", :autosave => true
   accepts_nested_attributes_for :visas
 
   #VALIDATIONS
   validates_uniqueness_of :passport_number
-  validates_presence_of :employee_id
-  validates_uniqueness_of :employee_id
+  validates_presence_of :employee_number
+  validates_uniqueness_of :employee_number
 end

@@ -7,9 +7,9 @@ class AddIndexes < ActiveRecord::Migration
     add_index :visa_types, :country
 
     add_index :passports, :passport_number, :unique => true
-    add_index :passports, :employee_id, :unique => true
+    add_index :passports, :employee_number, :unique => true
 
-    add_index :visas, :passport_id
+    add_index :visas, :passport_number
     add_index :visas, :visa_type_id
 
     add_index :immigrations, :city
