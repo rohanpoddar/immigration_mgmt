@@ -7,15 +7,20 @@ class PassportsController < ApplicationController
   end
   def create
     @passport = Passport.new(params[:passport])
-      employee_id=Employee.find_by_employee_number(params[:passport][:employee_id])
-      @passport.employee_id=employee_id
-      if @passport.save
-        flash[:success]="Created Successfully !!!"
-        redirect_to :action => 'index'
-      else
-        flash[:error]="Failed to create Passport !!! #{params.inspect}"
-        redirect_to :action => 'index'
-      end
+    if params[:employee_number]!=nil
+      id=params[:employee_number]
+    else
+      id=params[:passport][:employee_id]
+    end
+    employee=Employee.find_by_employee_number(id)
+    @passport.employee_id=employee.id
+    if @passport.save
+      flash[:success]="Created Successfully !!!"
+      redirect_to :action => 'index'
+    else
+      flash[:error]="Failed to create Passport !!! #{params.inspect}"
+      redirect_to :action => 'index'
+    end
   end
   def edit
     @passport = Passport.find_by_id(params[:id])

@@ -27,7 +27,7 @@ describe EmployeesController do
   describe '#create' do
     it 'should create an employee' do
       get :create
-      post :create, employee: {employee_number: 123, name: "emp1", date_of_joining: Time.now}
+      post :create, employee: {employee_number: 123, name: "emp1", date_of_joining: Time.now},commit:"SAVE"
       response.should redirect_to :action => :index
     end
   end
@@ -35,7 +35,7 @@ describe EmployeesController do
   describe '#update' do
     it 'should update employee ' do
       Employee.should_receive(:find_by_id).with('123').and_return(employee_one)
-      put :update, id: '123', employee: {employee_number: 123}
+      put :update, id: '123', employee: {employee_number: 123}, commit: "SAVE"
       updated_employee = controller.instance_variable_get(:@employee)
       updated_employee.employee_number.should == 123
       response.should redirect_to :action => :index

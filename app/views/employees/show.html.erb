@@ -33,5 +33,24 @@
   <strong><%= label_tag :location%>:</strong>
   <%= @employee.location%>
 </div>
+<% if @employee.passport %>
+    <div class="field">
+      <strong><%= label_tag :passport_number%>:</strong>
+      <%= @employee.passport[:passport_number]%>
+    </div>
 
-<a href="/passports/new?employee_id=<%=@employee.employee_number%>">Add Passport</a>
+    <div class="field">
+      <strong><%= label_tag :date_of_expiry%>:</strong>
+      <%= @employee.passport[:date_of_expiry]%>
+    </div>
+
+    <div class="field">
+      <strong><%= label_tag :citizenship%>:</strong>
+      <%= @employee.passport[:citizenship]%>
+    </div>
+    <a href="/visas/new?employee_number=<%=@employee.employee_number%>">Add VISA</a>
+<% else %>
+    <a href="/passports/new?employee_number=<%=@employee.employee_number%>">Add Passport</a>
+
+
+<% end%>

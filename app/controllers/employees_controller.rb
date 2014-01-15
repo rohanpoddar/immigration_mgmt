@@ -11,11 +11,15 @@ class EmployeesController < ApplicationController
     @employee=Employee.new(params[:employee])
     if @employee.save
       flash[:success]="success"
-      redirect_to :action => 'index'
+      if (params[:commit] == "SAVE")
+        redirect_to :action => 'index'
+      else
+        redirect_to "/passports/new?employee_number=#{@employee.employee_number}"
+      end
     else
       flash[:danger]="#{params.inspect}"
       redirect_to :action => 'index'
-      end
+    end
   end
 
   def show
@@ -35,7 +39,15 @@ class EmployeesController < ApplicationController
   def update
     @employee=Employee.find_by_id(params[:id])
     @employee.update_attributes(params[:employee])
-    redirect_to :action => 'index'
+    if (params[:commit]=="SAVE")
+      redirect_to :action => 'index'
+    else
+      if (@employee.passport.nil?)
+        redirect_to "/passports/new?employee_number=#{@employee.employee_number}"
+      else
+        redirect_to "/passports/#{@employee.passport.id}/edit?employee_number=#{@employee.employee_number}"
+      end
+    end
   end
 
   def search

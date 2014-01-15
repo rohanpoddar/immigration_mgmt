@@ -23,7 +23,7 @@ describe PassportsController do
 
   describe '#create' do
     it 'should create passport ' do
-      post :create,passport: {passport_number: 'p123', date_of_expiry: Time.now, employee_id: employee.id}
+      post :create,passport: {passport_number: 'p123', date_of_expiry: Time.now, employee_id: employee.employee_number}
       response.should redirect_to :action => :index
     end
   end
