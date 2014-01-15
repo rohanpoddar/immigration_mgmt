@@ -10,7 +10,7 @@
   <tbody>
   <% @visas.each do |visa| %>
       <tr>
-        <td><%= visa.passport.employee.employee_number %></td>
+        <td><%= visa.passport.employee_number %></td>
         <td><%= visa.passport.passport_number %></td>
         <td><%= visa.status %></td>
         <td><%= link_to "Show", visa %>

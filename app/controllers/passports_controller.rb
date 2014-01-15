@@ -8,12 +8,8 @@ class PassportsController < ApplicationController
   def create
     @passport = Passport.new(params[:passport])
     if params[:employee_number]!=nil
-      id=params[:employee_number]
-    else
-      id=params[:passport][:employee_id]
+      @passport.employee_number=params[:employee_number]
     end
-    employee=Employee.find_by_employee_number(id)
-    @passport.employee_id=employee.id
     if @passport.save
       flash[:success]="Created Successfully !!!"
       redirect_to :action => 'index'
@@ -23,18 +19,17 @@ class PassportsController < ApplicationController
     end
   end
   def edit
-    @passport = Passport.find_by_id(params[:id])
-    @passport.employee_id=Employee.find_by_id(@passport.employee_id).employee_number
+    @passport = Passport.find_by_passport_number(params[:id])
   end
 
   def update
-    @passport = Passport.find_by_id(params[:id])
+    @passport = Passport.find_by_passport_number(params[:id])
     @passport.update_attributes(params[:passport])
     redirect_to :action => 'index'
   end
 
   def destroy
-    @passport = Passport.find_by_id(params[:id])
+    @passport = Passport.find_by_passport_number(params[:id])
     @passport.destroy
     redirect_to :action => 'index'
   end

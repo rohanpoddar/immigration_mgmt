@@ -178,7 +178,7 @@ class EmployeeSeeder
             currentPos+=visaTypeConfig[visaTypeCount]
           end
         end
-        puts "JUST PUT #{currentEmp}"
+        puts "Just put #{currentEmp.name}"
       end
     else
       puts "ISSUE WITH SEEDING. CHECK SEED CONFIGURATION"

@@ -10,15 +10,13 @@ class Visa < ActiveRecord::Base
   #ATTRIBUTES
   attr_accessible :expiry_date, :issue_date, :status, :passport_number, :visa_type_id
   #ASSOCIATIONS
-  belongs_to :passport, :foreign_key => 'passport_number'
+  belongs_to :passport, :foreign_key => "passport_number", :primary_key => "passport_number"
   belongs_to :visa_type
   has_one :immigration, :autosave => true
 
   #VALIDATIONS
   include ActiveModel::Validations
-  validates_presence_of :passport_number
-  validates_presence_of :visa_type_id
-  validates_presence_of :status
+  validates_presence_of :passport_number, :visa_type_id, :status
   validates_with VisaValidator
 
 end

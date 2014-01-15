@@ -10,7 +10,6 @@ class Passport < ActiveRecord::Base
   accepts_nested_attributes_for :visas
 
   #VALIDATIONS
-  validates_uniqueness_of :passport_number
-  validates_presence_of :employee_number
-  validates_uniqueness_of :employee_number
+  validates_uniqueness_of :passport_number, :employee_number
+  validates_presence_of :passport_number, :employee_number
 end

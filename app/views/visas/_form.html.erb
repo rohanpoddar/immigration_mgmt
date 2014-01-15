@@ -3,10 +3,10 @@
     <div class="form-group">
       <%if(params[:passport_number]==nil)%>
           <%= f.label :passport_number, class: "sr-only"%>
-          <%= f.text_field :passport_id, class: "form-control",'placeholder' => "Passport Number here"%>
+          <%= f.text_field :passport_number, class: "form-control",'placeholder' => "Passport Number here"%>
       <%else%>
           <%= f.label :passport_number%>
-          <%= f.text_field :passport_id, class: "form-control", 'value' => "#{params[:passport_number]}", 'disabled'=> "" %>
+          <%= f.text_field :passport_number, class: "form-control", 'value' => "#{params[:passport_number]}", 'disabled'=> "" %>
       <%end%>
     </div>
 

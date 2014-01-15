@@ -34,18 +34,18 @@ describe EmployeesController do
 
   describe '#update' do
     it 'should update employee ' do
-      Employee.should_receive(:find_by_id).with('123').and_return(employee_one)
-      put :update, id: '123', employee: {employee_number: 123}, commit: "SAVE"
+      Employee.should_receive(:find_by_employee_number).with('12343').and_return(employee_one)
+      put :update, id: '12343', employee: {name: 'new_name'}, commit: "SAVE"
       updated_employee = controller.instance_variable_get(:@employee)
-      updated_employee.employee_number.should == 123
+      updated_employee.name.should == 'new_name'
       response.should redirect_to :action => :index
     end
   end
 
   describe '#destroy' do
     it 'should delete passport' do
-      Employee.should_receive(:find_by_id).with(employee_one.id.to_s).and_return(employee_one)
-      delete :destroy, id: employee_one.id.to_s
+      Employee.should_receive(:find_by_employee_number).with(employee_one.employee_number.to_s).and_return(employee_one)
+      delete :destroy, id: employee_one.employee_number
       response.should redirect_to :action => :index
     end
 

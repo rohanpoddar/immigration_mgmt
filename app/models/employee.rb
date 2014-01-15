@@ -6,11 +6,13 @@ class EmployeeValidator < ActiveModel::Validator
   end
 end
 
+
 class Employee < ActiveRecord::Base
 
   #ATTRIBUTES
   attr_accessible :category, :date_of_joining, :employee_number, :exit_date, :name, :location, :position
   self.primary_key = 'employee_number'
+
   #ASSOCIATIONS
   has_one :passport, :foreign_key => "employee_number", :autosave => true, :dependent => :destroy
   has_many :visas, :through => :passport, :autosave => true
@@ -18,9 +20,10 @@ class Employee < ActiveRecord::Base
 
   #VALIDATIONS
   include ActiveModel::Validations
-  validates_uniqueness_of :employee_number
   validates_presence_of :date_of_joining, :employee_number, :name
+  validates_uniqueness_of :employee_number
   validates_with EmployeeValidator
+
   #METHODS
   def location=(location)
     if location==nil
