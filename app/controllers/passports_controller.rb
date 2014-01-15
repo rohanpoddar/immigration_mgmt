@@ -15,12 +15,18 @@ class PassportsController < ApplicationController
       end
   end
   def edit
-    @passport = Passport.find(params[:id])
+    @passport = Passport.find_by_id(params[:id])
   end
 
   def update
-    @passport = Passport.find(params[:id])
+    @passport = Passport.find_by_id(params[:id])
     @passport.update_attributes(params[:passport])
+    redirect_to :action => 'index'
+  end
+
+  def destroy
+    @passport = Passport.find_by_id(params[:id])
+    @passport.destroy
     redirect_to :action => 'index'
   end
 end
