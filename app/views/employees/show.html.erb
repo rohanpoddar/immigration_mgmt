@@ -1,56 +1,61 @@
 <h2>Employee Details: <%= @employee.name %></h2>
 <div class="field">
-  <strong><%= label_tag :employee_number, "Employee Number"%>:</strong>
-  <%=@employee.employee_number%>
+  <strong><%= label_tag :employee_number, "Employee Number" %>:</strong>
+  <%= @employee.employee_number %>
 </div>
 
 <div class="field">
-  <strong><%= label_tag :name%>:</strong>
-  <%= @employee.name%>
+  <strong><%= label_tag :name %>:</strong>
+  <%= @employee.name %>
 </div>
 
 <div class="field">
-  <strong><%= label_tag :position%>:</strong>
-  <%= @employee.position%>
+  <strong><%= label_tag :position %>:</strong>
+  <%= @employee.position %>
 </div>
 
 <div class="field">
-  <strong><%= label_tag :category%>:</strong>
-  <%= @employee.category%>
+  <strong><%= label_tag :category %>:</strong>
+  <%= @employee.category %>
 </div>
 
 <div class="field">
-  <strong><%= label_tag :date_of_joining%>:</strong>
-  <%= @employee.date_of_joining%>
+  <strong><%= label_tag :date_of_joining %>:</strong>
+  <%= @employee.date_of_joining %>
 </div>
 
 <div class="field">
-  <strong><%= label_tag :exit_date%>:</strong>
-  <%= @employee.exit_date%>
+  <strong><%= label_tag :exit_date %>:</strong>
+  <%= @employee.exit_date %>
 </div>
 
 <div class="field">
-  <strong><%= label_tag :location%>:</strong>
-  <%= @employee.location%>
+  <strong><%= label_tag :location %>:</strong>
+  <%= @employee.location %>
 </div>
 <% if @employee.passport %>
     <div class="field">
-      <strong><%= label_tag :passport_number%>:</strong>
-      <%= @employee.passport[:passport_number]%>
+      <strong><%= label_tag :passport_number %>:</strong>
+      <%= @employee.passport[:passport_number] %>
     </div>
 
     <div class="field">
-      <strong><%= label_tag :date_of_expiry%>:</strong>
-      <%= @employee.passport[:date_of_expiry]%>
+      <strong><%= label_tag :date_of_expiry %>:</strong>
+      <%= @employee.passport[:date_of_expiry] %>
     </div>
 
     <div class="field">
-      <strong><%= label_tag :citizenship%>:</strong>
-      <%= @employee.passport[:citizenship]%>
+      <strong><%= label_tag :citizenship %>:</strong>
+      <%= @employee.passport[:citizenship] %>
     </div>
-    <a href="/visas/new?employee_number=<%=@employee.employee_number%>">Add VISA</a>
+    <% if @employee.passport.visas %>
+        <%= @visas=@employee.passport.visas
+            render partial:"visas/visa_sublist", locals: {object: @visas}
+        %>
+    <% end %>
+    <a href="/visas/new?employee_number=<%= @employee.employee_number %>">Add VISA</a>
 <% else %>
-    <a href="/passports/new?employee_number=<%=@employee.employee_number%>">Add Passport</a>
+    <a href="/passports/new?employee_number=<%= @employee.employee_number %>">Add Passport</a>
 
 
-<% end%>
+<% end %>
