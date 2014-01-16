@@ -25,10 +25,22 @@ describe EmployeesController do
   end
 
   describe '#create' do
-    it 'should create an employee' do
+    it 'should create an employee on save and redirect to employee show page' do
       get :create
       post :create, employee: {number: 123, name: "emp1", joining_date: Time.now},commit:"SAVE"
-      response.should redirect_to :action => :index
+      response.should redirect_to '/employees/#{@employee.number}'
+    end
+
+    it 'should create an employee on save and continue and redirect to add passport' do
+      get :create
+      post :create, employee: {number: 123, name: "emp1", joining_date: Time.now},commit:"SAVE AND CONTINUE"
+      response.should redirect_to '/passports/new?employee_number=123'
+    end
+
+    it 'should not create an employee for wrong data and redirect to add new employee ' do
+      get :create
+      post :create, employee: {number: 123, joining_date: Time.now},commit:"SAVE AND CONTINUE"
+      response.should redirect_to :action => :new
     end
   end
 
@@ -38,8 +50,17 @@ describe EmployeesController do
       put :update, id: '12343', employee: {name: 'new_name'}, commit: "SAVE"
       updated_employee = controller.instance_variable_get(:@employee)
       updated_employee.name.should == 'new_name'
-      response.should redirect_to :action => :index
+      response.should redirect_to '/employees/#{@employee.number}'
     end
+
+    it 'should create an employee on save and continue and redirect to add passport' do
+      Employee.should_receive(:find_by_number).with('12343').and_return(employee_one)
+      put :update, id: '12343', employee: {name: 'new_name'}, commit: "SAVE AND CONTINUE"
+      updated_employee = controller.instance_variable_get(:@employee)
+      updated_employee.name.should == 'new_name'
+      response.should redirect_to '/passports/new?employee_number=12343'
+    end
+
   end
 
   describe '#destroy' do

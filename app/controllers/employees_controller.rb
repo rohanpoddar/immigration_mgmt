@@ -12,13 +12,13 @@ class EmployeesController < ApplicationController
     if @employee.save
       flash[:success]="success"
       if (params[:commit] == "SAVE")
-        redirect_to :action => 'index'
+        redirect_to  '/employees/#{@employee.number}'
       else
         redirect_to "/passports/new?employee_number=#{@employee.number}"
       end
     else
       flash[:danger]="#{params.inspect}<br/>#{@employee.errors.full_messages}"
-      redirect_to :action => 'index'
+      redirect_to new_employee_path
     end
   end
 
@@ -40,7 +40,7 @@ class EmployeesController < ApplicationController
     @employee=Employee.find_by_number(params[:id])
     @employee.update_attributes(params[:employee])
     if (params[:commit]=="SAVE")
-      redirect_to :action => 'index'
+      redirect_to '/employees/#{@employee.number}'
     else
       if (@employee.passport.nil?)
         redirect_to "/passports/new?employee_number=#{@employee.number}"
