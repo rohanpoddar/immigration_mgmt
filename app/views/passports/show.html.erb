@@ -1,0 +1,30 @@
+<h2>Passport Details: <%= @passport.number %></h2>
+
+<div class="field">
+  <strong><%= label_tag :employee_number %>:</strong>
+  <%= @passport.employee_number %>
+</div>
+
+<div class="field">
+  <strong><%= label_tag :employee_name %>:</strong>
+  <%= @passport.employee.name %>
+</div>
+
+<div class="field">
+  <strong><%= label_tag :citizenship %>:</strong>
+  <%= @passport.citizenship %>
+</div>
+
+<div class="field">
+  <strong><%= label_tag :expiry_date %>:</strong>
+  <%= @passport.expiry_date %>
+</div>
+
+    <% if @passport.visas %>
+        <%= @visas=@passport.visas
+            render partial:"visas/visa_sublist", locals: {object: @visas}
+        %>
+    <% end %>
+    <a href="/visas/new?employee_number=<%= @passport.employee.number %>">Add VISA</a>
+
+

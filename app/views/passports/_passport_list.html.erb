@@ -1,0 +1,23 @@
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>Visa Type</th>
+    <th>Status</th>
+    <th>Issue Date</th>
+    <th>Date Of Expiry</th>
+  </tr>
+  </thead>
+  <tbody>
+  <%@passport.each do|visa|%>
+      <tr>
+        <td><%= visa.visa_type.name %></td>
+        <td><%= visa.status %></td>
+        <td><%= visa.issue_date %></td>
+        <td><%= visa.expiry_date %></td>
+        <td><%= link_to "Edit", edit_visa_path(visa,:employee_number=>visa.passport.employee_number) %></td>
+        <td><%= link_to "Destroy", visa, :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+

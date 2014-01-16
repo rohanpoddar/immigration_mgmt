@@ -36,12 +36,12 @@
 <% if @employee.passport %>
     <div class="field">
       <strong><%= label_tag :passport_number %>:</strong>
-      <%= @employee.passport[:passport_number] %>
+      <%= @employee.passport[:number] %>
     </div>
 
     <div class="field">
       <strong><%= label_tag :date_of_expiry %>:</strong>
-      <%= @employee.passport[:date_of_expiry] %>
+      <%= @employee.passport[:expiry_date] %>
     </div>
 
     <div class="field">

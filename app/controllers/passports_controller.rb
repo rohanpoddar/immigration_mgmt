@@ -22,6 +22,10 @@ class PassportsController < ApplicationController
     @passport = Passport.find_by_number(params[:id])
   end
 
+  def show
+    @passport = Passport.find_by_number(params[:id])
+  end
+
   def update
     @passport = Passport.find_by_number(params[:id])
     @passport.update_attributes(params[:passport])
