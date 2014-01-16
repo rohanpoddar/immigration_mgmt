@@ -12,7 +12,7 @@
   <% @visas.each do |visa| %>
       <tr>
         <td><%= visa.passport.employee_number %></td>
-        <td><%= visa.passport.passport_number %></td>
+        <td><%= visa.passport.number %></td>
         <td><%= visa.visa_type.name %></td>
         <td><%= visa.status %></td>
         <td><%= link_to "Show", visa %>

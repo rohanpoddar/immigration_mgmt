@@ -2,9 +2,10 @@ class VisaType < ActiveRecord::Base
 
   #ATTRIBUTES
   attr_accessible :country, :name
+  self.primary_key = 'name'
 
   #ASSOCIATIONS
-  has_many :visas
+  has_many :visas, :foreign_key => "visa_type_name"
   accepts_nested_attributes_for :visas
 
   #VALIDATIONS

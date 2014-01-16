@@ -12,13 +12,13 @@
 
     <div class="form-group">
       <%= f.label :passport_number, class: "sr-only"%>
-      <%= f.text_field :passport_number, class: "form-control",'placeholder' => "Passport Number"%>
+      <%= f.text_field :number, class: "form-control",'placeholder' => "Passport Number"%>
     </div>
 
 
     <div class="form-group">
-      <%= f.label :date_of_expiry, class: "sr-only"%>
-      <%= f.text_field :date_of_expiry, :class=>"form-control", 'data-date-format'=>"dd/mm/yyyy", 'data-behaviour'=>"datepicker_doe",'placeholder'=>"Select Date of Expiry"%>
+      <%= f.label :expiry_date, class: "sr-only"%>
+      <%= f.text_field :expiry_date, :class=>"form-control", 'data-date-format'=>"dd/mm/yyyy", 'data-behaviour'=>"datepicker_doe",'placeholder'=>"Select Date of Expiry"%>
       <script type="text/javascript">
           $(document).ready(function(){
               $('[data-behaviour~=datepicker_doe]').datepicker();

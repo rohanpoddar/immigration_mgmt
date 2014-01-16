@@ -9,7 +9,7 @@ class VisasController < ApplicationController
 
   def create
     @visa=Visa.new(params[:visa])
-    employee= Employee.find_by_employee_number(params[:employee_number])
+    employee= Employee.find_by_number(params[:employee_number])
     if employee==nil
       flash[:notice]="Invalid Employee Number"
       render :new
@@ -24,11 +24,11 @@ class VisasController < ApplicationController
   end
 
   def show
-    @visa=Visa.find(params[:id])
+    @visa=Visa.find_by_id(params[:id])
   end
 
   def destroy
-    @visa=Visa.find(params[:id])
+    @visa=Visa.find_by_id(params[:id])
     if @visa.destroy
       flash[:success]="Successfully deleted Visa!!!"
     else
@@ -38,11 +38,11 @@ class VisasController < ApplicationController
   end
 
   def edit
-    @visa=Visa.find(params[:id])
+    @visa=Visa.find_by_id(params[:id])
   end
 
   def update
-    @visa=Visa.find(params[:id])
+    @visa=Visa.find_by_id(params[:id])
     @visa.update_attributes(params[:visa])
     redirect_to :action => 'index'
   end

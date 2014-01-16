@@ -11,11 +11,13 @@ describe Visa do
 
   describe 'Validations : Active Record ' do
     it "should not create visa for nil passport id" do
-      expect{FactoryGirl.create(:visa, passport_id:nil)}.to raise_error
+      expect{FactoryGirl.create(:visa, passport_number: "")}.to raise_error
+      expect{FactoryGirl.create(:visa, passport_number: nil)}.to raise_error
     end
 
     it "should not create visa for nil visa type" do
-      expect{FactoryGirl.create(:visa, visa_type_id:nil)}.to raise_error
+      expect{FactoryGirl.create(:visa, visa_type_name: "")}.to raise_error
+      expect{FactoryGirl.create(:visa, visa_type_name: nil)}.to raise_error
     end
 
     it "should not create a visa without a valid status" do
@@ -37,11 +39,18 @@ describe Visa do
 
   describe 'Associations : Active Record'  do
     it "should not create visa for non existing passport" do
-      expect{FactoryGirl.create(:visa, passport_id:564434)}.to raise_error
+      visa =FactoryGirl.create(:visa)
+      puts visa.passport.number
+      visa.passport_number="11qnjdjasads"
+      puts visa.passport_number
+      expect{visa.save!}.to raise_error
     end
 
     it "should not create visa for non existing visa type" do
-      expect{FactoryGirl.create(:visa, visa_type_id:56443434)}.to raise_error
+      visa=FactoryGirl.create(:visa)
+      visa.visa_type_name="kuch bhi"
+      puts visa.visa_type_name
+      expect{visa.save!}.to raise_error
     end
   end
 end

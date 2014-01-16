@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :visa do
-    association :visa_type
     association :passport
+    association :visa_type
     status 'Stamped'
   end
 end

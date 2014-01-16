@@ -2,8 +2,8 @@ class CreateImmigrations < ActiveRecord::Migration
   def change
     create_table :immigrations do |t|
       t.references :visa
-      t.date :date_of_journey
-      t.date :date_of_return
+      t.date :journey_date
+      t.date :return_date
       t.string :city
       t.timestamps
     end

@@ -156,29 +156,27 @@ class EmployeeSeeder
         category= data.cell(row,7)
         date_of_joining= data.cell(row,8)
         date_of_expiry= data.cell(row,9)
-        passport_number= data.cell(row,10)
+        passport_number= data.cell(row,10).to_s
         exit_date=data.cell(row,11)
         location= data.cell(row,12)
         citizenship= data.cell(row,13)
-        currentEmp = Employee.new({:employee_number => id,:name => name, :position => position, :category => category, :date_of_joining => date_of_joining, :exit_date => exit_date, :location => location} )
-        currentEmp.save!
-        if passport_number==nil || passport_number==""
+        currentEmp = Employee.new({:number => id,:name => name, :position => position, :category => category, :joining_date => date_of_joining, :exit_date => exit_date, :location => location} )
+        if currentEmp.save! && passport_number==nil || passport_number==""
+          puts "Just put #{currentEmp.name}"
         else
-          passport=currentEmp.build_passport({:passport_number => passport_number, :citizenship => citizenship,:date_of_expiry => date_of_expiry})
-          passport.save!
+          currentEmp.passport=Passport.new({:number => passport_number, :citizenship => citizenship,:expiry_date => date_of_expiry})
           currentPos=14
           for visaTypeCount in 0...visaTypeList.size
             status=data.cell(row,currentPos)
             if status!=nil && status!= ""
               visa = Visa.new(:status => status)
               visa.visa_type = visaTypeList[visaTypeCount]
-              visa.passport=passport
-              visa.save!
+              currentEmp.passport.visas<<visa
             end
             currentPos+=visaTypeConfig[visaTypeCount]
           end
+          puts "Just put #{currentEmp.name}" if currentEmp.save!
         end
-        puts "Just put #{currentEmp.name}"
       end
     else
       puts "ISSUE WITH SEEDING. CHECK SEED CONFIGURATION"

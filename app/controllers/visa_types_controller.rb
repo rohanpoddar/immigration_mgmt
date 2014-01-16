@@ -20,21 +20,21 @@ class VisaTypesController < ApplicationController
   end
 
   def show
-    @visa_type=VisaType.find(params[:id])
+    @visa_type=VisaType.find_by_name(params[:id])
   end
 
   def destroy
-    @visa_type=VisaType.find(params[:id])
+    @visa_type=VisaType.find_by_name(params[:id])
     @visa_type.destroy
     redirect_to :action => 'index'
   end
 
   def edit
-    @visa_type=VisaType.find(params[:id])
+    @visa_type=VisaType.find_by_name(params[:id])
   end
 
   def update
-    @visa_type=VisaType.find(params[:id])
+    @visa_type=VisaType.find_by_name(params[:id])
     @visa_type.update_attributes(params[:visa_type])
     redirect_to :action => 'index'
   end

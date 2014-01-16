@@ -1,7 +1,9 @@
 class ImmigrationValidator < ActiveModel::Validator
   def validate(record)
-    if record.date_of_journey!=nil&&record.date_of_return!=nil
-      record.errors[:date_of_journey]<<"Return Date comes before Date of journey" unless record.date_of_journey<record.date_of_return
+    if record.journey_date!=nil&&record.return_date!=nil
+      record.errors[:journey_date]<<" Date of Return comes before Date of journey" unless record.journey_date<record.return_date
+      record.errors[:journey_date]<<": Date of Joining should be after 1989" unless record.journey_date>Time.zone.local(1989,1,1,0,0)
+      record.errors[:return_date]<<": Date of Return should be after 1989" unless record.return_date>Time.zone.local(1989,1,1,0,1)
     end
   end
 end
@@ -9,7 +11,7 @@ end
 class Immigration < ActiveRecord::Base
 
   #ATTRIBUTES
-  attr_accessible :city, :date_of_journey, :date_of_return, :visa_id
+  attr_accessible :city, :journey_date, :return_date, :visa_id
 
   #ASSOCIATIONS
   belongs_to :visa

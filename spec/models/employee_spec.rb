@@ -10,19 +10,19 @@ describe Employee do
   describe 'validations' do
     it "should validate presence of" do
       should validate_presence_of :name
-      should validate_presence_of :date_of_joining
-      should validate_presence_of :employee_number
+      should validate_presence_of :joining_date
+      should validate_presence_of :number
     end
 
     it "employee number should be unique" do
-      expect { FactoryGirl.create(:employee, employee_number: 123) }.to_not raise_error
-      expect { FactoryGirl.create(:employee, employee_number: 123) }.to raise_error
+      expect { FactoryGirl.create(:employee, number: 123) }.to_not raise_error
+      expect { FactoryGirl.create(:employee, number: 123) }.to raise_error
 
     end
 
     it "employee number cannot be blank or nill" do
-      expect { FactoryGirl.create(:employee, employee_number: "") }.to raise_error
-      expect { FactoryGirl.create(:employee, employee_number: nil) }.to raise_error
+      expect { FactoryGirl.create(:employee, number: "") }.to raise_error
+      expect { FactoryGirl.create(:employee, number: nil) }.to raise_error
     end
 
     describe 'associations' do

@@ -14,7 +14,7 @@ class EmployeesController < ApplicationController
       if (params[:commit] == "SAVE")
         redirect_to :action => 'index'
       else
-        redirect_to "/passports/new?employee_number=#{@employee.employee_number}"
+        redirect_to "/passports/new?employee_number=#{@employee.number}"
       end
     else
       flash[:danger]="#{params.inspect}<br/>#{@employee.errors.full_messages}"
@@ -23,29 +23,29 @@ class EmployeesController < ApplicationController
   end
 
   def show
-    @employee=Employee.find_by_employee_number(params[:id])
+    @employee=Employee.find_by_number(params[:id])
   end
 
   def destroy
-    @employee=Employee.find_by_employee_number(params[:id])
+    @employee=Employee.find_by_number(params[:id])
     @employee.destroy
     redirect_to :action => 'index'
   end
 
   def edit
-    @employee=Employee.find_by_employee_number(params[:id])
+    @employee=Employee.find_by_number(params[:id])
   end
 
   def update
-    @employee=Employee.find_by_employee_number(params[:id])
+    @employee=Employee.find_by_number(params[:id])
     @employee.update_attributes(params[:employee])
     if (params[:commit]=="SAVE")
       redirect_to :action => 'index'
     else
       if (@employee.passport.nil?)
-        redirect_to "/passports/new?employee_number=#{@employee.employee_number}"
+        redirect_to "/passports/new?employee_number=#{@employee.number}"
       else
-        redirect_to "/passports/#{@employee.passport.passport_number}/edit?employee_number=#{@employee.employee_number}"
+        redirect_to "/passports/#{@employee.passport.number}/edit?employee_number=#{@employee.number}"
       end
     end
   end

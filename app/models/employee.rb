@@ -1,8 +1,8 @@
 class EmployeeValidator < ActiveModel::Validator
   def validate(record)
-    if record.exit_date!=nil
-      record.errors[:date_of_joining]<<": Exit Date comes before Date of joining" unless record.date_of_joining<record.exit_date
-    end
+    record.errors[:exit_date]<<": Exit Date should be after 1989" unless record.exit_date>=1989 if record.exit_date!=nil
+    record.errors[:joining_date]<<": Date of Joining should be after 1989" unless record.joining_date.year>=1989  if record.joining_date!=nil
+    record.errors[:joining_date]<<": Exit Date comes before Date of joining" unless record.joining_date<=record.exit_date if record.joining_date!=nil && record.exit_date!=nil
   end
 end
 
@@ -10,8 +10,8 @@ end
 class Employee < ActiveRecord::Base
 
   #ATTRIBUTES
-  attr_accessible :category, :date_of_joining, :employee_number, :exit_date, :name, :location, :position
-  self.primary_key = 'employee_number'
+  attr_accessible :category, :joining_date, :number, :exit_date, :name, :location, :position
+  self.primary_key = 'number'
 
   #ASSOCIATIONS
   has_one :passport, :foreign_key => "employee_number", :autosave => true, :dependent => :destroy
@@ -20,8 +20,8 @@ class Employee < ActiveRecord::Base
 
   #VALIDATIONS
   include ActiveModel::Validations
-  validates_presence_of :date_of_joining, :employee_number, :name
-  validates_uniqueness_of :employee_number
+  validates_presence_of :joining_date, :number, :name
+  validates_uniqueness_of :number
   validates_with EmployeeValidator
 
   #METHODS
