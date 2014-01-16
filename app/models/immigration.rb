@@ -20,4 +20,6 @@ class Immigration < ActiveRecord::Base
   include ActiveModel::Validations
   validates_presence_of :visa_id
   validates_with ImmigrationValidator
+
+  #METHODS
 end

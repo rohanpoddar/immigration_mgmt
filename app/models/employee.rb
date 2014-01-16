@@ -1,13 +1,11 @@
 class EmployeeValidator < ActiveModel::Validator
   def validate(record)
     #Date Validations
-    record.errors[:exit_date]<<": Exit Date should be after 1989" unless record.exit_date>=1989 if record.exit_date!=nil
-    record.errors[:joining_date]<<": Date of Joining should be after 1989" unless record.joining_date.year>=1989  if record.joining_date!=nil
-    record.errors[:joining_date]<<": Exit Date comes before Date of joining" unless record.joining_date<=record.exit_date if record.joining_date!=nil && record.exit_date!=nil
+    record.errors[:joining_date]<<": Joining Date should be after 1989" unless record.joining_date.year>=1989  if record.joining_date!=nil
+    record.errors[:joining_date]<<": Exit Date comes before Joining Date" unless record.joining_date<=record.exit_date if record.joining_date!=nil && record.exit_date!=nil
 
   end
 end
-
 
 class Employee < ActiveRecord::Base
 

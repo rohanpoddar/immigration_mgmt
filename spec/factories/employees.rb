@@ -5,6 +5,7 @@ FactoryGirl.define do
     name "abc"
     location "bangalore"
     position "developer"
-    joining_date Time.now
+    joining_date 5.years.ago
+    exit_date Time.now
   end
 end
