@@ -75,5 +75,33 @@ describe Visa do
       expect { visa.save! }.to raise_error
     end
   end
+  
+  describe 'Model: Methods' do
+    it 'isExpired should return true for Expired visa' do
+      visa=FactoryGirl.create(:visa)
+      visa.expiry_date=1.years.ago
+      assert visa.isExpired? == true
+    end
+
+    it 'isExpired should return false for Valid visa' do
+      visa=FactoryGirl.create(:visa)
+      visa.expiry_date=Time.now+1.year
+      assert visa.isExpired? == false
+    end
+
+    it 'monthsLeft should return correct number of months left' do
+      currentTime=Time.now+5.months
+      visa=FactoryGirl.create(:visa)
+      visa.expiry_date=currentTime
+      assert visa.monthsLeftToExpire == 5
+    end
+
+    it 'monthsLeft should return 0 months left for visa expiring this month' do
+      currentTime=Time.now
+      visa=FactoryGirl.create(:visa)
+      visa.expiry_date=currentTime
+      assert visa.monthsLeftToExpire == 0
+    end
+  end
 
 end

@@ -44,4 +44,33 @@ describe Passport do
       passport.employee.should be_valid
     end
   end
+
+  describe 'Methods: Model' do
+    it 'isExpired should return true for Expired Passport' do
+      passport=FactoryGirl.create(:passport)
+      passport.expiry_date=1.years.ago
+      assert passport.isExpired? == true
+    end
+
+    it 'isExpired should return false for Valid Passport' do
+      passport=FactoryGirl.create(:passport)
+      passport.expiry_date=Time.now+1.year
+      assert passport.isExpired? == false
+    end
+
+    it 'monthsLeft should return correct number of months left' do
+      currentTime=Time.now+5.months
+      passport=FactoryGirl.create(:passport)
+      passport.expiry_date=currentTime
+      assert passport.monthsLeftToExpire == 5
+    end
+
+    it 'monthsLeft should return 0 months left for passport expiring this month' do
+      currentTime=Time.now
+      passport=FactoryGirl.create(:passport)
+      passport.expiry_date=currentTime
+      assert passport.monthsLeftToExpire == 0
+    end
+
+  end
 end

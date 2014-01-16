@@ -10,6 +10,9 @@ describe VisaType do
   end
 
   describe 'Validations: Model' do
+    it 'should validate presence of name' do
+      should validate_presence_of :name
+    end
   end
 
   describe 'Validations: ActiveRecord ' do
@@ -24,9 +27,13 @@ describe VisaType do
   end
 
   describe 'Associations: Model' do
+    it 'should have many visas' do
+      should have_many :visas
+    end
   end
 
   describe 'Associations: ActiveRecord' do
+    #NOTHING HERE
   end
 
 end
