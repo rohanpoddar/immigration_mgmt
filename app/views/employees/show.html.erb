@@ -1,7 +1,7 @@
 <h2>Employee Details: <%= @employee.name %></h2>
 <div class="field">
   <strong><%= label_tag :employee_number, "Employee Number" %>:</strong>
-  <%= @employee.employee_number %>
+  <%= @employee.number %>
 </div>
 
 <div class="field">
@@ -20,8 +20,8 @@
 </div>
 
 <div class="field">
-  <strong><%= label_tag :date_of_joining %>:</strong>
-  <%= @employee.date_of_joining %>
+  <strong><%= label_tag :joining_date %>:</strong>
+  <%= @employee.joining_date %>
 </div>
 
 <div class="field">
@@ -53,9 +53,9 @@
             render partial:"visas/visa_sublist", locals: {object: @visas}
         %>
     <% end %>
-    <a href="/visas/new?employee_number=<%= @employee.employee_number %>">Add VISA</a>
+    <a href="/visas/new?employee_number=<%= @employee.number %>">Add VISA</a>
 <% else %>
-    <a href="/passports/new?employee_number=<%= @employee.employee_number %>">Add Passport</a>
+    <a href="/passports/new?employee_number=<%= @employee.number %>">Add Passport</a>
 
 
 <% end %>

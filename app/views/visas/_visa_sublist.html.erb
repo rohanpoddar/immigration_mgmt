@@ -14,8 +14,8 @@
         <td><%= visa.status %></td>
         <td><%= visa.issue_date %></td>
         <td><%= visa.expiry_date %></td>
-          <%= link_to "Edit", edit_visa_path(visa,:employee_number=>visa.passport.employee_number) %>
-          <%= link_to "Destroy", visa, :confirm => 'Are you sure?', :method => :delete %></td>
+        <td><%= link_to "Edit", edit_visa_path(visa,:employee_number=>visa.passport.employee_number) %></td>
+        <td><%= link_to "Destroy", visa, :confirm => 'Are you sure?', :method => :delete %></td>
       </tr>
   <% end %>
   </tbody>

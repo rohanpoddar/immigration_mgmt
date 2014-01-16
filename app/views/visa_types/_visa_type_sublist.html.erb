@@ -11,11 +11,11 @@
   <% @visas.each do |visa| %>
       <tr>
         <td><%= visa.passport.employee_number %></td>
-        <td><%= visa.passport.passport_number %></td>
+        <td><%= visa.passport.number %></td>
         <td><%= visa.status %></td>
         <td><%= link_to "Show", visa %>
-          <%= link_to "Edit", edit_visa_path(visa) %>
-          <%= link_to "Destroy", visa, :confirm => 'Are you sure?', :method => :delete %></td>
+        <td><%= link_to "Edit", edit_visa_path(visa) %></td>
+        <td><%= link_to "Destroy", visa, :confirm => 'Are you sure?', :method => :delete %></td>
       </tr>
   <% end %>
   </tbody>
