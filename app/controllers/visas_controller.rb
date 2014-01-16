@@ -9,14 +9,12 @@ class VisasController < ApplicationController
 
   def create
     @visa=Visa.new(params[:visa])
-    passport= Passport.find_by_passport_number(params[:visa][:passport_id])
-    if passport==nil
-      flash[:notice]="Invalid Passport Number"
+    employee= Employee.find_by_employee_number(params[:employee_number])
+    if employee==nil
+      flash[:notice]="Invalid Employee Number"
       render :new
     else
-      @visa.passport=passport
-      @visa.visa_type_id=params[:visa][:visa_type_id]
-      if @visa.save
+      if employee.passport.visas<<@visa
         flash[:success]="Successfully Inserted Visa!!!"
       else
         flash[:error]="Failed to create"
