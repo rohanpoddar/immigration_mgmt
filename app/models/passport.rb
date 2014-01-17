@@ -26,8 +26,4 @@ class Passport < ActiveRecord::Base
     (expiryTime.year-currentTime.year)*12+(expiryTime.month-currentTime.month)
   end
 
-  def self.about_to_expire(years_in_number)
-
-    Passport.where("age(expiry_date) < interval '? years'", years_in_number)
-  end
 end

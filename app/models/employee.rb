@@ -38,5 +38,10 @@ class Employee < ActiveRecord::Base
   def self.search(search)
       find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
   end
+
+  def self.passport_about_to_expire(years_in_number)
+    Employee.joins(:passport).where("age(expiry_date) < interval '? years'", years_in_number)
+  end
+
 end
 
