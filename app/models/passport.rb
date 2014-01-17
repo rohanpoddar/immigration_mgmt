@@ -16,18 +16,18 @@ class Passport < ActiveRecord::Base
 
   #METHODS
   def isExpired?
-    if self.expiry_date<Time.now
-      true
-    else
-      false
-    end
+    self.expiry_date<Time.now
   end
 
   def monthsLeftToExpire
     currentTime=Time.now
     expiryTime=self.expiry_date
     #Approximate calculation. Needs to be revisited
-    monthsLeft=(expiryTime.year-currentTime.year)*12+(expiryTime.month-currentTime.month)
-    return monthsLeft
+    (expiryTime.year-currentTime.year)*12+(expiryTime.month-currentTime.month)
+  end
+
+  def self.about_to_expire(years_in_number)
+
+    Passport.where("age(expiry_date) < interval '? years'", years_in_number)
   end
 end
