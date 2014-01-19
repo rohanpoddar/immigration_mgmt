@@ -40,7 +40,8 @@ class Employee < ActiveRecord::Base
   end
 
   def self.passport_about_to_expire(years_in_number)
-    Employee.joins(:passport).where("age(expiry_date) < interval '? years'", years_in_number)
+    days = years_in_number*365
+    Employee.joins(:passport).find(:all, :conditions => ['expiry_date > ? AND expiry_date < ?', Date.today, Date.today+ days])
   end
 
 end

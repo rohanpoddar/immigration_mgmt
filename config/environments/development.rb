@@ -44,7 +44,7 @@ ImmigrationMgmt::Application.configure do
       domain: "gmail.com",
       authentication: "plain",
       enable_starttls_auto: true,
-      user_name: 'agarwal.megha7@gmail.com',
-      password: 'abhishek2485'
+      user_name: 'mailertest76@gmail.com',
+      password: 'p@ssw0rd12'
   }
 end

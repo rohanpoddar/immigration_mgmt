@@ -60,9 +60,9 @@ describe Employee do
   describe 'passport about to expire' do
     it 'it should return employees  having passport expiry date less than a year' do
       current_date=Date.today
-      FactoryGirl.create(:passport, expiry_date: current_date - 1.month)
+      FactoryGirl.create(:passport, expiry_date: current_date + 1.month)
       employee = FactoryGirl.create(:employee, number: 1212)
-      FactoryGirl.create(:passport, number: 'p1234', employee: employee, expiry_date: current_date - 13.month)
+      FactoryGirl.create(:passport, number: 'p1234', employee: employee, expiry_date: current_date + 13.month)
       passports_about_to_expire = Employee.passport_about_to_expire(1)
       passports_about_to_expire.size.should == 1
     end

@@ -8,6 +8,7 @@ gem "shoulda-matchers", "~> 2.5.0"
 gem 'pry'
 
 gem "factory_girl_rails", "~> 4.0"
+gem "rufus-scheduler"
 
 
 group :assets do
