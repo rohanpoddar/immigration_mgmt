@@ -14,8 +14,9 @@ class Employee < ActiveRecord::Base
   self.primary_key = 'number'
 
   #ASSOCIATIONS
-  has_one :passport, :foreign_key => "employee_number", :autosave => true, :dependent => :destroy
+  has_many :passports, :foreign_key => "employee_number", :autosave => true, :dependent => :destroy
   has_many :visas, :through => :passport, :autosave => true
+  has_one :passport, :class_name => 'Passport', :foreign_key => 'employee_number', :conditions => { :isDeleted=>0 }
   accepts_nested_attributes_for :passport, :visas
 
   #VALIDATIONS
@@ -25,6 +26,12 @@ class Employee < ActiveRecord::Base
   validates_with EmployeeValidator
 
   #METHODS
+
+  def current_passport
+    employee.passports.each do |employee|
+
+    end
+  end
   def location=(location)
     if location==nil
       write_attribute(:location,"Unknown")
@@ -52,7 +59,7 @@ class Employee < ActiveRecord::Base
 
   def Employee.passports_about_to_expire(years_in_number)
     days = years_in_number*365
-    Employee.joins(:passport).find(:all, :conditions => ['expiry_date > ? AND expiry_date < ?', Date.today, Date.today+ days])
+    Employee.joins(:passports).find(:all, :conditions => ['expiry_date > ? AND expiry_date < ?', Date.today, Date.today+ days])
   end
 
 

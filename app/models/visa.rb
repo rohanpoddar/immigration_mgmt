@@ -24,19 +24,14 @@ class Visa < ActiveRecord::Base
 
   #METHODS
   def isExpired?
-    if self.expiry_date<=Time.now
-      true
-    else
-      false
-    end
+    self.expiry_date<=Time.now
   end
 
   def monthsLeftToExpire
     currentTime=Time.now
     expiryTime=self.expiry_date
     #Approximate calculation. Needs to be revisited
-    monthsLeft=(expiryTime.year-currentTime.year)*12+(expiryTime.month-currentTime.month)
-    return monthsLeft
+    (expiryTime.year-currentTime.year)*12+(expiryTime.month-currentTime.month)
   end
 
   def delete
@@ -49,7 +44,6 @@ class Visa < ActiveRecord::Base
   end
 
   def isDeleted?
-    return true if self.isDeleted==1
-    return false
+    self.isDeleted==1
   end
 end

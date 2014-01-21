@@ -6,7 +6,7 @@
     </div>
       <%= submit_tag "Search By Name", :class=>"btn btn-default"%>
 <% end %>
-<table class="display"  id = "employees" data-source = <% employees_url(format: 'json') %>>
+<table class="table table-hover"  id = "employees" data-source = <% employees_url(format: 'json') %>>
   <thead>
     <tr>
       <th>Employee Number</th>

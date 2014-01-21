@@ -9,7 +9,7 @@ $(document).on "focus", "[data-behaviour~='datepicker']", (e) ->
 
 jQuery ->
   $('#employees').dataTable
-    sPaginationType: "full_numbers"
+    sPaginationType: "bootstrap"
     bJQueryUI: false
     bProcessing: true
     bServerSide: true

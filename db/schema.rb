@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(:version => 20140102054256) do
     t.datetime "updated_at",                     :null => false
   end
 
-  add_index "passports", ["employee_number"], :name => "index_passports_on_employee_number", :unique => true
+  add_index "passports", ["employee_number"], :name => "index_passports_on_employee_number"
   add_index "passports", ["number"], :name => "index_passports_on_number", :unique => true
 
   create_table "visa_types", :id => false, :force => true do |t|
