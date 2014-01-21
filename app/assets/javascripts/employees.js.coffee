@@ -6,3 +6,11 @@ $(document).on "focus", "[data-behaviour~='datepicker']", (e) ->
 - format: "dd-mm-yyyy"
 - weekStart: 1
 - autoclose: true
+
+jQuery ->
+  $('#employees').dataTable
+    sPaginationType: "full_numbers"
+    bJQueryUI: false
+    bProcessing: true
+    bServerSide: true
+    sAjaxSource: $('#employees').data('source')

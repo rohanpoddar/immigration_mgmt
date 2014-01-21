@@ -11,4 +11,25 @@
  *= require_self
  *= require_tree .
  *= require bootstrap-datepicker
+ //= require jquery.ui.core
+//= require jquery.ui.theme
+//= require dataTables/src/demo_table_jui
+ *= require dataTables/jquery.dataTables
  */
+
+
+
+tr.odd{
+  background-color: ghostwhite !important;
+}
+
+tr.even {
+  background-color: gainsboro !important;
+}
+tr.odd td.sorting_1{
+  background-color: ghostwhite !important;
+}
+
+tr.even td.sorting_1{
+  background-color: gainsboro !important;
+}

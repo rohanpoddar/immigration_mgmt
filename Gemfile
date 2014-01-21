@@ -10,6 +10,9 @@ gem 'pry'
 gem "factory_girl_rails", "~> 4.0"
 gem "rufus-scheduler"
 
+gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
+gem 'jquery-ui-rails'
+gem 'will_paginate'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

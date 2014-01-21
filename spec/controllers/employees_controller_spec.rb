@@ -6,11 +6,11 @@ describe EmployeesController do
   let(:employee_three) { FactoryGirl.create(:employee, number: 222222) }
 
   describe '#index' do
-    it 'renders all the employees' do
-      Employee.should_receive(:all).and_return([employee_one, employee_two, employee_three])
-      get :index
-      employees = controller.instance_variable_get(:@employees)
-      employees.size.should ==3
+    it 'renders all the employees as json format' do
+
+      get :index, :format => :json
+
+      response.should be_success
     end
   end
 

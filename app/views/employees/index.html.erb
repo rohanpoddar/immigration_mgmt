@@ -1,3 +1,4 @@
+
 <h2>Employee List</h2>
 <%= form_tag search_employees_path, :method => 'get',class:"navbar-form navbar-left",role:"search" do %>
     <div class="form-group">
@@ -5,7 +6,7 @@
     </div>
       <%= submit_tag "Search By Name", :class=>"btn btn-default"%>
 <% end %>
-<table class="table table-hover">
+<table class="display"  id = "employees" data-source = <% employees_url(format: 'json') %>>
   <thead>
     <tr>
       <th>Employee Number</th>
@@ -15,27 +16,12 @@
       <th>Exit Date</th>
       <th>Position</th>
       <th>Location</th>
-      <th>Action</th>
+      <th>Edit</th>
+      <th>Delete</th>
     </tr>
   </thead>
   <tbody>
-  <%@employees.each do |employee| %>
-  <tr class="<%if employee.passport==nil%>danger<%
-     else%>success<%
-     end%>">
-    <td><%= employee.number %></td>
-    <td><%= employee.name %></td>
-    <td><%= employee.category %></td>
-    <td><%= employee.joining_date %></td>
-    <td><%= employee.exit_date %></td>
-    <td><%= employee.position %></td>
-    <td><%= employee.location %></td>
-    <td><%= link_to "Show", employee %>
-        <%= link_to "Edit", edit_employee_path(employee) %>
-        <%= link_to "Remove", remove_employee_path(employee), :confirm => 'Are you really sure?', :method => :put %>
-        <%= link_to "Destroy", employee, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-  <% end %>
+
   </tbody>
 </table>
 
