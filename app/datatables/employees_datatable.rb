@@ -1,5 +1,5 @@
 class EmployeesDatatable
-  delegate :params,:link_to,:edit_employee_path,:remove_employee_path, :h, to: :@view
+  delegate :params,:link_to,:edit_employee_path,:remove_employee_path, "DT_RowClass",:h, to: :@view
 
   def initialize(view)
     @view = view
@@ -12,24 +12,39 @@ class EmployeesDatatable
         iTotalDisplayRecords: employees.total_entries,
         aaData: data
     }
+    #binding.pry
   end
 
   private
 
   def data
-    employees.map do |employee|
-      [
-          link_to(employee.number,employee),
-          h(employee.name),
-          h(employee.category),
-          h(employee.joining_date),
-          h(employee.exit_date),
-          h(employee.location),
-          h(employee.position),
-          link_to('edit',edit_employee_path(employee)),
-          link_to("delete", employee, method: :delete, data: { confirm: 'Are you sure?' }),
-          link_to("Remove", remove_employee_path(employee),method: :put ,data: { confirm: 'Are you sure?' })
-      ]
+    array=Array.new
+    employees.each do |employee|
+     array<< {
+         "0" => link_to(employee.number,employee),
+         "1" => h(employee.name),
+         "2" => h(employee.category),
+         "3" => h(employee.joining_date),
+         "4" => h(employee.exit_date),
+         "5" => h(employee.position),
+         "6" => h(employee.location),
+         "7" => link_to('Edit',edit_employee_path(employee)),
+         "8" => link_to("Delete",remove_employee_path( employee), method: :put, data: { confirm: 'Are you sure?' }),
+         "DT_RowClass" => "#{h(return_color(employee))}"
+     }
+    end
+    array
+  end
+
+  def return_color(employee)
+    if employee.passport==nil
+      return "danger"
+    elsif employee.passport.isExpired?
+      return "danger"
+    elsif employee.passport.isDeleted?
+      return "danger"
+    else
+      return "success"
     end
   end
 
@@ -55,7 +70,7 @@ class EmployeesDatatable
   end
 
   def sort_column
-    columns = %w[name category released_on price]
+    columns = %w[number name category joining_date exit_date position location]
     columns[params[:iSortCol_0].to_i]
   end
 

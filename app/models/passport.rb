@@ -16,7 +16,7 @@ class Passport < ActiveRecord::Base
 
   #METHODS
   def isExpired?
-    self.expiry_date<=Time.now
+    self.expiry_date.beginning_of_day<Time.now
   end
 
   def monthsLeftToExpire
