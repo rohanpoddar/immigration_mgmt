@@ -6,6 +6,7 @@ class CreateVisas < ActiveRecord::Migration
       t.string :status, :null => false
       t.date :issue_date
       t.date :expiry_date
+      t.integer :isDeleted, :default => 0
       t.timestamps
     end
   end

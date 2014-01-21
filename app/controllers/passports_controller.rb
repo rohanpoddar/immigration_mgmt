@@ -32,9 +32,25 @@ class PassportsController < ApplicationController
     redirect_to :action => 'index'
   end
 
+  def remove
+    @passport = Passport.find_by_number(params[:id])
+    @passport.delete
+    if @passport.save
+      flash[:success]="Successfully deleted Passport!!!"
+    else
+      flash[:error]="Failed to delete !!!"
+    end
+    redirect_to :action => 'index'
+  end
+
+
   def destroy
     @passport = Passport.find_by_number(params[:id])
-    @passport.destroy
+    if @passport.destroy
+      flash[:success]="Successfully destroyed Passport!!!"
+    else
+      flash[:error]="Failed to destroy !!!"
+    end
     redirect_to :action => 'index'
   end
 end

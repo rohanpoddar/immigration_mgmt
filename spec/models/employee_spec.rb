@@ -30,7 +30,6 @@ describe Employee do
   end
 
   describe 'Validations: Active Record' do
-
     it "employee number should be unique" do
       #Test for validates_uniqueness_of
       expect { FactoryGirl.create(:employee, number: 123) }.to_not raise_error
@@ -57,15 +56,25 @@ describe Employee do
     #NOTHING HERE
   end
 
-  describe 'passport about to expire' do
-    it 'it should return employees  having passport expiry date less than a year' do
+  describe 'Methods: Active Record' do
+    it 'passports_about_to_expire should return employees having passport expiry date less than a year' do
       current_date=Date.today
       FactoryGirl.create(:passport, expiry_date: current_date + 1.month)
       employee = FactoryGirl.create(:employee, number: 1212)
       FactoryGirl.create(:passport, number: 'p1234', employee: employee, expiry_date: current_date + 13.month)
-      passports_about_to_expire = Employee.passport_about_to_expire(1)
+      passports_about_to_expire = Employee.passports_about_to_expire(1)
       passports_about_to_expire.size.should == 1
     end
   end
+
+  describe 'Methods: Model' do
+    it 'delete! over employee should change isDeleted to 1' do
+      employee=FactoryGirl.create(:employee)
+      employee.isDeleted?.should be_false
+      employee.delete!
+      employee.isDeleted?.should be_true
+    end
+  end
+
 
 end

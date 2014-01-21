@@ -39,10 +39,25 @@ class Employee < ActiveRecord::Base
       find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
   end
 
-  def self.passport_about_to_expire(years_in_number)
+
+  def delete!
+    #NOTE REMOVE FUNCTION DOES NOT SAVE BY ITSELF
+    self.passport.delete if self.passport!=nil
+    self.isDeleted=1
+    self.save!
+  end
+
+  def isDeleted?
+    #NOTE REMOVE FUNCTION DOES NOT SAVE BY ITSELF
+    return true if self.isDeleted==1
+    return false
+  end
+
+  def Employee.passports_about_to_expire(years_in_number)
     days = years_in_number*365
     Employee.joins(:passport).find(:all, :conditions => ['expiry_date > ? AND expiry_date < ?', Date.today, Date.today+ days])
   end
+
 
 end
 

@@ -7,6 +7,7 @@ class CreateEmployees < ActiveRecord::Migration
       t.string :position
       t.string :category
       t.string :location
+      t.integer :isDeleted, :default=>0
       t.date :joining_date, :null => false
       t.date :exit_date
       t.timestamps

@@ -20,6 +20,7 @@
         <td><%= passport.expiry_date %></td>
         <td><%= link_to "Show", passport %>
           <%= link_to "Edit", edit_passport_path(passport, :employee_number=>passport.employee_number) %>
+          <%= link_to "Remove", remove_passport_path(passport), :confirm => 'Are you really sure?', :method => :put %>
           <%= link_to "Destroy", passport, :confirm => 'Are you sure?', :method => :delete %></td>
       </tr>
   <% end %>

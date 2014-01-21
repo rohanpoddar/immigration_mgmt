@@ -1,7 +1,7 @@
 class Passport < ActiveRecord::Base
 
   #ATTRIBUTES
-  attr_accessible :number, :employee_number, :citizenship, :expiry_date
+  attr_accessible :number, :employee_number, :citizenship, :expiry_date, :isDeleted
   self.primary_key = 'number'
 
   #ASSOCIATIONS
@@ -16,7 +16,7 @@ class Passport < ActiveRecord::Base
 
   #METHODS
   def isExpired?
-    self.expiry_date<Time.now
+    self.expiry_date<=Time.now
   end
 
   def monthsLeftToExpire
@@ -24,6 +24,22 @@ class Passport < ActiveRecord::Base
     expiryTime=self.expiry_date
     #Approximate calculation. Needs to be revisited
     (expiryTime.year-currentTime.year)*12+(expiryTime.month-currentTime.month)
+  end
+
+
+  def delete
+    self.isDeleted=1
+    self.visas.each do |visa|
+      visa.delete
+    end
+  end
+
+  def delete!
+    self.visas.each do |visa|
+      visa.delete
+    end
+    self.isDeleted=1
+    self.save!
   end
 
 end

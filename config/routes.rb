@@ -1,5 +1,7 @@
 ImmigrationMgmt::Application.routes.draw do
 
+
+  root to: 'home#index'
   resources :employees do
     collection do
       get :search
@@ -7,66 +9,21 @@ ImmigrationMgmt::Application.routes.draw do
   end
 
 
-
   resources :passports
-
   resources :visas
-
   resources :visa_types
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
 
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
+  match 'employees' => 'employees#index', as: 'employees_home'
+  match 'employees/:id/remove', to: 'employees#remove', as: 'remove_employee'
 
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
+  match 'passports' => 'passports#index', as: 'passports_home'
+  match 'passports/:id/remove', to: 'passports#remove', as: 'remove_passport'
 
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+  match 'visas' => 'visas#index', as: 'visas_home'
+  match 'visas/:id/remove', to: 'visas#remove', as: 'remove_visa'
 
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
 
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
+  match 'visa_types' => 'visa_types#index', as: 'visa_types_home'
+  match 'visa_types/:id/remove', to: 'visa_types#remove', as: 'remove_visa_type'
 
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
-
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  root to: 'home#index'
-
-  # See how all your routes lay out with "rake routes"
-
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
 end

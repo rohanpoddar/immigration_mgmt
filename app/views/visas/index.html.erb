@@ -17,6 +17,7 @@
         <td><%= visa.status %></td>
         <td><%= link_to "Show", visa %>
           <%= link_to "Edit", edit_visa_path(visa,:employee_number=>visa.passport.employee_number) %>
+          <%= link_to "Remove", remove_visa_path(visa), :confirm => 'Are you really sure?', :method => :put %>
           <%= link_to "Destroy", visa, :confirm => 'Are you sure?', :method => :delete %></td>
       </tr>
   <% end %>

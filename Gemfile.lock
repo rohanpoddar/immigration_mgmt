@@ -119,6 +119,8 @@ GEM
       rspec-mocks (~> 2.14.0)
     ruby-ole (1.2.11.7)
     rubyzip (1.1.0)
+    rufus-scheduler (3.0.4)
+      tzinfo
     sass (3.2.13)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -165,6 +167,7 @@ DEPENDENCIES
   rails_layout
   roo
   rspec-rails
+  rufus-scheduler
   sass-rails (~> 3.2.3)
   shoulda-matchers (~> 2.5.0)
   simplecov

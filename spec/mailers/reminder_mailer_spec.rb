@@ -5,7 +5,7 @@ describe ReminderMailer do
   let(:emp_2) { createEmployee(1234, 'emp_two') }
   let(:emp_3) { createEmployee(12344, 'emp_three') }
   let(:employees) { [emp_1, emp_2, emp_3] }
-  let(:mail) { ReminderMailer.quaterly(employees) }
+  let(:mail) { ReminderMailer.quarterly(employees) }
 
   it 'renders the subject ' do
     mail.subject.should == 'Your passport is about to expire'

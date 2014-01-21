@@ -12,4 +12,14 @@ class VisaType < ActiveRecord::Base
   validates_uniqueness_of :name
   validates_presence_of :name
 
+  #METHODS
+
+  def delete!
+    self.isDeleted=1
+    self.visas.each do |visa|
+      visa.delete
+    end
+    self.save!
+  end
+
 end

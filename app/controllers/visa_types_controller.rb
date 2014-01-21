@@ -23,6 +23,15 @@ class VisaTypesController < ApplicationController
     @visa_type=VisaType.find_by_name(params[:id])
   end
 
+  def remove
+    @visa_type=VisaType.find_by_name(params[:id])
+    @visa_type.delete
+    if @visa_type.save!
+      flash[:success]="Successfully deleted VisaType!!!"
+    else
+      flash[:error]="Failed to delete !!!"
+    end
+  end
   def destroy
     @visa_type=VisaType.find_by_name(params[:id])
     @visa_type.destroy

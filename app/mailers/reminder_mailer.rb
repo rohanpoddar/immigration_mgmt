@@ -1,7 +1,7 @@
 class ReminderMailer < ActionMailer::Base
   default from: "noreply@gmail.com"
 
-  def quaterly(employees)
+  def quarterly(employees)
     email_address = recipients_email_id(employees)
     mail to: email_address, subject: 'Your passport is about to expire'
   end

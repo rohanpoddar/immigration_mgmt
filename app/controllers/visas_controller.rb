@@ -27,12 +27,23 @@ class VisasController < ApplicationController
     @visa=Visa.find_by_id(params[:id])
   end
 
-  def destroy
+  def remove
     @visa=Visa.find_by_id(params[:id])
-    if @visa.destroy
+    @visa.delete
+    if @visa.save!
       flash[:success]="Successfully deleted Visa!!!"
     else
       flash[:error]="Failed to delete !!!"
+    end
+    redirect_to :action => 'index'
+  end
+
+  def destroy
+    @visa=Visa.find_by_id(params[:id])
+    if @visa.destroy
+      flash[:success]="Successfully destroyed Visa!!!"
+    else
+      flash[:error]="Failed to destroy !!!"
     end
     redirect_to :action => 'index'
   end

@@ -26,9 +26,24 @@ class EmployeesController < ApplicationController
     @employee=Employee.find_by_number(params[:id])
   end
 
+  def remove
+    @employee=Employee.find_by_number(params[:id])
+    @employee.delete
+    if @employee.save!
+      flash[:notice]="Employee deleted Successfully !!!"
+    else
+      flash[:danger]="Unable to delete !!!"
+    end
+    redirect_to :action => 'index'
+  end
+
   def destroy
     @employee=Employee.find_by_number(params[:id])
-    @employee.destroy
+    if @employee.destroy
+      flash[:notice]="Employee destroyed Successfully !!!"
+    else
+      flash[:danger]="Unable to destroy !!!"
+    end
     redirect_to :action => 'index'
   end
 

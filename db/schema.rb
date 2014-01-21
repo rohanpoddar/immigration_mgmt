@@ -14,15 +14,16 @@
 ActiveRecord::Schema.define(:version => 20140102054256) do
 
   create_table "employees", :id => false, :force => true do |t|
-    t.integer  "number",       :null => false
-    t.string   "name",         :null => false
+    t.integer  "number",                      :null => false
+    t.string   "name",                        :null => false
     t.string   "position"
     t.string   "category"
     t.string   "location"
-    t.date     "joining_date", :null => false
+    t.integer  "isDeleted",    :default => 0
+    t.date     "joining_date",                :null => false
     t.date     "exit_date"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   add_index "employees", ["number"], :name => "index_employees_on_number", :unique => true
@@ -40,12 +41,13 @@ ActiveRecord::Schema.define(:version => 20140102054256) do
   add_index "immigrations", ["city"], :name => "index_immigrations_on_city"
 
   create_table "passports", :id => false, :force => true do |t|
-    t.integer  "employee_number", :null => false
-    t.string   "number",          :null => false
+    t.integer  "employee_number",                :null => false
+    t.string   "number",                         :null => false
     t.string   "citizenship"
+    t.integer  "isDeleted",       :default => 0
     t.date     "expiry_date"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   add_index "passports", ["employee_number"], :name => "index_passports_on_employee_number", :unique => true
@@ -62,13 +64,14 @@ ActiveRecord::Schema.define(:version => 20140102054256) do
   add_index "visa_types", ["name"], :name => "index_visa_types_on_name", :unique => true
 
   create_table "visas", :force => true do |t|
-    t.string   "passport_number", :null => false
-    t.string   "visa_type_name",  :null => false
-    t.string   "status",          :null => false
+    t.string   "passport_number",                :null => false
+    t.string   "visa_type_name",                 :null => false
+    t.string   "status",                         :null => false
     t.date     "issue_date"
     t.date     "expiry_date"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.integer  "isDeleted",       :default => 0
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   add_index "visas", ["passport_number"], :name => "index_visas_on_passport_number"

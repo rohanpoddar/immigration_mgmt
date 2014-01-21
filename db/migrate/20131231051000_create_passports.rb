@@ -4,6 +4,7 @@ class CreatePassports < ActiveRecord::Migration
       t.integer :employee_number, :null =>false
       t.string :number , :null => false
       t.string :citizenship
+      t.integer :isDeleted, :default=>0
       t.date :expiry_date
       t.timestamps
     end

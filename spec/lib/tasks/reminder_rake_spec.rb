@@ -11,8 +11,8 @@ describe 'reminder namespace rake task ' do
       employees = []
       mail = double("mailer")
       employees << Employee.new
-      Employee.should_receive(:passport_about_to_expire).and_return(employees)
-      ReminderMailer.should_receive(:quaterly).with(employees).and_return(mail)
+      Employee.should_receive(:passports_about_to_expire).and_return(employees)
+      ReminderMailer.should_receive(:quarterly).with(employees).and_return(mail)
       mail.should_receive(:deliver!)
 
       Rake::Task['reminder:reminder_mailer'].invoke
