@@ -44,8 +44,12 @@ class Visa < ActiveRecord::Base
   end
 
   def delete!
-    self.isDeleted=1
+    self.delete
     self.save!
   end
 
+  def isDeleted?
+    return true if self.isDeleted==1
+    return false
+  end
 end

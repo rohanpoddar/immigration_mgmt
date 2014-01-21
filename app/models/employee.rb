@@ -41,16 +41,13 @@ class Employee < ActiveRecord::Base
 
 
   def delete!
-    #NOTE REMOVE FUNCTION DOES NOT SAVE BY ITSELF
     self.passport.delete if self.passport!=nil
     self.isDeleted=1
     self.save!
   end
 
   def isDeleted?
-    #NOTE REMOVE FUNCTION DOES NOT SAVE BY ITSELF
-    return true if self.isDeleted==1
-    return false
+    self.isDeleted==1
   end
 
   def Employee.passports_about_to_expire(years_in_number)

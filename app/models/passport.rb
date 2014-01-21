@@ -1,7 +1,7 @@
 class Passport < ActiveRecord::Base
 
   #ATTRIBUTES
-  attr_accessible :number, :employee_number, :citizenship, :expiry_date, :isDeleted
+  attr_accessible :number, :employee_number, :citizenship, :expiry_date
   self.primary_key = 'number'
 
   #ASSOCIATIONS
@@ -35,11 +35,12 @@ class Passport < ActiveRecord::Base
   end
 
   def delete!
-    self.visas.each do |visa|
-      visa.delete
-    end
-    self.isDeleted=1
+    self.delete
     self.save!
+  end
+
+  def isDeleted?
+    self.isDeleted==1
   end
 
 end

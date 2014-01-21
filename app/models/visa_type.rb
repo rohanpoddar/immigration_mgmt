@@ -22,4 +22,8 @@ class VisaType < ActiveRecord::Base
     self.save!
   end
 
+  def isDeleted?
+    self.isDeleted==1
+  end
+
 end

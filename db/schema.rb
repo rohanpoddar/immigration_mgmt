@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20140102054256) do
   create_table "visa_types", :id => false, :force => true do |t|
     t.string   "name",       :null => false
     t.string   "country"
+    t.integer  "isDeleted"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

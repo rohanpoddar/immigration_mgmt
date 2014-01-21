@@ -102,6 +102,14 @@ describe Visa do
       visa.expiry_date=currentTime
       assert visa.monthsLeftToExpire == 0
     end
+
+    it 'delete! over passport should change isDeleted to 1' do
+      visa=FactoryGirl.create(:visa)
+      visa.isDeleted?.should be_false
+      visa.delete!
+      visa.isDeleted?.should be_true
+    end
+
   end
 
 end

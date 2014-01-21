@@ -39,10 +39,10 @@ describe PassportsController do
     end
   end
 
-  describe '#destroy' do
+  describe '#remove' do
     it 'should delete passport' do
       Passport.should_receive(:find_by_number).with(passport_one.number.to_s).and_return(passport_one)
-      delete :destroy, id: passport_one.number.to_s
+      put :remove, id: passport_one.number.to_s
       response.should redirect_to :action => :index
     end
 

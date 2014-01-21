@@ -71,5 +71,13 @@ describe Passport do
       passport.expiry_date=currentTime
       assert passport.monthsLeftToExpire == 0
     end
+
+    it 'delete! over passport should change isDeleted to 1' do
+      passport=FactoryGirl.create(:passport)
+      passport.isDeleted?.should be_false
+      passport.delete!
+      passport.isDeleted?.should be_true
+    end
+
   end
 end

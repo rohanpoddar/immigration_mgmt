@@ -63,10 +63,10 @@ describe EmployeesController do
 
   end
 
-  describe '#destroy' do
+  describe '#remove' do
     it 'should delete passport' do
       Employee.should_receive(:find_by_number).with(employee_one.number.to_s).and_return(employee_one)
-      delete :destroy, id: employee_one.number
+      put :remove, id: employee_one.number
       response.should redirect_to :action => :index
     end
 

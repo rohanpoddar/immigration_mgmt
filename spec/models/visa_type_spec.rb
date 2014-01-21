@@ -36,4 +36,13 @@ describe VisaType do
     #NOTHING HERE
   end
 
+  describe 'Methods: Model' do
+    it 'delete! over visa type should change isDeleted to 1' do
+      visa_type=FactoryGirl.create(:visa_type)
+      visa_type.isDeleted?.should be_false
+      visa_type.delete!
+      visa_type.isDeleted?.should be_true
+    end
+  end
+
 end

@@ -43,14 +43,4 @@ class PassportsController < ApplicationController
     redirect_to :action => 'index'
   end
 
-
-  def destroy
-    @passport = Passport.find_by_number(params[:id])
-    if @passport.destroy
-      flash[:success]="Successfully destroyed Passport!!!"
-    else
-      flash[:error]="Failed to destroy !!!"
-    end
-    redirect_to :action => 'index'
-  end
 end

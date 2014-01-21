@@ -40,16 +40,6 @@ class EmployeesController < ApplicationController
     redirect_to :action => 'index'
   end
 
-  def destroy
-    @employee=Employee.find_by_number(params[:id])
-    if @employee.destroy
-      flash[:notice]="Employee destroyed Successfully !!!"
-    else
-      flash[:danger]="Unable to destroy !!!"
-    end
-    redirect_to :action => 'index'
-  end
-
   def edit
     @employee=Employee.find_by_number(params[:id])
   end

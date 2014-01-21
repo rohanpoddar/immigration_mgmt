@@ -38,16 +38,6 @@ class VisasController < ApplicationController
     redirect_to :action => 'index'
   end
 
-  def destroy
-    @visa=Visa.find_by_id(params[:id])
-    if @visa.destroy
-      flash[:success]="Successfully destroyed Visa!!!"
-    else
-      flash[:error]="Failed to destroy !!!"
-    end
-    redirect_to :action => 'index'
-  end
-
   def edit
     @visa=Visa.find_by_id(params[:id])
   end

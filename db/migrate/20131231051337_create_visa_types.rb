@@ -3,6 +3,7 @@ class CreateVisaTypes < ActiveRecord::Migration
     create_table :visa_types, {:id => false } do |t|
       t.string :name, :null => false
       t.string :country
+      t.integer :isDeleted
       t.timestamps
     end
     execute "ALTER TABLE visa_types ADD PRIMARY KEY (name);"

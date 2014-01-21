@@ -32,11 +32,6 @@ class VisaTypesController < ApplicationController
       flash[:error]="Failed to delete !!!"
     end
   end
-  def destroy
-    @visa_type=VisaType.find_by_name(params[:id])
-    @visa_type.destroy
-    redirect_to :action => 'index'
-  end
 
   def edit
     @visa_type=VisaType.find_by_name(params[:id])
