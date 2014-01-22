@@ -9,8 +9,8 @@ jQuery ->
       sAjaxSource: $('#passports').data('source')
       iDisplayLength: 15
       aoColumnDefs: [
-        aDataSort: [0]
-        aTargets: [0],
+        aDataSort: [2]
+        aTargets: [2],
         bSortable: false
-        aTargets: [1,2,3,4,5,6,7]
+        aTargets: [0,1,3,4,5,6]
       ]

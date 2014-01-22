@@ -26,3 +26,5 @@ jQuery ->
         bSortable: false
         aTargets: [7,8],
       ]
+
+

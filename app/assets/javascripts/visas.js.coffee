@@ -12,5 +12,5 @@ jQuery ->
         aDataSort: [2]
         aTargets: [2],
         bSortable: false
-        aTargets: [0,1,3]
+        aTargets: [0,1,3,4,5,6]
       ]

@@ -1,6 +1,6 @@
 
 class VisasDatatable
-  delegate :params,:link_to, "DT_RowClass",:h, to: :@view
+  delegate :params,:link_to,:show_visa_path,:edit_visa_path,:remove_visa_path, "DT_RowClass",:h, to: :@view
 
   def initialize(view)
     @view = view
@@ -25,6 +25,9 @@ class VisasDatatable
           "1" => visa.passport.number,
           "2" => visa.visa_type_name,
           "3" => visa.status,
+          "4" => link_to('Show',show_visa_path(visa),{:class =>"show_link"}),
+          "5" => link_to('Edit',edit_visa_path(visa)),
+          "6" => link_to('Remove',remove_visa_path(visa)),
           "DT_RowClass" => "#{h(return_color(visa))}"
       }
     end
@@ -49,7 +52,7 @@ class VisasDatatable
     visas = Visa.order("#{sort_column} #{sort_direction}")
     visas = visas.page(page).per_page(per_page)
     if params[:sSearch].present?
-      visas = visas.where("visa_type_name like :search", search: "%#{params[:sSearch]}%")
+      visas = visas.where("visa_type_name ilike :search", search: "%#{params[:sSearch]}%")
     end
     visas
   end
@@ -63,7 +66,7 @@ class VisasDatatable
   end
 
   def sort_column
-    columns = %w[employee_number number visa_type_name status]
+    columns = %w[TABLE COLUMNS HERE]
     columns[params[:iSortCol_0].to_i]
     "visa_type_name"
   end

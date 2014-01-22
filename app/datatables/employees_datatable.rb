@@ -1,5 +1,5 @@
 class EmployeesDatatable
-  delegate :params,:link_to,:edit_employee_path,:remove_employee_path, "DT_RowClass",:h, to: :@view
+  delegate :params,:link_to,:show_employee_path,:edit_employee_path,:remove_employee_path, "DT_RowClass",:h, to: :@view
 
   def initialize(view)
     @view = view
@@ -21,8 +21,8 @@ class EmployeesDatatable
     array=Array.new
     employees.each do |employee|
      array<< {
-         "0" => link_to(employee.number,employee),
-         "1" => h(employee.name),
+         "0" => link_to(employee.number,show_employee_path(employee),{:class =>"show_link"}),
+         "1" => employee.name,
          "2" => h(employee.category),
          "3" => h(employee.joining_date),
          "4" => h(employee.exit_date),
@@ -56,7 +56,7 @@ class EmployeesDatatable
     employees = Employee.order("#{sort_column} #{sort_direction}")
     employees = employees.page(page).per_page(per_page)
     if params[:sSearch].present?
-      employees = employees.where("number like :search name like :search or category like :search", search: "%#{params[:sSearch]}%")
+      employees = employees.where("name ilike :search or category ilike :search", search: "%#{params[:sSearch]}%")
     end
     employees
   end

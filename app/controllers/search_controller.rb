@@ -1,5 +1,9 @@
 class SearchController < ApplicationController
-  def search
+  def index
 
+  end
+
+  def results
+    flash[:notice]="Search Results"
   end
 end

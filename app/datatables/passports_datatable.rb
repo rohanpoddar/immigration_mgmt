@@ -22,14 +22,13 @@ class PassportsDatatable
     array=Array.new
     passports.each do |passport|
       array<<{
-          "0" => h(passport.employee_number),
+          "0" => link_to(h(passport.number),show_passport_path(passport),{:class =>"show_link"}),
           "1" => h(passport.employee.name),
-          "2" => h(passport.citizenship),
-          "3" => h(passport.number),
+          "2" => h(passport.employee_number),
+          "3" => h(passport.citizenship),
           "4" => h(passport.expiry_date),
-          "5" => link_to('Show',show_passport_path(passport)),
-          "6" => link_to('Edit',edit_passport_path(passport)),
-          "7" => link_to("Delete",remove_passport_path(passport), method: :put, data: { confirm: 'Are you sure?' }),
+          "5" => link_to('Edit',edit_passport_path(passport)),
+          "6" => link_to("Delete",remove_passport_path(passport), method: :put, data: { confirm: 'Are you sure?' }),
           "DT_RowClass" => "#{h(return_color(passport))}"
       }
     end
@@ -54,7 +53,7 @@ class PassportsDatatable
     passports = Passport.order("#{sort_column} #{sort_direction}")
     passports = passports.page(page).per_page(per_page)
     if params[:sSearch].present?
-      passports = passports.where("name like :search or category like :search", search: "%#{params[:sSearch]}%")
+      passports = passports.where("number like :search", search: "%#{params[:sSearch]}%")
     end
     passports
   end
@@ -68,8 +67,9 @@ class PassportsDatatable
   end
 
   def sort_column
-    columns = %w[employee_number]
+    columns = %w[TABLE COLUMNS HERE]
     columns[params[:iSortCol_0].to_i]
+    "employee_number"
   end
 
   def sort_direction
