@@ -1,5 +1,5 @@
 <h2>Passports</h2>
-<table class="table table-hover">
+<table class="table table-hover" id = "passports" data-source = <% passports_url(format: 'json')%>>
   <thead>
   <tr>
     <th>Employee Number</th>
@@ -7,23 +7,12 @@
     <th>Employee Citizenship</th>
     <th>Passport Number</th>
     <th>Passport Expiry</th>
-    <th>Action</th>
+    <th>Show</th>
+    <th>Edit</th>
+    <th>Delete</th>
   </tr>
   </thead>
   <tbody>
-  <%@passports.each do |passport| %>
-      <tr>
-        <td><%= passport.employee_number %></td>
-        <td><%= passport.employee.name %></td>
-        <td><%= passport.citizenship %></td>
-        <td><%= passport.number %></td>
-        <td><%= passport.expiry_date %></td>
-        <td><%= link_to "Show", passport %>
-          <%= link_to "Edit", edit_passport_path(passport, :employee_number=>passport.employee_number) %>
-          <%= link_to "Remove", remove_passport_path(passport), :confirm => 'Are you really sure?', :method => :put %>
-          <%= link_to "Destroy", passport, :confirm => 'Are you sure?', :method => :delete %></td>
-      </tr>
-  <% end %>
   </tbody>
 </table>
 

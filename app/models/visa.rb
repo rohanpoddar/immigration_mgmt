@@ -24,7 +24,7 @@ class Visa < ActiveRecord::Base
 
   #METHODS
   def isExpired?
-    self.expiry_date<=Time.now
+    return (self.expiry_date!=nil)? self.expiry_date<Time.now : false
   end
 
   def monthsLeftToExpire

@@ -1,8 +1,16 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
-$(document).on "focus", "[data-behaviour~='datepicker']", (e) ->
-- $(this).datepicker
-- format: "dd-mm-yyyy"
-- weekStart: 1
-- autoclose: true
+jQuery ->
+  if $('body.visas').length > 0
+    $('#visas').dataTable
+      sDom: "<\"alert-notice\" r><\"top\" f><\"bottom\"tilp><\"clear\">"
+      sPaginationType: "bootstrap"
+      bJQueryUI: false
+      bProcessing: true
+      bServerSide: true
+      sAjaxSource: $('#visas').data('source')
+      iDisplayLength: 15
+      aoColumnDefs: [
+        aDataSort: [2]
+        aTargets: [2],
+        bSortable: false
+        aTargets: [0,1,3]
+      ]

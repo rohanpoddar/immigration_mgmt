@@ -56,7 +56,7 @@ class EmployeesDatatable
     employees = Employee.order("#{sort_column} #{sort_direction}")
     employees = employees.page(page).per_page(per_page)
     if params[:sSearch].present?
-      employees = employees.where("name like :search or category like :search", search: "%#{params[:sSearch]}%")
+      employees = employees.where("number like :search name like :search or category like :search", search: "%#{params[:sSearch]}%")
     end
     employees
   end

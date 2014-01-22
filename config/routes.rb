@@ -2,13 +2,7 @@ ImmigrationMgmt::Application.routes.draw do
 
 
   root to: 'home#index'
-  resources :employees do
-    collection do
-      get :search
-    end
-  end
-
-
+  resources :employees
   resources :passports
   resources :visas
   resources :visa_types
@@ -18,9 +12,11 @@ ImmigrationMgmt::Application.routes.draw do
 
   match 'passports' => 'passports#index', as: 'passports_home'
   match 'passports/:id/remove', to: 'passports#remove', as: 'remove_passport'
+  match 'passports/:id', to: 'passports#show', as: 'show_passport'
 
   match 'visas' => 'visas#index', as: 'visas_home'
   match 'visas/:id/remove', to: 'visas#remove', as: 'remove_visa'
+  match 'visas/:id', to: 'visas#show', as: 'show_visa'
 
 
   match 'visa_types' => 'visa_types#index', as: 'visa_types_home'

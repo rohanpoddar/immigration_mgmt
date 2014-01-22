@@ -1,6 +1,9 @@
 class VisasController < ApplicationController
   def index
-    @visas= Visa.all( :order=> :visa_type_name)
+    respond_to do |format|
+      format.html
+      format.json{render json: VisasDatatable.new(view_context)}
+    end
   end
 
   def new

@@ -1,6 +1,9 @@
 class PassportsController < ApplicationController
   def index
-    @passports= Passport.all
+    respond_to do |format|
+      format.html
+      format.json{render json: PassportsDatatable.new(view_context)}
+    end
   end
   def new
     @passport = Passport.new

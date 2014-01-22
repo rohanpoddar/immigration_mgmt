@@ -6,11 +6,10 @@ describe PassportsController do
   let(:passport_two) { FactoryGirl.create(:passport, number: 'p1234', employee: employee) }
 
   describe '#index' do
-    it 'should display all passports' do
-      Passport.should_receive(:all).and_return([passport_one, passport_two])
-      get :index
-      passports = controller.instance_variable_get(:@passports)
-      passports.size.should == 2
+    it 'should render all passports as json' do
+      get :index, :format => :json
+
+      response.should be_success
     end
   end
 
