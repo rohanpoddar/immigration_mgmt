@@ -6,6 +6,10 @@
     </div>
       <%= submit_tag "Search By Name", :class=>"btn btn-default"%>
 <% end %>
+<p>
+  Download:
+  <%= link_to "Download as Excel", employees_path(format: "xls") %>
+</p>
 <table class="table table-hover"  id = "employees" data-source = <% employees_url(format: 'json') %>>
   <thead>
     <tr>
