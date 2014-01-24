@@ -47,4 +47,7 @@ class Visa < ActiveRecord::Base
     self[:isDeleted]==1
   end
 
+  def issue_date
+    "lol#{self[:issue_date]}"
+  end
 end

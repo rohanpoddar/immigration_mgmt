@@ -23,22 +23,12 @@
 
     <div class="form-group">
       <%= f.label :issue_date, class: "sr-only"%>
-      <%= f.text_field :issue_date, :class=>"form-control", 'data-behaviour'=>"datepicker_id",'placeholder'=>"Select Issue Date"%>
-      <script type="text/javascript">
-          $(document).ready(function(){
-              $('[data-behaviour~=datepicker_id]').datepicker();
-          })
-      </script>
+      <%= f.text_field :issue_date, :class=>"form-control",'placeholder'=>"Select Issue Date"%>
     </div>
 
     <div class="form-group">
       <%= f.label :expiry_date, class: "sr-only"%>
-      <%= f.text_field :expiry_date, :class=>"form-control",'data-date-start-view'=>"2", 'data-date-format'=>"dd/mm/yyyy",'data-date-force-parse'=>"true", 'data-behaviour'=>"datepicker_ed", 'placeholder'=>"Select Expiry Date"%>
-      <script type="text/javascript">
-          $(document).ready(function(){
-              $('[data-behaviour~=datepicker_ed]').datepicker({format: 'dd/mm/yyyy'});
-          })
-      </script>
+      <%= f.text_field :expiry_date, :class=>"form-control", 'placeholder'=>"Select Expiry Date"%>
     </div>
 
     <%= f.submit class:"btn btn-primary" %>

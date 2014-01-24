@@ -34,7 +34,7 @@ describe PassportsController do
       put :update, id: '123', passport: {number: 'p123', expiry_date: Time.now, employee_number: employee.number}
       updated_passport = controller.instance_variable_get(:@passport)
       updated_passport.number.should == 'p123'
-      response.should redirect_to :action => :index
+      response.should redirect_to show_passport_path
     end
   end
 

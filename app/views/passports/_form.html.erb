@@ -18,12 +18,7 @@
 
     <div class="form-group">
       <%= f.label :expiry_date, class: "sr-only"%>
-      <%= f.text_field :expiry_date, :class=>"form-control", 'data-behaviour'=>"datepicker_doe",'placeholder'=>"Select Date of Expiry"%>
-      <script type="text/javascript">
-          $(document).ready(function(){
-              $('[data-behaviour~=datepicker_doe]').datepicker();
-          })
-      </script>
+      <%= f.text_field :expiry_date, :class=>"form-control",'placeholder'=>"Select Date of Expiry"%>
     </div>
 
     <div class="form-group">

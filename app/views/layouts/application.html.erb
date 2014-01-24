@@ -8,7 +8,7 @@
     <%= stylesheet_link_tag "application", media: "all" %>
     <%= csrf_meta_tags %>
   </head>
-  <body class="<%=params[:controller].parameterize%>" onload="startOnClick();">
+  <body class="<%=params[:controller].parameterize%>" onload="startOnLoad();">
     <header>
       <%= render 'layouts/navigation' %>
     </header>

@@ -34,4 +34,3 @@ group :development do
 end
 
 gem 'simplecov'
-gem 'bootstrap-datepicker-rails'
