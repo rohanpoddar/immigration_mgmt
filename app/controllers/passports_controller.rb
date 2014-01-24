@@ -31,8 +31,13 @@ class PassportsController < ApplicationController
 
   def update
     @passport = Passport.find_by_number(params[:id])
-    @passport.update_attributes(params[:passport])
-    redirect_to :action => 'index'
+    if @passport.update_attributes(params[:passport])
+      flash[:success]="Success !!!"
+      redirect_to show_passport_path
+    else
+      flash[:error]="Failed to update Passport !!! "
+      redirect_to edit_passport_path
+    end
   end
 
   def remove

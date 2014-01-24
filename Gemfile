@@ -26,6 +26,8 @@ gem 'foreigner'
 
 gem 'roo'
 
+gem 'less-rails'
+gem 'therubyracer'
 gem 'bootstrap-sass'
 group :development do
   gem 'rails_layout'

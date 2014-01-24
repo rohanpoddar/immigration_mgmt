@@ -17,12 +17,12 @@ class EmployeesController < ApplicationController
     if @employee.save
       flash[:success]="success"
       if (params[:commit] == "SAVE")
-        redirect_to  '/employees/#{@employee.number}'
+        redirect_to  show_employee_path
       else
         redirect_to "/passports/new?employee_number=#{@employee.number}"
       end
     else
-      flash[:danger]="#{params.inspect}<br/>#{@employee.errors.full_messages}"
+      flash[:danger]="#{@employee.errors.full_messages}"
       redirect_to new_employee_path
     end
   end
@@ -37,7 +37,7 @@ class EmployeesController < ApplicationController
     if @employee.save!
       flash[:notice]="Employee deleted Successfully !!!"
     else
-      flash[:danger]="Unable to delete !!!"
+      flash[:danger]="Unable to delete !!! -> #{params.inspect}<br/>#{@employee.errors.full_messages}"
     end
     redirect_to :action => 'index'
   end
@@ -48,15 +48,20 @@ class EmployeesController < ApplicationController
 
   def update
     @employee=Employee.find_by_number(params[:id])
-    @employee.update_attributes(params[:employee])
-    if (params[:commit]=="SAVE")
-      redirect_to '/employees/#{@employee.number}'
-    else
-      if (@employee.passport.nil?)
-        redirect_to "/passports/new?employee_number=#{@employee.number}"
+    if @employee.update_attributes(params[:employee])
+      flash[:success]="Success !!!"
+      if (params[:commit]=="SAVE")
+        redirect_to show_employee_path
       else
-        redirect_to "/passports/#{@employee.passport.number}/edit?employee_number=#{@employee.number}"
+        if (@employee.passport.nil?)
+          redirect_to "/passports/new?employee_number=#{@employee.number}"
+        else
+          redirect_to "/passports/#{@employee.passport.number}/edit"
+        end
       end
+    else
+      flash[:danger]="jklkj#{@employee.errors.full_messages}"
+      redirect_to edit_employee_path
     end
   end
 

@@ -23,11 +23,13 @@ class VisasDatatable
       array<<{
           "0" => visa.passport.employee_number,
           "1" => visa.passport.number,
-          "2" => visa.visa_type_name,
-          "3" => visa.status,
-          "4" => link_to('Show',show_visa_path(visa),{:class =>"show_link"}),
-          "5" => link_to('Edit',edit_visa_path(visa,:employee_number=>visa.passport.employee_number)),
-          "6" => link_to('Remove',remove_visa_path(visa)),
+          "2" => h(visa.visa_type_name),
+          "3" => h(visa.status),
+          "4" => h(visa.issue_date),
+          "5" => h(visa.expiry_date),
+          "6" => link_to('Show',show_visa_path(visa),{:class =>"show_link"}),
+          "7" => link_to('Edit',edit_visa_path(visa,:employee_number=>visa.passport.employee_number)),
+          "8" => link_to('Remove',remove_visa_path(visa)),
           "DT_RowClass" => "#{h(return_color(visa))}"
       }
     end
@@ -35,7 +37,9 @@ class VisasDatatable
   end
 
   def return_color(visa)
-    if visa.isExpired?
+    if visa.expiry_date==nil||visa.issue_date==nil
+      return "warning"
+    elsif visa.isExpired?
       return "danger"
     elsif visa.isDeleted?
       return "danger"

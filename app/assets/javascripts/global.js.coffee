@@ -1,5 +1,5 @@
 $(document).on "focus", "[data-behaviour~='datepicker']", (e) ->
 - $(this).datepicker
-- format: "dd-mm-yyyy"
-- weekStart: 1
+- 'data-date-format': "dd-mm-yyyy"
 - autoclose: true
+- weekStart: 1

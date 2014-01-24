@@ -44,3 +44,18 @@ section {
   @extend .row;
   margin-top: 20px;
   }
+
+.table tr.success,
+.table tr.warning,
+.table tr.danger,
+{
+  color: #000;
+}
+
+
+.logo
+{
+  width: 20%;
+  padding: 1%;
+  float: right;
+}

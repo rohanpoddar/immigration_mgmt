@@ -158,14 +158,19 @@ class EmployeeSeeder
     currentVisaPosition=visaStartColumn
     visas=Array.new
     for visaTypeCount in 0...visaTypeConfig.size
-      status=seedSheet.cell(rowNumber, visaStartColumn)
-      nextVisaPosition=currentVisaPosition+visaTypeConfig[visaTypeCount]
+      status=seedSheet.cell(rowNumber, currentVisaPosition)
+      visaFieldCount = visaTypeConfig[visaTypeCount]
       if status!=nil && status!= ""
+        visaFieldOffet= visaFieldCount==3? 0:1
+        issue_date=seedSheet.cell(rowNumber,visaStartColumn+1+visaFieldOffet)
+        expiry_data=seedSheet.cell(rowNumber,visaStartColumn+2+visaFieldOffet)
         visa = Visa.new(:status => status)
         visa.visa_type = visaTypeList[visaTypeCount]
+        visa.issue_date=issue_date
+        visa.expiry_date=expiry_data
         visas<<visa
       end
-      currentVisaPosition=nextVisaPosition
+      currentVisaPosition=currentVisaPosition+visaFieldCount
     end
     visas
   end

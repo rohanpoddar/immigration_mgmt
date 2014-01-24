@@ -22,7 +22,7 @@
 
     <div class="form-group">
       <%= f.label :joining_date, class: "sr-only"%>
-      <%= f.text_field :joining_date, :class=>"form-control", 'data-date-format'=>"dd/mm/yyyy",'data-behaviour'=>"datepicker_doj",'placeholder'=>"Select Joining Date"%>
+      <%= f.text_field :joining_date, :class=>"form-control",'data-behaviour'=>"datepicker_doj",'placeholder'=>"Select Joining Date"%>
       <script type="text/javascript">
           $(document).ready(function(){
               $('[data-behaviour~=datepicker_doj]').datepicker();
