@@ -141,51 +141,70 @@ class VisaTypeSeeder
 end
 
 class EmployeeSeeder
-  def EmployeeSeeder.seed
-    data=Roo::Excelx.new('db/content.xlsx')
+
+  def self.getExcelSheet(sheetName)
+    data=Roo::Excelx.new(sheetName)
     data.default_sheet= data.sheets.first
     puts "FOUND SPREADSHEET"
     puts "#{data.info}"
-    visaTypeConfig = [3,3,3,6,3,4,4,4,4,4,4,4,4,4,3,3,4,3,3]
-    visaTypeList = VisaType.all(:order => 'created_at')
-    if visaTypeConfig.size == visaTypeList.size
-      for row in 3...data.last_row
-        id= data.cell(row,4)
-        name= data.cell(row,5)
-        position= data.cell(row,6)
-        category= data.cell(row,7)
-        date_of_joining= data.cell(row,8)
-        date_of_expiry= data.cell(row,9)
-        passport_number= data.cell(row,10).to_s
-        exit_date=data.cell(row,11)
-        location= data.cell(row,12)
-        citizenship= data.cell(row,13)
-        currentEmp = Employee.new({:number => id,:name => name, :position => position, :category => category, :joining_date => date_of_joining, :exit_date => exit_date, :location => location} )
-        if currentEmp.save! && passport_number==nil || passport_number==""
-          puts "Just put #{currentEmp.name}"
-        else
-          currentEmp.passport=Passport.new({:number => passport_number, :citizenship => citizenship,:expiry_date => date_of_expiry})
-          currentPos=14
-          for visaTypeCount in 0...visaTypeList.size
-            status=data.cell(row,currentPos)
-            if status!=nil && status!= ""
-              visa = Visa.new(:status => status)
-              visa.visa_type = visaTypeList[visaTypeCount]
-              currentEmp.passport.visas<<visa
-            end
-            currentPos+=visaTypeConfig[visaTypeCount]
-          end
-          puts "Just put #{currentEmp.name}" if currentEmp.save!
+    data
+  end
+
+  def self.getVisaTypeConfig(seedSheet,visaStartPosition)
+    [3,3,3,6,3,4,4,4,4,4,4,4,4,4,3,3,4,3,3]
+  end
+
+  def self.readVisas(seedSheet,rowNumber, visaStartColumn, visaTypeConfig,visaTypeList)
+    currentVisaPosition=visaStartColumn
+    visas=Array.new
+    for visaTypeCount in 0...visaTypeConfig.size
+      status=seedSheet.cell(rowNumber, visaStartColumn)
+      nextVisaPosition=currentVisaPosition+visaTypeConfig[visaTypeCount]
+      if status!=nil && status!= ""
+        visa = Visa.new(:status => status)
+        visa.visa_type = visaTypeList[visaTypeCount]
+        visas<<visa
+      end
+      currentVisaPosition=nextVisaPosition
+    end
+    visas
+  end
+
+  def self.readPassport(seedSheet,rowNumber)
+    Passport.new({:number => seedSheet.cell(rowNumber, 10).to_s, :citizenship => seedSheet.cell(rowNumber, 13), :expiry_date => seedSheet.cell(rowNumber, 9)})
+  end
+
+  def self.readEmployee(rowNumber, seedSheet)
+    employee=Employee.new({:number => seedSheet.cell(rowNumber, 4), :name => seedSheet.cell(rowNumber, 5), :position => seedSheet.cell(rowNumber, 6), :category => seedSheet.cell(rowNumber, 7), :joining_date => seedSheet.cell(rowNumber, 8), :exit_date => seedSheet.cell(rowNumber, 11), :location => seedSheet.cell(rowNumber, 12)})
+    passportNumber = seedSheet.cell(rowNumber, 10)
+    return employee,passportNumber
+  end
+
+  def self.seed(seedSheet,dataStartRow,visaStartColumn)
+    visaTypeConfig=getVisaTypeConfig(seedSheet, visaStartColumn)
+    visaTypeList=VisaType.all
+    for rowNumber in dataStartRow...seedSheet.last_row
+      currentEmployee,passportNumber=readEmployee(rowNumber, seedSheet)
+      if currentEmployee.save!
+        puts "Just put #{currentEmployee.name}"
+        if passportNumber!=nil && passportNumber!=""
+          currentEmployee.passport=readPassport(seedSheet,rowNumber)
+          currentEmployee.passport.visas=readVisas(seedSheet, rowNumber, visaStartColumn, visaTypeConfig,visaTypeList )
+          currentEmployee.passport.save!
         end
       end
-    else
-      puts "ISSUE WITH SEEDING. CHECK SEED CONFIGURATION"
     end
+  end
+
+  def self.start(sheetName,dataStartRow,visaStartColumn)
+    seedSheet=getExcelSheet(sheetName)
+    seed(seedSheet,dataStartRow,visaStartColumn)
+    #Next Line needs better implementation
   end
 end
 
 VisaTypeSeeder.seed
-EmployeeSeeder.seed
+EmployeeSeeder.start("db/content.xlsx",3,14)
 
 
 

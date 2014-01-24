@@ -26,7 +26,7 @@ class VisasDatatable
           "2" => visa.visa_type_name,
           "3" => visa.status,
           "4" => link_to('Show',show_visa_path(visa),{:class =>"show_link"}),
-          "5" => link_to('Edit',edit_visa_path(visa)),
+          "5" => link_to('Edit',edit_visa_path(visa,:employee_number=>visa.passport.employee_number)),
           "6" => link_to('Remove',remove_visa_path(visa)),
           "DT_RowClass" => "#{h(return_color(visa))}"
       }
