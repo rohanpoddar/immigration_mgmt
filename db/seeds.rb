@@ -162,12 +162,20 @@ class EmployeeSeeder
       visaFieldCount = visaTypeConfig[visaTypeCount]
       if status!=nil && status!= ""
         visaFieldOffet= visaFieldCount==3? 0:1
-        issue_date=seedSheet.cell(rowNumber,visaStartColumn+1+visaFieldOffet)
-        expiry_data=seedSheet.cell(rowNumber,visaStartColumn+2+visaFieldOffet)
+        issue_date=seedSheet.cell(rowNumber,currentVisaPosition+1+visaFieldOffet)
+        expiry_date=seedSheet.cell(rowNumber,currentVisaPosition+2+visaFieldOffet)
         visa = Visa.new(:status => status)
         visa.visa_type = visaTypeList[visaTypeCount]
-        visa.issue_date=issue_date
-        visa.expiry_date=expiry_data
+        if issue_date.is_a?Date
+          visa.issue_date=issue_date
+        else
+          puts "Failed seed with ISSDTE=#{issue_date} for #{visa.visa_type_name} on Row #{rowNumber}"
+        end
+        if expiry_date.is_a?Date
+          visa.expiry_date=expiry_date
+        else
+          puts "Failed seed with EXPDTE=#{expiry_date} for #{visa.visa_type_name} on Row #{rowNumber}"
+        end
         visas<<visa
       end
       currentVisaPosition=currentVisaPosition+visaFieldCount
