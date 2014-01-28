@@ -65,6 +65,37 @@ describe Employee do
       passports_about_to_expire = Employee.passports_about_to_expire(1)
       passports_about_to_expire.size.should == 1
     end
+    describe '#search' do
+
+      it 'should search the employees on the basis of params' do
+        b2_visa_type = FactoryGirl.create(:visa_type, name: 'b2')
+        b2_visa = FactoryGirl.create(:visa, visa_type: b2_visa_type, issue_date: 1.years.ago, expiry_date: Date.today)
+        employee_two = FactoryGirl.create(:employee, number: "12321", location: "bangalore")
+        passport_for_v1_visa = FactoryGirl.create(:passport, number: 'ps2312', employee: employee_two)
+        FactoryGirl.create(:visa, visa_type: b2_visa_type, issue_date: "Jan 1, 2011", expiry_date: "Jan 1, 2013", passport: employee_two.passport)
+
+        emp = Employee.search({:visa_type => "b2",
+                               :location => "bangalore",
+                               :min_expiry_date => "Jan 1, 2012",
+                               :max_expiry_date => "Jan 25, 2013",
+                               :commit => "Search",
+                               :action => "index",
+                               :controller => "search"}, 10)
+        emp.size.should == 1
+      end
+
+      it 'should return all employees if no search criteria is given' do
+        b2_visa_type = FactoryGirl.create(:visa_type, name: 'b2')
+        b2_visa = FactoryGirl.create(:visa, visa_type: b2_visa_type, issue_date: 1.years.ago, expiry_date: Date.today)
+        employee_two = FactoryGirl.create(:employee, number: "12321", location: "bangalore")
+        passport_for_v1_visa = FactoryGirl.create(:passport, number: 'ps2312', employee: employee_two)
+        FactoryGirl.create(:visa, visa_type: b2_visa_type, issue_date: "Jan 1, 2011", expiry_date: "Jan 1, 2013", passport: employee_two.passport)
+
+        emp = Employee.search({:action => "index",
+                               :controller => "search"}, 10)
+        emp.size.should == 2
+      end
+    end
   end
 
   describe 'Methods: Model' do

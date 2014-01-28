@@ -58,7 +58,7 @@ class Employee < ActiveRecord::Base
   end
 
   def self.search(params, page_count)
-    if params.size>5
+    if params[:commit] != nil
       visa_type=params[:visa_type]
       location=params[:location]
       min_expiry_date=params[:min_expiry_date].empty? ? Date.today-30.years : params[:min_expiry_date]
