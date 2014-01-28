@@ -23,6 +23,6 @@ ImmigrationMgmt::Application.routes.draw do
   match 'visa_types' => 'visa_types#index', as: 'visa_types_home'
   match 'visa_types/:id/remove', to: 'visa_types#remove', as: 'remove_visa_type'
 
-  match 'search' => 'search#results', as: 'search_employees'
+  match 'search' => 'search#index', as: 'search_employees'
 
 end

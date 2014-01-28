@@ -13,6 +13,8 @@ gem "rufus-scheduler"
 gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
 gem 'jquery-ui-rails'
 gem 'will_paginate'
+gem 'squeel'
+
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

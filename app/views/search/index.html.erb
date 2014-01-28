@@ -1,6 +1,13 @@
-<%= form_tag search_employees_path, :method => 'get',class:"navbar-form navbar-left",role:"search" do %>
-    <div class="form-group">
-      <%= text_field_tag :search, params[:search], :placeholder => 'Search', :class=>"form-control" %>
+<%= form_tag search_employees_path, :method => 'get', :id => "employees_search" do %>
+    <%=  label_tag "visa_type"%>
+    <%= text_field_tag :visa_type, (params[:visa_type] or ""), :placeholder => 'Visa Type', :class=>"form-control" %>
+    <%=  label_tag "location"%>
+    <%= text_field_tag :location, (params[:location] or ""), :placeholder => 'location', :class=>"form-control" %>
+    <%=  label_tag "Visa expiry date from"%>
+    <%= text_field_tag :min_expiry_date,params[:min_expiry_date], :class=>"form-control",'placeholder'=>"visa expiry date from"%>
+    <%=  label_tag "Visa expiry date to"%>
+    <%= text_field_tag :min_expiry_date,params[:max_expiry_date], :class=>"form-control",'placeholder'=>"visa expiry date to"%>
     </div>
-    <%= submit_tag "Search By Name", :class=>"btn btn-default"%>
+    <%= submit_tag "Search"  %>
+    <div id="employees"><%= render 'employees' %></div>
 <% end %>

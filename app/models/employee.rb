@@ -42,11 +42,6 @@ class Employee < ActiveRecord::Base
     end
   end
 
-  def self.search(search)
-      find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
-  end
-
-
   def delete!
     self.passport.delete if self.passport!=nil
     self.isDeleted=1
@@ -57,11 +52,22 @@ class Employee < ActiveRecord::Base
     self.isDeleted==1
   end
 
-  def Employee.passports_about_to_expire(years_in_number)
+  def self.passports_about_to_expire(years_in_number)
     days = years_in_number*365
     Employee.joins(:passports).find(:all, :conditions => ['expiry_date > ? AND expiry_date < ?', Date.today, Date.today+ days])
   end
 
+  def self.search(params)
+    if params.size>5
+      visa_type=params[:visa_type]
+      location=params[:location]
+      min_expiry_date=params[:min_expiry_date]
+      max_expiry_date=params[:max_expiry_date]
+    Employee.joins{passports.visas}.where{(visas.visa_type_name.like"%#{visa_type}%")& (employees.location.like"%#{location}%")&(visas.expiry_date>>("#{min_expiry_date}".."#{max_expiry_date}"))}
+    else
+      Employee.paginate(:page => params[:page], :per_page => 30)
+    end
+end
 
 end
 
