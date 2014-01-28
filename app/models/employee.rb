@@ -58,17 +58,12 @@ class Employee < ActiveRecord::Base
   end
 
   def self.search(params, page_count)
-    if params.size>5
+    if params[:commit] != nil
       visa_type=params[:visa_type]
       location=params[:location]
       min_expiry_date=params[:min_expiry_date]
       max_expiry_date=params[:max_expiry_date]
-<<<<<<< Updated upstream
       Employee.joins { passports.visas }.where { (visas.visa_type_name.like "%#{visa_type}%")& (employees.location.like "%#{location}%")&(visas.expiry_date>>("#{min_expiry_date}".."#{max_expiry_date}")) }.paginate(:page => params[:page], :per_page => page_count)
-=======
-      page_count=10
-    Employee.joins{passports.visas}.where{(visas.visa_type_name.like"%#{visa_type}%")& (employees.location.like"%#{location}%")&(visas.expiry_date>>("#{min_expiry_date}".."#{max_expiry_date}"))}.paginate(:page => params[:page], :per_page => page_count)
->>>>>>> Stashed changes
     else
       Employee.paginate(:page => params[:page], :per_page => 30)
     end
