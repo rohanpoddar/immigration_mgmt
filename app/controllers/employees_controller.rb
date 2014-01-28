@@ -65,8 +65,4 @@ class EmployeesController < ApplicationController
     end
   end
 
-  def search
-    @employees=Employee.search(params[:search])
-  end
-
 end

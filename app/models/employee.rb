@@ -61,14 +61,9 @@ class Employee < ActiveRecord::Base
     if params.size>5
       visa_type=params[:visa_type]
       location=params[:location]
-      min_expiry_date=params[:min_expiry_date]
-      max_expiry_date=params[:max_expiry_date]
-<<<<<<< Updated upstream
+      min_expiry_date=params[:min_expiry_date].empty? ? Date.today-30.years : params[:min_expiry_date]
+      max_expiry_date=params[:max_expiry_date].empty? ? Date.today+30.years : params[:max_expiry_date]
       Employee.joins { passports.visas }.where { (visas.visa_type_name.like "%#{visa_type}%")& (employees.location.like "%#{location}%")&(visas.expiry_date>>("#{min_expiry_date}".."#{max_expiry_date}")) }.paginate(:page => params[:page], :per_page => page_count)
-=======
-      page_count=10
-    Employee.joins{passports.visas}.where{(visas.visa_type_name.like"%#{visa_type}%")& (employees.location.like"%#{location}%")&(visas.expiry_date>>("#{min_expiry_date}".."#{max_expiry_date}"))}.paginate(:page => params[:page], :per_page => page_count)
->>>>>>> Stashed changes
     else
       Employee.paginate(:page => params[:page], :per_page => 30)
     end

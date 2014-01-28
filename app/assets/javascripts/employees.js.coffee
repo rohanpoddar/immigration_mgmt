@@ -27,4 +27,3 @@ jQuery ->
         aTargets: [7,8],
       ]
 
-
