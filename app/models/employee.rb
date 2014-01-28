@@ -57,17 +57,26 @@ class Employee < ActiveRecord::Base
     Employee.joins(:passports).find(:all, :conditions => ['expiry_date > ? AND expiry_date < ?', Date.today, Date.today+ days])
   end
 
-  def self.search(params)
+  def self.search(params, page_count)
     if params.size>5
       visa_type=params[:visa_type]
       location=params[:location]
       min_expiry_date=params[:min_expiry_date]
       max_expiry_date=params[:max_expiry_date]
-    Employee.joins{passports.visas}.where{(visas.visa_type_name.like"%#{visa_type}%")& (employees.location.like"%#{location}%")&(visas.expiry_date>>("#{min_expiry_date}".."#{max_expiry_date}"))}
+      Employee.joins { passports.visas }.where { (visas.visa_type_name.like "%#{visa_type}%")& (employees.location.like "%#{location}%")&(visas.expiry_date>>("#{min_expiry_date}".."#{max_expiry_date}")) }.paginate(:page => params[:page], :per_page => page_count)
     else
       Employee.paginate(:page => params[:page], :per_page => 30)
     end
-end
+  end
+
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |product|
+        csv << product.attributes.values_at(*column_names)
+      end
+    end
+  end
 
 end
 

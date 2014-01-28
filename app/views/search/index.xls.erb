@@ -1,0 +1,22 @@
+
+<table>
+  <tr>
+    <th>Number</th>
+    <th>Name</th>
+    <th>Category</th>
+    <th>Joining date</th>
+    <th>Exit date</th>
+  </tr>
+
+  <% @employees.each do |employee| %>
+      <tr>
+        <td><%= employee.number %></td>
+        <td><%= employee.name %></td>
+        <td><%= employee.category %></td>
+        <td><%= employee.joining_date %></td>
+        <td><%= employee.exit_date %></td>
+      </tr>
+  <% end %>
+</table>
+
+<br />
