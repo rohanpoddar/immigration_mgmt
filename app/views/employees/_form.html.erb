@@ -1,4 +1,4 @@
-<%= form_for @employee, html:{role:"form"} do |f| %>
+<%= form_for @employee, html:{role:"form", class:""} do |f| %>
 
     <div class="form-group">
       <%= f.label :number, "Employee ID", class: "sr-only"%>
@@ -22,12 +22,12 @@
 
     <div class="form-group">
       <%= f.label :joining_date, class: "sr-only"%>
-      <%= f.text_field :joining_date, :class=>"form-control",'placeholder'=>"Select Joining Date"%>
+      <%= f.text_field :joining_date, :value=> f.object.joining_date, :class=>"form-control datepicker",'placeholder'=>"Select Joining Date"%>
     </div>
 
     <div class="form-group">
-        <%= f.label :exit_date, class: "sr-only"%>
-        <%= f.text_field :exit_date, :class=>"form-control", 'placeholder'=>"Select Exit Date"%>
+      <%= f.label :exit_date, class: "sr-only"%>
+      <%= f.text_field :exit_date, :value=>f.object.exit_date, :class=>"form-control datepicker",'placeholder'=>"Select Exit Date"%>
     </div>
 
     <div class="form-group">

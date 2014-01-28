@@ -4,9 +4,9 @@
     <%=  label_tag "location"%>
     <%= text_field_tag :location, (params[:location] or ""), :placeholder => 'location', :class=>"form-control" %>
     <%=  label_tag "Visa expiry date from"%>
-    <%= text_field_tag :min_expiry_date,params[:min_expiry_date], :class=>"form-control",'placeholder'=>"visa expiry date from"%>
+    <%= text_field_tag :min_expiry_date,params[:min_expiry_date], :class=>"form-control datepicker",'placeholder'=>"visa expiry date from"%>
     <%=  label_tag "Visa expiry date to"%>
-    <%= text_field_tag :min_expiry_date,params[:max_expiry_date], :class=>"form-control",'placeholder'=>"visa expiry date to"%>
+    <%= text_field_tag :max_expiry_date,params[:max_expiry_date], :class=>"form-control datepicker",'placeholder'=>"visa expiry date to"%>
     </div>
     <%= submit_tag "Search"  %>
     <div id="employees"><%= render 'employees' %></div>

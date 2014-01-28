@@ -18,7 +18,7 @@
 
     <div class="form-group">
       <%= f.label :expiry_date, class: "sr-only"%>
-      <%= f.text_field :expiry_date, :class=>"form-control",'placeholder'=>"Select Date of Expiry"%>
+      <%= f.text_field :expiry_date,:value=> f.object.expiry_date, :class=>"form-control datepicker",'placeholder'=>"Select Date of Expiry"%>
     </div>
 
     <div class="form-group">

@@ -16,7 +16,15 @@ function startTableClicker() {
     }
 }
 function startCalendar() {
-    $("#calendar").ionDatePicker();
+    $(function() {
+        $( ".datepicker" ).datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'M d, yy',
+            minDate: '-30Y',
+            maxDate: '+30Y'
+        });
+    });
 }
 function startOnLoad(){
     startTableClicker();

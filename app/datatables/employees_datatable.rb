@@ -24,7 +24,7 @@ class EmployeesDatatable
          "0" => link_to(employee.number,show_employee_path(employee),{:class =>"show_link"}),
          "1" => employee.name,
          "2" => h(employee.category),
-         "3" => h(employee.joining_date),
+         "3" => h(employee.joining_date) ,
          "4" => h(employee.exit_date),
          "5" => h(employee.position),
          "6" => h(employee.location),

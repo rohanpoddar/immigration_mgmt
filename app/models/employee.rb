@@ -44,12 +44,12 @@ class Employee < ActiveRecord::Base
 
   def delete!
     self.passport.delete if self.passport!=nil
-    self.isDeleted=1
+    self[:isDeleted]=1
     self.save!
   end
 
   def isDeleted?
-    self.isDeleted==1
+    self[:isDeleted]==1
   end
 
   def self.passports_about_to_expire(years_in_number)
@@ -63,7 +63,12 @@ class Employee < ActiveRecord::Base
       location=params[:location]
       min_expiry_date=params[:min_expiry_date]
       max_expiry_date=params[:max_expiry_date]
+<<<<<<< Updated upstream
       Employee.joins { passports.visas }.where { (visas.visa_type_name.like "%#{visa_type}%")& (employees.location.like "%#{location}%")&(visas.expiry_date>>("#{min_expiry_date}".."#{max_expiry_date}")) }.paginate(:page => params[:page], :per_page => page_count)
+=======
+      page_count=10
+    Employee.joins{passports.visas}.where{(visas.visa_type_name.like"%#{visa_type}%")& (employees.location.like"%#{location}%")&(visas.expiry_date>>("#{min_expiry_date}".."#{max_expiry_date}"))}.paginate(:page => params[:page], :per_page => page_count)
+>>>>>>> Stashed changes
     else
       Employee.paginate(:page => params[:page], :per_page => 30)
     end
