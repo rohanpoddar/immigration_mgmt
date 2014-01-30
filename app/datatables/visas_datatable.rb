@@ -1,6 +1,5 @@
-
 class VisasDatatable
-  delegate :params,:link_to,:show_visa_path,:edit_visa_path,:remove_visa_path, "DT_RowClass",:h, to: :@view
+  delegate :params, :link_to, :show_visa_path, :edit_visa_path, :remove_visa_path, "DT_RowClass", :h, to: :@view
 
   def initialize(view)
     @view = view
@@ -21,15 +20,15 @@ class VisasDatatable
     array=Array.new
     visas.each do |visa|
       array<<{
-          "0" => visa.passport.employee_number,
-          "1" => visa.passport.number,
-          "2" => h(visa.visa_type_name),
-          "3" => h(visa.status),
-          "4" => h(visa.issue_date),
-          "5" => h(visa.expiry_date),
-          "6" => link_to('Show',show_visa_path(visa),{:class =>"show_link"}),
-          "7" => link_to('Edit',edit_visa_path(visa,:employee_number=>visa.passport.employee_number)),
-          "8" => link_to('Remove',remove_visa_path(visa)),
+          "0" => link_to('Show', show_visa_path(visa), {:class => "show_link"}),
+          "1" => visa.passport.employee_number,
+          "2" => visa.passport.number,
+          "3" => h(visa.visa_type_name),
+          "4" => h(visa.status),
+          "5" => h(visa.issue_date),
+          "6" => h(visa.expiry_date),
+          "7" => link_to('Edit', edit_visa_path(visa, :employee_number => visa.passport.employee_number)),
+          "8" => link_to('Remove', remove_visa_path(visa), method: :put, data: {confirm: 'Are you sure?'}),
           "DT_RowClass" => "#{h(return_color(visa))}"
       }
     end
@@ -70,9 +69,8 @@ class VisasDatatable
   end
 
   def sort_column
-    columns = %w[TABLE COLUMNS HERE]
+    columns = %w[Show EN PN visa_type_name status issue_date expiry_date edit remove]
     columns[params[:iSortCol_0].to_i]
-    "visa_type_name"
   end
 
   def sort_direction

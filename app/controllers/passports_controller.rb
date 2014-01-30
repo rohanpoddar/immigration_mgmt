@@ -2,12 +2,14 @@ class PassportsController < ApplicationController
   def index
     respond_to do |format|
       format.html
-      format.json{render json: PassportsDatatable.new(view_context)}
+      format.json { render json: PassportsDatatable.new(view_context) }
     end
   end
+
   def new
     @passport = Passport.new
   end
+
   def create
     @passport = Passport.new(params[:passport])
     if params[:employee_number]!=nil
@@ -21,6 +23,7 @@ class PassportsController < ApplicationController
       redirect_to :action => 'index'
     end
   end
+
   def edit
     @passport = Passport.find_by_number(params[:id])
   end

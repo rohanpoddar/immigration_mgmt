@@ -1,21 +1,23 @@
+
 <h2>Employee List</h2>
 <p>
   Download:
   <%= link_to "Download as Excel", employees_path(format: "xls") %>
 </p>
-<table class="table table-hover" id = "employees" data-source = <% employees_url(format: 'json') %>>
+<table class="table table-hover" id="employees" data-source=
+<% employees_url(format: 'json') %>>
   <thead>
-    <tr>
-      <th>Employee Number</th>
-      <th>Name</th>
-      <th>Category</th>
-      <th>Joining Date</th>
-      <th>Exit Date</th>
-      <th>Position</th>
-      <th>Location</th>
-      <th>Edit</th>
-      <th>Delete</th>
-    </tr>
+  <tr>
+    <th>Employee Number</th>
+    <th>Name</th>
+    <th>Category</th>
+    <th>Joining Date</th>
+    <th>Exit Date</th>
+    <th>Position</th>
+    <th>Location</th>
+    <th>Edit</th>
+    <th>Remove</th>
+  </tr>
   </thead>
   <tbody>
 

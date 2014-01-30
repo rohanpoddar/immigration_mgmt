@@ -51,14 +51,15 @@ ActiveRecord::Schema.define(:version => 20140102054256) do
   end
 
   add_index "passports", ["employee_number"], :name => "index_passports_on_employee_number"
+  add_index "passports", ["isDeleted"], :name => "index_passports_on_isDeleted"
   add_index "passports", ["number"], :name => "index_passports_on_number", :unique => true
 
   create_table "visa_types", :id => false, :force => true do |t|
-    t.string   "name",       :null => false
+    t.string   "name",                      :null => false
     t.string   "country"
-    t.integer  "isDeleted"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "isDeleted",  :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   add_index "visa_types", ["country"], :name => "index_visa_types_on_country"
@@ -75,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20140102054256) do
     t.datetime "updated_at",                     :null => false
   end
 
+  add_index "visas", ["isDeleted"], :name => "index_visas_on_isDeleted"
   add_index "visas", ["passport_number"], :name => "index_visas_on_passport_number"
   add_index "visas", ["visa_type_name"], :name => "index_visas_on_visa_type_name"
 

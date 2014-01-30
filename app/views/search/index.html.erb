@@ -1,25 +1,25 @@
 <div class="container well well-lg">
   <h1>Advanced Search</h1>
   <br/>
-    <%= form_tag search_employees_path, :method => 'get', :id => "employees_search",:class=>"form",:role=>"form" do %>
-        <div class="form-group">
-            <%= label_tag "visa_type"%>
-            <%= collection_select(:visa,:visa_type_name,VisaType.all,:name,:name,{},{:class => "form-control",:name=>'visa_type'})%>
-        </div>
-        <div class="form-group">
-            <%= label_tag "Location"%>
-            <%= text_field_tag :location, (params[:location] or ""), :placeholder => 'location', :class=>"form-control" %>
-        </div>
-        <div class="form-group">
-            <%= label_tag "Visa expiry date from"%>
-            <%= text_field_tag :min_expiry_date,params[:min_expiry_date], :class=>"form-control datepicker",'placeholder'=>"visa expiry date from"%>
-        </div>
-        <div class="form-group">
-            <%= label_tag "Visa expiry date to"%>
-            <%= text_field_tag :max_expiry_date,params[:max_expiry_date], :class=>"form-control datepicker",'placeholder'=>"visa expiry date to"%>
-        </div>
-        <%= submit_tag value="Search",{class: 'btn btn-primary btn-sm'}%>
-    <% end %>
+  <%= form_tag search_employees_path, :method => 'get', :id => "employees_search", :class => "form", :role => "form" do %>
+      <div class="form-group">
+        <%= label_tag "visa_type" %>
+        <%= collection_select(:visa, :visa_type_name, VisaType.all, :name, :name, {}, {:class => "form-control", :name => 'visa_type'}) %>
+      </div>
+      <div class="form-group">
+        <%= label_tag "Location" %>
+        <%= text_field_tag :location, (params[:location] or ""), :placeholder => 'location', :class => "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= label_tag "Visa expiry date from" %>
+        <%= text_field_tag :min_expiry_date, params[:min_expiry_date],:id=>"from", :class => "form-control", 'placeholder' => "visa expiry date from" %>
+      </div>
+      <div class="form-group">
+        <%= label_tag "Visa expiry date to" %>
+        <%= text_field_tag :max_expiry_date, params[:max_expiry_date],:id=>"to", :class => "form-control", 'placeholder' => "visa expiry date to" %>
+      </div>
+      <%= submit_tag value="Search", {class: 'btn btn-primary btn-sm'} %>
+  <% end %>
 </div>
 <div class="container">
   <div id="employees"><%= render 'employees' %></div>

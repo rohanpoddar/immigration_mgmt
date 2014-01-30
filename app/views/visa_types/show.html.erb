@@ -1,15 +1,16 @@
-<h2>Visa Type Details</h2>
+<div class="well well-sm">
+  <h2>Visa Type Details</h2>
 
-<div class="field">
-  <strong><%= label_tag :name, "Visa Type Name"%>:</strong>
-  <%=@visa_type.name%>
+  <div class="field">
+    <strong><%= label_tag :name, "Visa Type Name" %>:</strong>
+    <%= @visa_type.name %>
+  </div>
+
+  <div class="field">
+    <strong><%= label_tag :country, "Country" %>:</strong>
+    <%= @visa_type.country %>
+  </div>
 </div>
-
-<div class="field">
-  <strong><%= label_tag :country, "Country"%>:</strong>
-  <%=@visa_type.country%>
-</div>
-
 <%= @visas=@visa_type.visas
-    render partial:"visa_types/visa_type_sublist", locals: {object: @visas}
+    render partial: "visas/visa_sublist", locals: {object: @visas}
 %>

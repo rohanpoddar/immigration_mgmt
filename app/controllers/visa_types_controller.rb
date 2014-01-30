@@ -1,6 +1,6 @@
 class VisaTypesController < ApplicationController
   def index
-    @visa_types= VisaType.all( :order=> :created_at)
+    @visa_types= VisaType.all(:order => :created_at)
   end
 
   def new

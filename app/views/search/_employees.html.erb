@@ -2,10 +2,10 @@
   Download:
   <%= link_to "Download as Excel", search_employees_path(format: "xls") %>
 </p>
-
-<table class="table table-hover">
+<table class="table table-hover" id="search">
   <thead>
   <tr>
+    <th>Show</th>
     <th>Employee Number</th>
     <th>Name</th>
     <th>Category</th>
@@ -13,15 +13,13 @@
     <th>Exit Date</th>
     <th>Position</th>
     <th>Location</th>
-    <th>Action</th>
   </tr>
   </thead>
   <tbody>
 
-  <%@employees.each do |employee| %>
-      <tr class="<%if employee.passport==nil%>danger<%
-         else%>success<%
-         end%>">
+  <% @employees.each do |employee| %>
+      <tr class="<%=employee.passport==nil ? "danger":"success"%>">
+        <td><%= link_to "Show", employee,{:class => "show_link"} %>
         <td><%= employee.number %></td>
         <td><%= employee.name %></td>
         <td><%= employee.category %></td>
@@ -29,10 +27,9 @@
         <td><%= employee.exit_date %></td>
         <td><%= employee.position %></td>
         <td><%= employee.location %></td>
-        <td><%= link_to "Show", employee %>
       </tr>
   <% end %>
 
-  <%= will_paginate @employees  %>
+  <%= will_paginate @employees %>
   </tbody>
 </table>

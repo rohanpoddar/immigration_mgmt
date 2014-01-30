@@ -6,6 +6,7 @@ class VisaType < ActiveRecord::Base
 
   #ASSOCIATIONS
   has_many :visas, :foreign_key => "visa_type_name"
+  has_one :deleted_visas, :class_name => 'Visa', :foreign_key => 'visa_type_name', :conditions => {:isDeleted => 1}
   accepts_nested_attributes_for :visas
 
   #VALIDATIONS

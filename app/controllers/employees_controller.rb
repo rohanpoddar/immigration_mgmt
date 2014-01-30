@@ -4,7 +4,7 @@ class EmployeesController < ApplicationController
     respond_to do |format|
       format.html
       format.xls
-      format.json{render json: EmployeesDatatable.new(view_context)}
+      format.json { render json: EmployeesDatatable.new(view_context) }
     end
   end
 
@@ -17,7 +17,7 @@ class EmployeesController < ApplicationController
     if @employee.save
       flash[:success]="success"
       if (params[:commit] == "SAVE")
-        redirect_to  show_employee_path(@employee)
+        redirect_to show_employee_path(@employee)
       else
         redirect_to "/passports/new?employee_number=#{@employee.number}"
       end

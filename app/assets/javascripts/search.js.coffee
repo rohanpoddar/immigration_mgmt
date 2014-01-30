@@ -1,6 +1,16 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
-setSuggestions = (array) ->
-    availableTags = array
-    $("#visa_type_tags").autocomplete source: availableTags
+$ ->
+  $(document).ready ->
+    $("#from").datepicker
+      changeMonth: true
+      changeYear: true
+      dateFormat: "M d, yy"
+      onClose: (selectedDate) ->
+        $("#to").datepicker "option", "minDate", selectedDate
+
+    $("#to").datepicker
+      changeMonth: true
+      changeYear: true
+      dateFormat: "M d, yy"
+      onClose: (selectedDate) ->
+        $("#from").datepicker "option", "maxDate", selectedDate
+

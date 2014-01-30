@@ -5,8 +5,11 @@ class Passport < ActiveRecord::Base
   self.primary_key = 'number'
 
   #ASSOCIATIONS
-  belongs_to :employee, :foreign_key => "employee_number",:primary_key => "number", :autosave => true
+  belongs_to :employee, :foreign_key => "employee_number", :primary_key => "number", :autosave => true
   has_many :visas, :foreign_key => "passport_number", :autosave => true
+  has_many :current_visas, :class_name => 'Passport', :foreign_key => 'employee_number', :conditions => {:isDeleted => 0}
+  has_many :removed_visas, :class_name => 'Passport', :foreign_key => 'employee_number', :conditions => {:isDeleted => 1}
+  has_one :passport, :class_name => 'Passport', :foreign_key => 'employee_number'
   accepts_nested_attributes_for :visas
 
   #VALIDATIONS
@@ -16,7 +19,7 @@ class Passport < ActiveRecord::Base
 
   #METHODS
   def isExpired?
-    (self.expiry_date!=nil)? self.expiry_date.beginning_of_day<Date.today : false
+    (self.expiry_date!=nil) ? self.expiry_date.beginning_of_day<Date.today : false
   end
 
   def monthsLeftToExpire

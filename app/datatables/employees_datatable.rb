@@ -1,5 +1,5 @@
 class EmployeesDatatable
-  delegate :params,:link_to,:show_employee_path,:edit_employee_path,:remove_employee_path, "DT_RowClass",:h, to: :@view
+  delegate :params, :link_to, :show_employee_path, :edit_employee_path, :remove_employee_path, "DT_RowClass", :h, to: :@view
 
   def initialize(view)
     @view = view
@@ -20,18 +20,18 @@ class EmployeesDatatable
   def data
     array=Array.new
     employees.each do |employee|
-     array<< {
-         "0" => link_to(employee.number,show_employee_path(employee),{:class =>"show_link"}),
-         "1" => employee.name,
-         "2" => h(employee.category),
-         "3" => h(employee.joining_date) ,
-         "4" => h(employee.exit_date),
-         "5" => h(employee.position),
-         "6" => h(employee.location),
-         "7" => link_to('Edit',edit_employee_path(employee)),
-         "8" => link_to("Delete",remove_employee_path( employee), method: :put, data: { confirm: 'Are you sure?' }),
-         "DT_RowClass" => "#{h(return_color(employee))}"
-     }
+      array<< {
+          "0" => link_to(employee.number, show_employee_path(employee), {:class => "show_link"}),
+          "1" => employee.name,
+          "2" => h(employee.category),
+          "3" => h(employee.joining_date),
+          "4" => h(employee.exit_date),
+          "5" => h(employee.position),
+          "6" => h(employee.location),
+          "7" => link_to('Edit', edit_employee_path(employee)),
+          "8" => link_to("Remove", remove_employee_path(employee), method: :put, data: {confirm: 'Are you sure?'}),
+          "DT_RowClass" => "#{h(return_color(employee))}"
+      }
     end
     array
   end

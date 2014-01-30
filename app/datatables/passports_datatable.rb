@@ -1,6 +1,5 @@
-
 class PassportsDatatable
-  delegate :params,:link_to,:show_passport_path,:edit_passport_path,:remove_passport_path, "DT_RowClass",:h, to: :@view
+  delegate :params, :link_to, :show_passport_path, :edit_passport_path, :remove_passport_path, "DT_RowClass", :h, to: :@view
 
   def initialize(view)
     @view = view
@@ -22,13 +21,13 @@ class PassportsDatatable
     array=Array.new
     passports.each do |passport|
       array<<{
-          "0" => link_to(h(passport.number),show_passport_path(passport),{:class =>"show_link"}),
+          "0" => link_to(h(passport.number), show_passport_path(passport), {:class => "show_link"}),
           "1" => h(passport.employee.name),
           "2" => h(passport.employee_number),
           "3" => h(passport.citizenship),
           "4" => h(passport.expiry_date),
-          "5" => link_to('Edit',edit_passport_path(passport)),
-          "6" => link_to("Delete",remove_passport_path(passport), method: :put, data: { confirm: 'Are you sure?' }),
+          "5" => link_to('Edit', edit_passport_path(passport)),
+          "6" => link_to("Remove", remove_passport_path(passport), method: :put, data: {confirm: 'Are you sure?'}),
           "DT_RowClass" => "#{h(return_color(passport))}"
       }
     end

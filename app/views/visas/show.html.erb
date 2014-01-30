@@ -1,43 +1,44 @@
-<h2>Visa Details</h2>
+<div class="well well-sm">
+  <h2>Visa Details</h2>
 
-<div class="field">
-  <strong><%= label_tag :employee_name, "Employee Name"%>:</strong>
-  <%=@visa.passport.employee.name%>
+  <div class="field">
+    <strong><%= label_tag :employee_name, "Employee Name" %>:</strong>
+    <%= link_to @visa.passport.employee.name, employee_path(@visa.passport.employee) %>
+  </div>
+
+  <div class="field">
+    <strong><%= label_tag :employee_number, "Employee Number" %>:</strong>
+    <%= @visa.passport.employee_number %>
+  </div>
+
+  <div class="field">
+    <strong><%= label_tag :passport_number, "Passport Number" %>:</strong>
+    <%= link_to @visa.passport.number, passport_path(@visa.passport) %>
+  </div>
+
+  <div class="field">
+    <strong><%= label_tag :visa_type, "Visa Type" %>:</strong>
+    <%= link_to @visa.visa_type_name, visa_type_path(@visa.visa_type) %>
+  </div>
+
+  <div class="field">
+    <strong><%= label_tag :country, "Country" %>:</strong>
+    <%= @visa.visa_type.country %>
+  </div>
+
+  <div class="field">
+    <strong><%= label_tag :status, "Status" %>:</strong>
+    <%= @visa.status %>
+  </div>
+
+  <div class="field">
+    <strong><%= label_tag :issue_date, "Issue Date" %>:</strong>
+    <%= @visa.issue_date %>
+  </div>
+
+  <div class="field">
+    <strong><%= label_tag :expiry_date, "Expiry Date" %>:</strong>
+    <%= @visa.expiry_date.to_s %>
+  </div>
 </div>
-
-<div class="field">
-  <strong><%= label_tag :employee_number, "Employee Number"%>:</strong>
-  <%=@visa.passport.employee_number%>
-</div>
-
-<div class="field">
-  <strong><%= label_tag :passport_number, "Passport Number"%>:</strong>
-  <%=@visa.passport.number%>
-</div>
-
-<div class="field">
-  <strong><%= label_tag :visa_type, "Visa Type"%>:</strong>
-  <%=@visa.visa_type_name%>
-</div>
-
-<div class="field">
-  <strong><%= label_tag :country, "Country"%>:</strong>
-  <%=@visa.visa_type.country%>
-</div>
-
-<div class="field">
-  <strong><%= label_tag :status, "Status"%>:</strong>
-  <%=@visa.status%>
-</div>
-
-<div class="field">
-  <strong><%= label_tag :issue_date, "Issue Date"%>:</strong>
-  <%=@visa.issue_date%>
-</div>
-
-<div class="field">
-  <strong><%= label_tag :expiry_date, "Expiry Date"%>:</strong>
-  <%=@visa.expiry_date.to_s%>
-</div>
-
 

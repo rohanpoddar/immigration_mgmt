@@ -1,16 +1,23 @@
 jQuery ->
-  if $('body.visas').length > 0
-    $('#visas').dataTable
-      sDom: "<\"alert-notice\" r><\"top\" f><\"bottom\"tilp><\"clear\">"
-      sPaginationType: "bootstrap"
-      bJQueryUI: false
-      bProcessing: true
-      bServerSide: true
-      sAjaxSource: $('#visas').data('source')
-      iDisplayLength: 15
-      aoColumnDefs: [
-        aDataSort: [2]
-        aTargets: [2],
-        bSortable: false
-        aTargets: [0,1,3,4,5,6]
-      ]
+  $(document).ready ->
+    if $('body.visas').length > 0
+      $('#visas').dataTable
+        sDom: "<\"alert-notice\" r><\"top\" f><\"bottom\"tilp><\"clear\">"
+        sPaginationType: "bootstrap"
+        bJQueryUI: false
+        bProcessing: true
+        bServerSide: true
+        sAjaxSource: $('#visas').data('source')
+        iDisplayLength: 15
+        aoColumnDefs: [
+          aDataSort: [3]
+          aTargets: [3],
+          aDataSort: [4]
+          aTargets: [4],
+          aDataSort: [5]
+          aTargets: [5],
+          aSort: [6]
+          aTargets: [6],
+          bSortable: false
+          aTargets: [0, 1, 2, 7, 8]
+        ]

@@ -1,23 +1,26 @@
 <table class="table table-hover">
   <thead>
   <tr>
+    <th>Show</th>
     <th>Visa Type</th>
     <th>Status</th>
     <th>Issue Date</th>
     <th>Date Of Expiry</th>
+    <th>Edit</th>
+    <th>Remove</th>
   </tr>
   </thead>
   <tbody>
-  <% @passport.each do |visa| %>
+  <% @visas.each do |visa| %>
       <tr>
+        <td><%= link_to "Show", show_visa_path(visa) %></td>
         <td><%= visa.visa_type.name %></td>
         <td><%= visa.status %></td>
         <td><%= visa.issue_date %></td>
         <td><%= visa.expiry_date %></td>
         <td><%= link_to "Edit", edit_visa_path(visa, :employee_number => visa.passport.employee_number) %></td>
-        <td><%= link_to "Destroy", visa, :confirm => 'Are you sure?', :method => :delete %></td>
+        <td><%= link_to('Remove', remove_visa_path(visa), method: :put, data: {confirm: 'Are you sure?'})%></td>
       </tr>
   <% end %>
   </tbody>
 </table>
-

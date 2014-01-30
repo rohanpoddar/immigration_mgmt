@@ -1,9 +1,8 @@
 class EmployeeValidator < ActiveModel::Validator
   def validate(record)
     #Date Validations
-    record.errors[:joining_date]<<": Joining Date should be after 1989" unless record.joining_date.year>=1989  if record.joining_date!=nil
+    record.errors[:joining_date]<<": Joining Date should be after 1989" unless record.joining_date.year>=1989 if record.joining_date!=nil
     record.errors[:joining_date]<<": Exit Date comes before Joining Date" unless record.joining_date<=record.exit_date if record.joining_date!=nil && record.exit_date!=nil
-
   end
 end
 
@@ -14,9 +13,10 @@ class Employee < ActiveRecord::Base
   self.primary_key = 'number'
 
   #ASSOCIATIONS
-  has_many :passports, :foreign_key => "employee_number", :autosave => true, :dependent => :destroy
   has_many :visas, :through => :passport, :autosave => true
-  has_one :passport, :class_name => 'Passport', :foreign_key => 'employee_number', :conditions => { :isDeleted=>0 }
+  has_many :passports, :foreign_key => "employee_number", :autosave => true, :dependent => :destroy
+  has_one :passport, :class_name => 'Passport', :foreign_key => 'employee_number', :conditions => {:isDeleted => 0}
+  has_many :removed_passports, :class_name => 'Passport', :foreign_key => 'employee_number', :conditions => {:isDeleted => 1}
   accepts_nested_attributes_for :passport, :visas
 
   #VALIDATIONS
@@ -25,20 +25,15 @@ class Employee < ActiveRecord::Base
   validates_uniqueness_of :number
   validates_with EmployeeValidator
 
-  #METHODS
+  # MODEL METHODS
 
-  def current_passport
-    employee.passports.each do |employee|
-
-    end
-  end
   def location=(location)
     if location==nil
-      write_attribute(:location,"Unknown")
+      write_attribute(:location, "Unknown")
     elsif location.downcase=="blr"
-      write_attribute(:location,"Bangalore".upcase)
+      write_attribute(:location, "Bangalore".upcase)
     else
-      write_attribute(:location,location.upcase)
+      write_attribute(:location, location.upcase)
     end
   end
 
@@ -52,12 +47,14 @@ class Employee < ActiveRecord::Base
     self[:isDeleted]==1
   end
 
-  def self.passports_about_to_expire(years_in_number)
+  # CLASS METHODS
+
+  def Employee.passports_about_to_expire(years_in_number)
     days = years_in_number*365
     Employee.joins(:passports).find(:all, :conditions => ['expiry_date > ? AND expiry_date < ?', Date.today, Date.today+ days])
   end
 
-  def self.search(params, page_count)
+  def Employee.search(params, page_count)
     if params[:commit] != nil
       visa_type=params[:visa_type]
       location=params[:location]
@@ -69,7 +66,7 @@ class Employee < ActiveRecord::Base
     end
   end
 
-  def self.to_csv(options = {})
+  def Employee.to_csv(options = {})
     CSV.generate(options) do |csv|
       csv << column_names
       all.each do |product|

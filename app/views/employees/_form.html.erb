@@ -1,40 +1,40 @@
-<%= form_for @employee, html:{role:"form"} do |f| %>
+<%= form_for @employee, html: {role: "form"} do |f| %>
 
     <div class="form-group">
-      <%= f.label :number, "Employee ID", class: "sr-only"%>
-      <%= f.text_field :number, class: "form-control", 'placeholder' => "Employee Number"%>
+      <%= f.label :number, "Employee ID", class: "sr-only" %>
+      <%= f.text_field :number, class: "form-control", 'placeholder' => "Employee Number" %>
     </div>
 
     <div class="form-group">
-      <%= f.label :name, class: "sr-only"%>
-      <%= f.text_field :name, class: "form-control",'placeholder' => "Name of Employee"%>
+      <%= f.label :name, class: "sr-only" %>
+      <%= f.text_field :name, class: "form-control", 'placeholder' => "Name of Employee" %>
     </div>
 
     <div class="form-group">
-      <%= f.label :position, class: "sr-only"%>
-      <%= f.text_field :position, class: "form-control",'placeholder' => "Position"%>
+      <%= f.label :position, class: "sr-only" %>
+      <%= f.text_field :position, class: "form-control", 'placeholder' => "Position" %>
     </div>
 
     <div class="form-group">
-      <%= f.label :category, class: "sr-only"%>
-      <%= f.text_field :category, class: "form-control",'placeholder' => "Category"%>
+      <%= f.label :category, class: "sr-only" %>
+      <%= f.text_field :category, class: "form-control", 'placeholder' => "Category" %>
     </div>
 
     <div class="form-group">
-      <%= f.label :joining_date, class: "sr-only"%>
-      <%= f.text_field :joining_date, :value=> f.object.joining_date, :class=>"form-control datepicker",'placeholder'=>"Select Joining Date"%>
+      <%= f.label :joining_date, class: "sr-only" %>
+      <%= f.text_field :joining_date, :value => f.object.joining_date, :class => "form-control datepicker", 'placeholder' => "Select Joining Date" %>
     </div>
 
     <div class="form-group">
-      <%= f.label :exit_date, class: "sr-only"%>
-      <%= f.text_field :exit_date, :value=>f.object.exit_date, :class=>"form-control datepicker",'placeholder'=>"Select Exit Date"%>
+      <%= f.label :exit_date, class: "sr-only" %>
+      <%= f.text_field :exit_date, :value => f.object.exit_date, :class => "form-control datepicker", 'placeholder' => "Select Exit Date" %>
     </div>
 
     <div class="form-group">
-      <%= f.label :location, class: "sr-only"%>
-      <%= f.text_field :location, class: "form-control",'placeholder' => "Home Office Location"%>
+      <%= f.label :location, class: "sr-only" %>
+      <%= f.text_field :location, class: "form-control", 'placeholder' => "Home Office Location" %>
     </div>
-  <%= f.submit 'SAVE',class: 'btn btn-primary' %>
-  <%= f.submit 'SAVE AND CONTINUE', class: 'btn btn-primary'%>
-<%end%>
+    <%= f.submit 'SAVE', class: 'btn btn-primary' %>
+    <%= f.submit 'SAVE AND CONTINUE', class: 'btn btn-primary' %>
+<% end %>
 
