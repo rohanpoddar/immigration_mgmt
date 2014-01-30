@@ -60,7 +60,7 @@ class Employee < ActiveRecord::Base
       location=params[:location]
       min_expiry_date=params[:min_expiry_date].empty? ? Date.today-30.years : params[:min_expiry_date]
       max_expiry_date=params[:max_expiry_date].empty? ? Date.today+30.years : params[:max_expiry_date]
-      Employee.joins { passports.visas }.where { (visas.visa_type_name.like "%#{visa_type}%")& (employees.location.like "%#{location}%")&(visas.expiry_date>>("#{min_expiry_date}".."#{max_expiry_date}")) }.paginate(:page => params[:page], :per_page => page_count)
+      Employee.joins { passports.visas }.where { (visas.visa_type_name.like "%#{visa_type}%")& (employees.location.like "%#{location}%")&(visas.expiry_date>>("#{min_expiry_date}".."#{max_expiry_date}"))& (employees.exit_date.eq nil ) }.paginate(:page => params[:page], :per_page => page_count)
     else
       Employee.paginate(:page => params[:page], :per_page => 30)
     end
