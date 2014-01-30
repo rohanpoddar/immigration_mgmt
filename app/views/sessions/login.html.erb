@@ -1,0 +1,18 @@
+<% @page_title = "UserAuth | Login" -%>
+<div class="row  text-center">
+  <h2>Login Form</h2>
+  <div class="col-lg-3"></div>
+  <form action="/login_check" role="form" class="form form-centered">
+    <div class="form-group">
+      <%= label_tag :login, {}, class: "sr-only" %>
+      <%= text_field_tag :username_or_email, nil, class: "form-control", 'placeholder' => "UserName" %>
+    </div>
+    <div class="form-group">
+      <%= label_tag :password, {}, class: "sr-only" %>
+      <%= password_field_tag :login_password, nil, class: "form-control", 'placeholder' => "Password" %>
+    </div>
+    <div class="form-group">
+      <input type="submit" value="Login" class="form-control btn btn-info"/>
+    </div>
+  </form>
+</div>

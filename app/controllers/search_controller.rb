@@ -1,4 +1,5 @@
 class SearchController < ApplicationController
+  before_filter :check_if_logged_in
   def index
     page_count = 30
     if (params[:format] == "xls")

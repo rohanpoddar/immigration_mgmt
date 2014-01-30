@@ -1,4 +1,5 @@
 class VisaTypesController < ApplicationController
+  before_filter :check_if_logged_in
   def index
     @visa_types= VisaType.all(:order => :created_at)
   end

@@ -218,6 +218,7 @@ end
 
 VisaTypeSeeder.seed
 EmployeeSeeder.start("db/content.xlsx",3,14)
+User.create(:username=>'sidguptajhs',:password=>'123ewq',:email=>'sidguptajhs@yahoo.in')
 
 
 

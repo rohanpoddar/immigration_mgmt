@@ -1,14 +1,25 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery
-  helper_method :current_user_session, :current_user
-  private
-  def current_user_session
-    return @current_user_session if defined?(@current_user_session)
-    @current_user_session = UserSession.find
+  protected
+  def check_if_logged_in
+    session[:user_id]=1 if Rails.env=='test'
+    if session[:user_id]
+      @current_user = User.find session[:user_id]
+      return true
+    else
+      flash[:notice]="You Need To be Logged In !!!"
+      redirect_to login_path
+      return false
+    end
   end
 
-  def current_user
-    return @current_user if defined?(@current_user)
-    @current_user = current_user_session && current_user_session.user
+  def check_if_not_logged_in
+    session[:user_id]=1 if Rails.env=='test'
+    if session[:user_id]
+      flash[:notice]="You need to log out for that"
+      redirect_to search_employees_path
+      return false
+    else
+      return true
+    end
   end
 end

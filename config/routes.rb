@@ -1,12 +1,16 @@
 ImmigrationMgmt::Application.routes.draw do
 
 
-  root to: 'employees#index'
+  root to: 'sessions#login'
+  match 'login_check', to: 'sessions#login_check', as: 'login_check'
+  match 'login', to: 'sessions#login', as: 'login'
+  match 'logout', to: 'sessions#logout', as: 'logout'
+  match 'register', to: 'users#new', as: 'signup'
+
   resources :employees
   resources :passports
   resources :visas
   resources :visa_types
-  resources :user_sessions
   resources :users
 
   match 'employees' => 'employees#index', as: 'employees_home'
@@ -22,7 +26,7 @@ ImmigrationMgmt::Application.routes.draw do
   match 'visas/:id', to: 'visas#show', as: 'show_visa'
 
 
-  match 'visa_types' => 'visa_types#index', as: 'visa_types_home'
+  match 'visa_types', to: 'visa_types#index', as: 'visa_types_home'
   match 'visa_types/:id/remove', to: 'visa_types#remove', as: 'remove_visa_type'
 
   match 'search' => 'search#index', as: 'search_employees'

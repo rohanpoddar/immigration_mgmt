@@ -55,20 +55,12 @@ ActiveRecord::Schema.define(:version => 20140130064348) do
   add_index "passports", ["number"], :name => "index_passports_on_number", :unique => true
 
   create_table "users", :force => true do |t|
-    t.string   "login",                              :null => false
-    t.string   "email",                              :null => false
-    t.string   "crypted_password",                   :null => false
-    t.string   "password_salt",                      :null => false
-    t.string   "persistence_token",                  :null => false
-    t.string   "single_access_token",                :null => false
-    t.string   "perishable_token",                   :null => false
-    t.integer  "login_count",         :default => 0, :null => false
-    t.integer  "failed_login_count",  :default => 0, :null => false
-    t.datetime "last_request_at"
-    t.datetime "current_login_at"
-    t.datetime "last_login_at"
-    t.string   "current_login_ip"
-    t.string   "last_login_ip"
+    t.string   "username",           :null => false
+    t.string   "email",              :null => false
+    t.string   "encrypted_password", :null => false
+    t.string   "salt",               :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "visa_types", :id => false, :force => true do |t|

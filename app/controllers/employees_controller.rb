@@ -1,4 +1,5 @@
 class EmployeesController < ApplicationController
+  before_filter :check_if_logged_in
   def index
     @employees = Employee.all
     respond_to do |format|

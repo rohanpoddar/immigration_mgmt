@@ -2,7 +2,7 @@ jQuery ->
   $(document).ready ->
     if $('body.employees').length > 0
       $('#employees').dataTable
-        sDom: "<\"alert-notice\" rp><\"top\" f><\"bottom\"tilp><\"clear\">"
+        sDom: "<\"alert-notice navbar navbar-brand\" rp><\"top\" f><\"bottom\"tilp><\"clear\">"
         sPaginationType: "bootstrap"
         bJQueryUI: false
         bProcessing: true

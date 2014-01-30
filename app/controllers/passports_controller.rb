@@ -1,4 +1,5 @@
 class PassportsController < ApplicationController
+  before_filter :check_if_logged_in
   def index
     respond_to do |format|
       format.html
