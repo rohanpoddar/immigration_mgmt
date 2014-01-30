@@ -1,7 +1,7 @@
 class CreateEmployees < ActiveRecord::Migration
   def change
     create_table :employees ,{:id=> false} do |t|
-      t.integer :number, :null => false
+      t.string :number, :null => false
       #remove_column :employees, :id
       t.string :name, :null => false
       t.string :position

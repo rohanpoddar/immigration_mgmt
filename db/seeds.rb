@@ -188,7 +188,7 @@ class EmployeeSeeder
   end
 
   def self.readEmployee(rowNumber, seedSheet)
-    employee=Employee.new({:number => seedSheet.cell(rowNumber, 4), :name => seedSheet.cell(rowNumber, 5), :position => seedSheet.cell(rowNumber, 6), :category => seedSheet.cell(rowNumber, 7), :joining_date => seedSheet.cell(rowNumber, 8), :exit_date => seedSheet.cell(rowNumber, 11), :location => seedSheet.cell(rowNumber, 12)})
+    employee=Employee.new({:number => "#{seedSheet.cell(rowNumber, 4).to_i}", :name => seedSheet.cell(rowNumber, 5), :position => seedSheet.cell(rowNumber, 6), :category => seedSheet.cell(rowNumber, 7), :joining_date => seedSheet.cell(rowNumber, 8), :exit_date => seedSheet.cell(rowNumber, 11), :location => seedSheet.cell(rowNumber, 12)})
     passportNumber = seedSheet.cell(rowNumber, 10)
     return employee,passportNumber
   end

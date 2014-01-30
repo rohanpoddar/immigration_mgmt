@@ -2,13 +2,13 @@ jQuery ->
   $(document).ready ->
     if $('body.passports').length > 0
       $('#passports').dataTable
-        sDom: "<\"alert-notice\" r><\"top\" f><\"bottom\"tilp><\"clear\">"
+        sDom: "<\"alert-notice\" rp><\"top\" f><\"bottom\"tilp><\"clear\">"
         sPaginationType: "bootstrap"
         bJQueryUI: false
         bProcessing: true
         bServerSide: true
         sAjaxSource: $('#passports').data('source')
-        iDisplayLength: 15
+        iDisplayLength: 10
         aoColumnDefs: [
           aDataSort: [2]
           aTargets: [2],

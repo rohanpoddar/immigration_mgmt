@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe PassportsController do
   let(:passport_one) { FactoryGirl.create(:passport) }
-  let(:employee) { FactoryGirl.create(:employee, number: 1212) }
+  let(:employee) { FactoryGirl.create(:employee, number: "1212") }
   let(:passport_two) { FactoryGirl.create(:passport, number: 'p1234', employee: employee) }
 
   describe '#index' do

@@ -6,6 +6,8 @@ ImmigrationMgmt::Application.routes.draw do
   resources :passports
   resources :visas
   resources :visa_types
+  resources :user_sessions
+  resources :users
 
   match 'employees' => 'employees#index', as: 'employees_home'
   match 'employees/:id/remove', to: 'employees#remove', as: 'remove_employee'
@@ -24,5 +26,4 @@ ImmigrationMgmt::Application.routes.draw do
   match 'visa_types/:id/remove', to: 'visa_types#remove', as: 'remove_visa_type'
 
   match 'search' => 'search#index', as: 'search_employees'
-
 end

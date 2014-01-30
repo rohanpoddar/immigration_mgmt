@@ -2,13 +2,13 @@ jQuery ->
   $(document).ready ->
     if $('body.employees').length > 0
       $('#employees').dataTable
-        sDom: "<\"alert-notice\" r><\"top\" f><\"bottom\"tilp><\"clear\">"
+        sDom: "<\"alert-notice\" rp><\"top\" f><\"bottom\"tilp><\"clear\">"
         sPaginationType: "bootstrap"
         bJQueryUI: false
         bProcessing: true
         bServerSide: true
         sAjaxSource: $('#employees').data('source')
-        iDisplayLength: 15
+        iDisplayLength: 10
         aoColumnDefs: [
           aDataSort: [0]
           aTargets: [0],

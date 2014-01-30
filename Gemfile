@@ -28,6 +28,7 @@ gem 'foreigner'
 
 gem 'roo'
 
+gem 'authlogic'
 gem 'less-rails'
 gem 'therubyracer'
 gem 'bootstrap-sass'

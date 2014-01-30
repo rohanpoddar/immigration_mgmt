@@ -37,7 +37,7 @@ describe Passport do
 
   describe 'Associations: ActiveRecord' do
     it "should not create passport for non existing employee" do
-      expect { FactoryGirl.create(:passport, employee_number: 198) }.to raise_error
+      expect { FactoryGirl.create(:passport, employee_number: "198") }.to raise_error
     end
     it 'should have a valid employee' do
       passport=FactoryGirl.create(:passport)

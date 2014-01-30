@@ -11,10 +11,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140102054256) do
+ActiveRecord::Schema.define(:version => 20140130064348) do
 
   create_table "employees", :id => false, :force => true do |t|
-    t.integer  "number",                      :null => false
+    t.string   "number",                      :null => false
     t.string   "name",                        :null => false
     t.string   "position"
     t.string   "category"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(:version => 20140102054256) do
   add_index "immigrations", ["city"], :name => "index_immigrations_on_city"
 
   create_table "passports", :id => false, :force => true do |t|
-    t.integer  "employee_number",                :null => false
+    t.string   "employee_number",                :null => false
     t.string   "number",                         :null => false
     t.string   "citizenship"
     t.integer  "isDeleted",       :default => 0
@@ -53,6 +53,23 @@ ActiveRecord::Schema.define(:version => 20140102054256) do
   add_index "passports", ["employee_number"], :name => "index_passports_on_employee_number"
   add_index "passports", ["isDeleted"], :name => "index_passports_on_isDeleted"
   add_index "passports", ["number"], :name => "index_passports_on_number", :unique => true
+
+  create_table "users", :force => true do |t|
+    t.string   "login",                              :null => false
+    t.string   "email",                              :null => false
+    t.string   "crypted_password",                   :null => false
+    t.string   "password_salt",                      :null => false
+    t.string   "persistence_token",                  :null => false
+    t.string   "single_access_token",                :null => false
+    t.string   "perishable_token",                   :null => false
+    t.integer  "login_count",         :default => 0, :null => false
+    t.integer  "failed_login_count",  :default => 0, :null => false
+    t.datetime "last_request_at"
+    t.datetime "current_login_at"
+    t.datetime "last_login_at"
+    t.string   "current_login_ip"
+    t.string   "last_login_ip"
+  end
 
   create_table "visa_types", :id => false, :force => true do |t|
     t.string   "name",                      :null => false
