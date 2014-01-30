@@ -78,6 +78,7 @@ describe Employee do
                                :location => "bangalore",
                                :min_expiry_date => "Jan 1, 2012",
                                :max_expiry_date => "Jan 25, 2013",
+                               :employee => "current-employee",
                                :commit => "Search",
                                :action => "index",
                                :controller => "search"}, 10)

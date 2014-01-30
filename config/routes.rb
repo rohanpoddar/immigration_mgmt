@@ -1,7 +1,7 @@
 ImmigrationMgmt::Application.routes.draw do
 
 
-  root to: 'search#index'
+  root to: 'employees#index'
   resources :employees
   resources :passports
   resources :visas

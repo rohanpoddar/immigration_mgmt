@@ -4,6 +4,10 @@
   Download:
   <%= link_to "Download as Excel", employees_path(format: "xls") %>
 </p>
+<p>
+Advance Search:
+<%= link_to "Advance search", search_employees_path %>
+</p>
 <table class="table table-hover" id="employees" data-source=
 <% employees_url(format: 'json') %>>
   <thead>
