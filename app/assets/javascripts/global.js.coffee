@@ -1,4 +1,6 @@
-startTableClicker = ->
+root = window ? this
+
+root.startTableClicker = ->
   controller_name = document.body.className
   table = document.getElementById(controller_name)
   if table?
@@ -12,7 +14,7 @@ startTableClicker = ->
           window.location.assign url_name)(url_name, i), false
       i++
 
-startCalendar = ->
+root.startCalendar = ->
   $ ->
     $(".datepicker").datepicker
       changeMonth: true

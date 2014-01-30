@@ -21,3 +21,4 @@ jQuery ->
           bSortable: false
           aTargets: [0, 1, 2, 7, 8]
         ]
+        fnDrawCallback: startTableClicker

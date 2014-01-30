@@ -2,7 +2,7 @@ jQuery ->
   $(document).ready ->
     if $('body.employees').length > 0
       $('#employees').dataTable
-        sDom: "<\"alert-notice navbar navbar-brand\" rp><\"top\" f><\"bottom\"tilp><\"clear\">"
+        sDom: "<rp><\"top\" f><\"bottom\"tilp><\"clear\">"
         sPaginationType: "bootstrap"
         bJQueryUI: false
         bProcessing: true
@@ -27,4 +27,7 @@ jQuery ->
           bSortable: false
           aTargets: [7, 8]
           ]
+        fnDrawCallback: startTableClicker
+
+
 

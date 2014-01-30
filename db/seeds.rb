@@ -218,7 +218,8 @@ end
 
 VisaTypeSeeder.seed
 EmployeeSeeder.start("db/content.xlsx",3,14)
-User.create(:username=>'sidguptajhs',:password=>'123ewq',:email=>'sidguptajhs@yahoo.in')
+User.create(:username=>'user',:password=>'password',:email=>'sidguptajhs@yahoo.in')
+puts "Just Created USER 'user' with PASSWORD 'password'"
 
 
 
