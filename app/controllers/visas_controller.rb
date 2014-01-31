@@ -15,13 +15,13 @@ class VisasController < ApplicationController
     @visa=Visa.new(params[:visa])
     employee= Employee.find_by_number(params[:employee_number])
     if employee==nil
-      flash[:notice]="Invalid Employee Number"
+      flash[:notice]="Invalid Employee Number!!!"
       render :new
     else
       if employee.passport.visas<<@visa
         flash[:success]="Successfully Inserted Visa!!!"
       else
-        flash[:error]="Failed to create"
+        flash[:error]="Failed to create -><br/>#{@visa.errors.full_messages}"
       end
       redirect_to show_visa_path(@visa)
     end
@@ -37,7 +37,7 @@ class VisasController < ApplicationController
     if @visa.save
       flash[:success]="Successfully deleted Visa!!!"
     else
-      flash[:error]="Failed to delete !!!"
+      flash[:error]="Failed to delete !!! -><br/>#{@visa.errors.full_messages}"
     end
     redirect_to visas_home_path
   end
@@ -52,7 +52,7 @@ class VisasController < ApplicationController
       flash[:success]="Successfully Updated Visa"
       redirect_to show_visa_path(@visa)
     else
-      flash[:success]="Failed To Update. Try Again !!!"
+      flash[:error]="Failed To Update -><br/>#{@visa.errors.full_messages}"
       redirect_to edit_visa_path(@visa)
     end
   end

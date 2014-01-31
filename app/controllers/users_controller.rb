@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       flash[:success] = "Account registered!"
       redirect_to login_path
     else
-      flash[:danger] = "Account Registration Failed!"
+      flash[:error] = "Account Registration Failed!!! -><br/>#{@employee.errors.full_messages}"
       render signup_path
     end
   end

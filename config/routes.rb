@@ -30,5 +30,7 @@ ImmigrationMgmt::Application.routes.draw do
   match 'visa_types/:id/remove', to: 'visa_types#remove', as: 'remove_visa_type'
   match 'visa_types/:id', to: 'visa_types#show', as: 'show_visa_type'
 
-  match 'search' => 'search#index', as: 'search_employees'
+  match 'search',to: 'search#index', as: 'search_employees'
+  match 'fallback',to: 'application#error_page', as: 'error_page'
+  match "*a",to: "application#error_page"
 end

@@ -23,7 +23,7 @@ class EmployeesController < ApplicationController
         redirect_to "/passports/new?employee_number=#{@employee.number}"
       end
     else
-      flash[:danger]="#{@employee.errors.full_messages}"
+      flash[:error]="Unable to Create !!! -><br/>#{@employee.errors.full_messages}"
       redirect_to new_employee_path
     end
   end
@@ -38,7 +38,7 @@ class EmployeesController < ApplicationController
     if @employee.save!
       flash[:notice]="Employee deleted Successfully !!!"
     else
-      flash[:danger]="Unable to delete !!! -><br/>#{@employee.errors.full_messages}"
+      flash[:error]="Unable to delete !!! -><br/>#{@employee.errors.full_messages}"
     end
     redirect_to :action => 'index'
   end
@@ -61,7 +61,7 @@ class EmployeesController < ApplicationController
         end
       end
     else
-      flash[:danger]="jklkj#{@employee.errors.full_messages}"
+      flash[:error]="Unable to update !!! -><br/>#{@employee.errors.full_messages}"
       redirect_to edit_employee_path
     end
   end

@@ -14,7 +14,7 @@ class VisaTypesController < ApplicationController
       flash[:success]="Your Visa Type was created !!!"
       redirect_to show_visa_type_path(@visa_type)
     else
-      flash[:success]="Failed to create Visa Type !!!"
+      flash[:error]="Failed to create Visa Type !!! -><br/>#{@visa_type.errors.full_messages}"
       render :new
     end
   end
@@ -29,7 +29,7 @@ class VisaTypesController < ApplicationController
     if @visa_type.save!
       flash[:success]="Successfully deleted VisaType!!!"
     else
-      flash[:error]="Failed to delete !!!"
+      flash[:error]="Failed to delete !!! -><br/>#{@visa_type.errors.full_messages}"
     end
     render visa_types_home_path
   end
@@ -44,7 +44,7 @@ class VisaTypesController < ApplicationController
       flash[:success]="Successfully Updated Visa Type !!!"
       redirect_to show_visa_type_path(@visa_type)
     else
-      flash[:error]="Failed to delete. Please try again"
+      flash[:error]="Failed to Update !!! -><br/>#{@visa_type.errors.full_messages}"
       redirect_to edit_visa_type_path(@visa_type)
     end
   end
