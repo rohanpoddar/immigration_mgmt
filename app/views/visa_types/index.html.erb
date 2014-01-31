@@ -1,6 +1,6 @@
 <div class="container col-lg-7">
 <h2>Visa Types List</h2>
-<table class="table table-condensed">
+<table class="table table-condensed" id="visa_types">
   <thead>
   <tr>
     <th>Name</th>
@@ -16,7 +16,7 @@
       <tr>
         <td><%= visa_type.name %></td>
         <td><%= visa_type.country %></td>
-        <td><%= link_to "Show", visa_type %></td>
+        <td class="show_link"><%= link_to "Show", visa_type %></td>
         <td><%= link_to "Edit", edit_visa_type_path(visa_type) %></td>
         <td><%= link_to "Remove", remove_visa_type_path(visa_type), method: :put, data: {confirm: 'Are you sure?'}%></td>
       </tr>

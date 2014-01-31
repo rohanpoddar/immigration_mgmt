@@ -12,6 +12,7 @@ class Immigration < ActiveRecord::Base
 
   #ATTRIBUTES
   attr_accessible :city, :journey_date, :return_date, :visa_id
+  audited
 
   #ASSOCIATIONS
   belongs_to :visa

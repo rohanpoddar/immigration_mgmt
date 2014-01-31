@@ -11,6 +11,7 @@ class Employee < ActiveRecord::Base
   #ATTRIBUTES
   attr_accessible :category, :joining_date, :number, :exit_date, :name, :location, :position
   self.primary_key = 'number'
+  audited
 
   #ASSOCIATIONS
   has_many :visas, :through => :passport, :autosave => true
@@ -30,10 +31,14 @@ class Employee < ActiveRecord::Base
   def location=(location)
     if location==nil
       write_attribute(:location, "Unknown")
-    elsif location.downcase=="blr"
-      write_attribute(:location, "Bangalore".upcase)
+    elsif location.downcase.in?("blr","bengaluru","banglore","blore","bangalore")
+      write_attribute(:location, "Bangalore")
+    elsif location.downcase.in?("pune","pn")
+      write_attribute(:location, "Pune")
+    elsif location.downcase.in?("gurgaon","guragaon")
+      write_attribute(:location, "Gurgaon")
     else
-      write_attribute(:location, location.upcase)
+      write_attribute(:location, location)
     end
   end
 

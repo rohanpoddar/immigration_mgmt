@@ -3,6 +3,7 @@ class VisaType < ActiveRecord::Base
   #ATTRIBUTES
   attr_accessible :country, :name
   self.primary_key = 'name'
+  audited
 
   #ASSOCIATIONS
   has_many :visas, :foreign_key => "visa_type_name"

@@ -18,10 +18,10 @@ class PassportsController < ApplicationController
     end
     if @passport.save
       flash[:success]="Created Successfully !!!"
-      redirect_to :action => 'index'
+      redirect_to show_passport_path(@passport)
     else
-      flash[:error]="Failed to create Passport !!! #{params.inspect}"
-      redirect_to :action => 'index'
+      flash[:error]="Failed to create Passport !!! "
+      redirect_to new_passport_path
     end
   end
 
@@ -37,10 +37,10 @@ class PassportsController < ApplicationController
     @passport = Passport.find_by_number(params[:id])
     if @passport.update_attributes(params[:passport])
       flash[:success]="Success !!!"
-      redirect_to show_passport_path
+      redirect_to show_passport_path(@passport)
     else
       flash[:error]="Failed to update Passport !!! "
-      redirect_to edit_passport_path
+      redirect_to edit_passport_path(@passport)
     end
   end
 
@@ -52,7 +52,7 @@ class PassportsController < ApplicationController
     else
       flash[:error]="Failed to delete !!!"
     end
-    redirect_to :action => 'index'
+    redirect_to passports_home_path
   end
 
 end

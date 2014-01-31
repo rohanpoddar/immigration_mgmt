@@ -23,7 +23,7 @@ class VisasController < ApplicationController
       else
         flash[:error]="Failed to create"
       end
-      redirect_to :action => 'index'
+      redirect_to show_visa_path(@visa)
     end
   end
 
@@ -34,12 +34,12 @@ class VisasController < ApplicationController
   def remove
     @visa=Visa.find_by_id(params[:id])
     @visa.delete
-    if @visa.save!
+    if @visa.save
       flash[:success]="Successfully deleted Visa!!!"
     else
       flash[:error]="Failed to delete !!!"
     end
-    redirect_to :action => 'index'
+    redirect_to visas_home_path
   end
 
   def edit
@@ -48,7 +48,12 @@ class VisasController < ApplicationController
 
   def update
     @visa=Visa.find_by_id(params[:id])
-    @visa.update_attributes(params[:visa])
-    redirect_to :action => 'index'
+    if @visa.update_attributes(params[:visa])
+      flash[:success]="Successfully Updated Visa"
+      redirect_to show_visa_path(@visa)
+    else
+      flash[:success]="Failed To Update. Try Again !!!"
+      redirect_to edit_visa_path(@visa)
+    end
   end
 end

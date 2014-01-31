@@ -10,13 +10,12 @@ class VisaTypesController < ApplicationController
 
   def create
     @visa_type=VisaType.new(params[:visa_type])
-    if  params[:name]==""|| params[:name]==nil
-      flash[:alert]="Please Enter a Visa Type Name !!!"
-      render :new
-    else
-      @visa_type.save
+    if @visa_type.save
       flash[:success]="Your Visa Type was created !!!"
-      redirect_to :action => 'index'
+      redirect_to show_visa_type_path(@visa_type)
+    else
+      flash[:success]="Failed to create Visa Type !!!"
+      render :new
     end
   end
 
@@ -32,6 +31,7 @@ class VisaTypesController < ApplicationController
     else
       flash[:error]="Failed to delete !!!"
     end
+    render visa_types_home_path
   end
 
   def edit
@@ -40,7 +40,12 @@ class VisaTypesController < ApplicationController
 
   def update
     @visa_type=VisaType.find_by_name(params[:id])
-    @visa_type.update_attributes(params[:visa_type])
-    redirect_to :action => 'index'
+    if @visa_type.update_attributes(params[:visa_type])
+      flash[:success]="Successfully Updated Visa Type !!!"
+      redirect_to show_visa_type_path(@visa_type)
+    else
+      flash[:error]="Failed to delete. Please try again"
+      redirect_to edit_visa_type_path(@visa_type)
+    end
   end
 end

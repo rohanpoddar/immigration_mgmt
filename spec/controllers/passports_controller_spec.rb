@@ -24,17 +24,17 @@ describe PassportsController do
   describe '#create' do
     it 'should create passport ' do
       post :create, passport: {number: 'p123', expiry_date: Time.now, employee_number: employee.number}
-      response.should redirect_to :action => :index
+      response.should redirect_to show_passport_path('p123')
     end
   end
 
   describe '#update' do
     it 'should update passport ' do
-      Passport.should_receive(:find_by_number).with('123').and_return(passport_two)
-      put :update, id: '123', passport: {number: 'p123', expiry_date: Time.now, employee_number: employee.number}
+      Passport.should_receive(:find_by_number).with('p123').and_return(passport_two)
+      put :update, id: 'p123', passport: {number: 'p123', expiry_date: Time.now, employee_number: employee.number}
       updated_passport = controller.instance_variable_get(:@passport)
       updated_passport.number.should == 'p123'
-      response.should redirect_to show_passport_path
+      response.should redirect_to show_passport_path('p123')
     end
   end
 

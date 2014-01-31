@@ -38,7 +38,7 @@ class EmployeesController < ApplicationController
     if @employee.save!
       flash[:notice]="Employee deleted Successfully !!!"
     else
-      flash[:danger]="Unable to delete !!! -> #{params.inspect}<br/>#{@employee.errors.full_messages}"
+      flash[:danger]="Unable to delete !!! -><br/>#{@employee.errors.full_messages}"
     end
     redirect_to :action => 'index'
   end

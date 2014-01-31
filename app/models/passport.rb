@@ -3,6 +3,7 @@ class Passport < ActiveRecord::Base
   #ATTRIBUTES
   attr_accessible :number, :employee_number, :citizenship, :expiry_date
   self.primary_key = 'number'
+  audited
 
   #ASSOCIATIONS
   belongs_to :employee, :foreign_key => "employee_number", :primary_key => "number", :autosave => true
