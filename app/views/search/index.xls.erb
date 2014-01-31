@@ -3,8 +3,11 @@
     <th>Number</th>
     <th>Name</th>
     <th>Category</th>
+    <th>location</th>
     <th>Joining date</th>
     <th>Exit date</th>
+    <th>Passport Number</th>
+    <th>Passport Expiry Date</th>
   </tr>
 
   <% @employees.each do |employee| %>
@@ -12,8 +15,16 @@
         <td><%= employee.number %></td>
         <td><%= employee.name %></td>
         <td><%= employee.category %></td>
+        <td><%= employee.location %></td>
         <td><%= employee.joining_date %></td>
         <td><%= employee.exit_date %></td>
+        <% if employee.passport %>
+            <td><%= employee.passport[:number] %></td>
+            <td><%= employee.passport[:expiry_date] %></td>
+        <% else %>
+            <td><%= nil %></td>
+            <td><%= nil %></td>
+        <% end %>
       </tr>
   <% end %>
 </table>

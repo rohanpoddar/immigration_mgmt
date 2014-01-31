@@ -28,8 +28,10 @@ class EmployeesDatatable
           "4" => h(employee.exit_date),
           "5" => h(employee.position),
           "6" => h(employee.location),
-          "7" => link_to('Edit', edit_employee_path(employee)),
-          "8" => link_to("Remove", remove_employee_path(employee), method: :put, data: {confirm: 'Are you sure?'}),
+          "7" => h(employee.location),
+          "8" => h(employee.location),
+          "9" => link_to('Edit', edit_employee_path(employee)),
+          "10" => link_to("Remove", remove_employee_path(employee), method: :put, data: {confirm: 'Are you sure?'}),
           "DT_RowClass" => "#{h(return_color(employee))}"
       }
     end

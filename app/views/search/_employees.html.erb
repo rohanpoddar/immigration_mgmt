@@ -1,6 +1,6 @@
 <p>
   Download:
-  <%= link_to "Download as Excel", search_employees_path(format: "xls") %>
+  <%= link_to "Download as Excel", request.original_url+'&format=xls' %>
 </p>
 <table class="table table-hover" id="search">
   <thead>
@@ -13,6 +13,8 @@
     <th>Exit Date</th>
     <th>Position</th>
     <th>Location</th>
+    <th>Passport Number</th>
+    <th>Passport Expiry Date</th>
   </tr>
   </thead>
   <tbody>
@@ -27,6 +29,13 @@
         <td><%= employee.exit_date %></td>
         <td><%= employee.position %></td>
         <td><%= employee.location %></td>
+        <% if employee.passport %>
+            <td><%= employee.passport[:number] %></td>
+            <td><%= employee.passport[:expiry_date] %></td>
+        <% else %>
+            <td><%= nil %></td>
+            <td><%= nil %></td>
+        <% end %>
       </tr>
   <% end %>
 

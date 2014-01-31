@@ -25,7 +25,7 @@ jQuery ->
           aDataSort: [6, 5]
           aTargets: [6],
           bSortable: false
-          aTargets: [7, 8]
+          aTargets: [7,8,9,10]
           ]
         fnDrawCallback: startTableClicker
 
