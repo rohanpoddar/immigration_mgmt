@@ -19,7 +19,7 @@
       </ul>
       <li class="navbar-right btn btn-info"><%
         if session[:user_id]==nil
-          %><%=link_to 'Login',login_path%></li><li class="navbar-right btn btn-info"><%=link_to 'Register', signup_path%><%
+          %><%=link_to 'Login',login_path%></li><%
         else
           %><%=link_to 'Logout',logout_path%><%
         end
