@@ -1,9 +1,5 @@
-class EmployeesDatatable
+class EmployeesDatatable < BaseDatatable
   delegate :params, :link_to, :show_employee_path, :edit_employee_path, :remove_employee_path, "DT_RowClass", :h, to: :@view
-
-  def initialize(view)
-    @view = view
-  end
 
   def as_json(options = {})
     {
@@ -12,7 +8,6 @@ class EmployeesDatatable
         iTotalDisplayRecords: employees.total_entries,
         aaData: data
     }
-    #binding.pry
   end
 
   private
@@ -20,6 +15,12 @@ class EmployeesDatatable
   def data
     array=Array.new
     employees.each do |employee|
+      passport_number = nil
+      passport_exit_date = nil
+      if employee.passport
+        passport_number = employee.passport[:number]
+        passport_exit_date = employee.passport[:exit_date]
+      end
       array<< {
           "0" => link_to(employee.number, show_employee_path(employee), {:class => "show_link"}),
           "1" => employee.name,
@@ -28,8 +29,8 @@ class EmployeesDatatable
           "4" => h(employee.exit_date),
           "5" => h(employee.position),
           "6" => h(employee.location),
-          "7" => h(employee.location),
-          "8" => h(employee.location),
+          "7" => h(passport_number),
+          "8" => h(passport_exit_date),
           "9" => link_to('Edit', edit_employee_path(employee)),
           "10" => link_to("Remove", remove_employee_path(employee), method: :put, data: {confirm: 'Are you sure?'}),
           "DT_RowClass" => "#{h(return_color(employee))}"
@@ -39,15 +40,10 @@ class EmployeesDatatable
   end
 
   def return_color(employee)
-    if employee.passport==nil
+    if employee.passport==nil || employee.passport.isExpired? || employee.passport.isDeleted?
       return "danger"
-    elsif employee.passport.isExpired?
-      return "danger"
-    elsif employee.passport.isDeleted?
-      return "danger"
-    else
-      return "success"
     end
+    return "success"
   end
 
   def employees
@@ -63,20 +59,9 @@ class EmployeesDatatable
     employees
   end
 
-  def page
-    params[:iDisplayStart].to_i/per_page + 1
-  end
-
-  def per_page
-    params[:iDisplayLength].to_i > 0 ? params[:iDisplayLength].to_i : 10
-  end
-
   def sort_column
     columns = %w[number name category joining_date exit_date position location]
     columns[params[:iSortCol_0].to_i]
   end
 
-  def sort_direction
-    params[:sSortDir_0] == "desc" ? "desc" : "asc"
-  end
 end

@@ -1,9 +1,5 @@
-class VisasDatatable
+class VisasDatatable < BaseDatatable
   delegate :params, :link_to, :show_visa_path, :edit_visa_path, :remove_visa_path, "DT_RowClass", :h, to: :@view
-
-  def initialize(view)
-    @view = view
-  end
 
   def as_json(options = {})
     {
@@ -38,13 +34,10 @@ class VisasDatatable
   def return_color(visa)
     if visa.expiry_date==nil||visa.issue_date==nil
       return "warning"
-    elsif visa.isExpired?
+    elsif visa.isExpired? || visa.isDeleted?
       return "danger"
-    elsif visa.isDeleted?
-      return "danger"
-    else
-      return "success"
     end
+      return "success"
   end
 
   def visas
@@ -60,20 +53,9 @@ class VisasDatatable
     visas
   end
 
-  def page
-    params[:iDisplayStart].to_i/per_page + 1
-  end
-
-  def per_page
-    params[:iDisplayLength].to_i > 0 ? params[:iDisplayLength].to_i : 10
-  end
-
   def sort_column
     columns = %w[Show EN PN visa_type_name status issue_date expiry_date edit remove]
     columns[params[:iSortCol_0].to_i]
   end
 
-  def sort_direction
-    params[:sSortDir_0] == "desc" ? "desc" : "asc"
-  end
 end

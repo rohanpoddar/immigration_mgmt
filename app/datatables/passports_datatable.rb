@@ -1,9 +1,5 @@
-class PassportsDatatable
+class PassportsDatatable < BaseDatatable
   delegate :params, :link_to, :show_passport_path, :edit_passport_path, :remove_passport_path, "DT_RowClass", :h, to: :@view
-
-  def initialize(view)
-    @view = view
-  end
 
   def as_json(options = {})
     {
@@ -12,7 +8,6 @@ class PassportsDatatable
         iTotalDisplayRecords: passports.total_entries,
         aaData: data
     }
-    #binding.pry
   end
 
   private
@@ -35,13 +30,10 @@ class PassportsDatatable
   end
 
   def return_color(passport)
-    if passport.isExpired?
+    if passport.isExpired? || passport.isDeleted?
       return "danger"
-    elsif passport.isDeleted?
-      return "danger"
-    else
-      return "success"
     end
+    return "success"
   end
 
   def passports
@@ -57,21 +49,9 @@ class PassportsDatatable
     passports
   end
 
-  def page
-    params[:iDisplayStart].to_i/per_page + 1
-  end
-
-  def per_page
-    params[:iDisplayLength].to_i > 0 ? params[:iDisplayLength].to_i : 10
-  end
-
   def sort_column
     columns = %w[TABLE COLUMNS HERE]
     columns[params[:iSortCol_0].to_i]
     "employee_number"
-  end
-
-  def sort_direction
-    params[:sSortDir_0] == "desc" ? "desc" : "asc"
   end
 end
