@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       flash[:success] = "Welcome again, you logged in as #{authorized_user.username}"
       redirect_to search_employees_path
     else
-      flash[:error] = "Invalid Username or Password !!!"
+      flash[:error] ="Invalid Username or Password"
       redirect_to login_path
     end
   end

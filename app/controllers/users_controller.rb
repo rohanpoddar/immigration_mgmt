@@ -8,10 +8,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      flash[:success] = "Account registered!"
+      flash[:success] = "Account registered!!!"
       redirect_to login_path
     else
-      flash[:error] = "Account Registration Failed!!! -><br/>#{@employee.errors.full_messages}"
+      flash[:error] =@employee.errors.full_messages<<"Account Registration Failed!!!"
       render signup_path
     end
   end

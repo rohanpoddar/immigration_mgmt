@@ -1,8 +1,8 @@
 <%= form_for @visa, html: {role: "form"} do |f| %>
     <div class="form-group">
       <% if (params[:employee_number]==nil) %>
-          <%= f.label :employee_number, class: "sr-only" %>
-          <%= f.text_field :employee_number, class: "form-control", 'placeholder' => "Passport Number here" %>
+          <%= f.label :passport_number, class: "sr-only" %>
+          <%= f.text_field :passport_number, class: "form-control", 'placeholder' => "Passport Number here" %>
       <% else %>
           <%= f.label :employee_number %>
           <%= f.text_field :employee_number, class: "form-control", 'value' => "#{params[:employee_number]}", 'disabled' => "" %>

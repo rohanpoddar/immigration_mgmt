@@ -2,7 +2,7 @@
     <div class="form-group">
       <% if (params[:employee_number]==nil) %>
           <%= f.label :employee_number, class: "sr-only" %>
-          <%= f.text_field :employee_number, class: "form-control", 'placeholder' => "Employee NUmber" %>
+          <%= f.text_field :employee_number, class: "form-control", 'placeholder' => "Employee Number" %>
       <% else %>
           <%= f.label "Employee Number" %>
           <%= f.text_field :employee_number, class: "form-control", 'value' => "#{params[:employee_number]}", 'disabled' => "" %>

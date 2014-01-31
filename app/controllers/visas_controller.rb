@@ -21,7 +21,7 @@ class VisasController < ApplicationController
       if employee.passport.visas<<@visa
         flash[:success]="Successfully Inserted Visa!!!"
       else
-        flash[:error]="Failed to create -><br/>#{@visa.errors.full_messages}"
+        flash[:error]=@visa.errors.full_messages<<"Failed to create !!!"
       end
       redirect_to show_visa_path(@visa)
     end
@@ -37,7 +37,7 @@ class VisasController < ApplicationController
     if @visa.save
       flash[:success]="Successfully deleted Visa!!!"
     else
-      flash[:error]="Failed to delete !!! -><br/>#{@visa.errors.full_messages}"
+      flash[:error]=@visa.errors.full_messages<<"Failed to delete !!!"
     end
     redirect_to visas_home_path
   end
@@ -52,7 +52,7 @@ class VisasController < ApplicationController
       flash[:success]="Successfully Updated Visa"
       redirect_to show_visa_path(@visa)
     else
-      flash[:error]="Failed To Update -><br/>#{@visa.errors.full_messages}"
+      flash[:error]=@visa.errors.full_messages<<"Failed To Update !!!"
       redirect_to edit_visa_path(@visa)
     end
   end

@@ -14,7 +14,7 @@ class VisaTypesController < ApplicationController
       flash[:success]="Your Visa Type was created !!!"
       redirect_to show_visa_type_path(@visa_type)
     else
-      flash[:error]="Failed to create Visa Type !!! -><br/>#{@visa_type.errors.full_messages}"
+      flash[:error]=@visa_type.errors.full_messages<<"Failed to create Visa Type !!!"
       render :new
     end
   end
@@ -27,11 +27,11 @@ class VisaTypesController < ApplicationController
     @visa_type=VisaType.find_by_name(params[:id])
     @visa_type.delete
     if @visa_type.save!
-      flash[:success]="Successfully deleted VisaType!!!"
+      flash[:success]="Successfully Deleted VisaType!!!"
     else
-      flash[:error]="Failed to delete !!! -><br/>#{@visa_type.errors.full_messages}"
+      flash[:error]=@visa_type.errors.full_messages<<"Failed to Delete !!!"
     end
-    render visa_types_home_path
+    redirect_to visa_types_home_path
   end
 
   def edit
@@ -44,7 +44,7 @@ class VisaTypesController < ApplicationController
       flash[:success]="Successfully Updated Visa Type !!!"
       redirect_to show_visa_type_path(@visa_type)
     else
-      flash[:error]="Failed to Update !!! -><br/>#{@visa_type.errors.full_messages}"
+      flash[:error]=@visa_type.errors.full_messages<<"Failed to Update !!!"
       redirect_to edit_visa_type_path(@visa_type)
     end
   end

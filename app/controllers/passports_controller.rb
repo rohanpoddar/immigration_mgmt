@@ -20,7 +20,7 @@ class PassportsController < ApplicationController
       flash[:success]="Created Successfully !!!"
       redirect_to show_passport_path(@passport)
     else
-      flash[:error]="Failed to create Passport !!! -><br/>#{@passport.errors.full_messages}"
+      flash[:error]=@passport.errors.full_messages<<"Failed to create Passport !!!"
       redirect_to new_passport_path
     end
   end
@@ -39,7 +39,7 @@ class PassportsController < ApplicationController
       flash[:success]="Success !!!"
       redirect_to show_passport_path(@passport)
     else
-      flash[:error]="Failed to update Passport !!! -><br/>#{@passport.errors.full_messages}"
+      flash[:error]=@passport.errors.full_messages<<"Failed to update Passport !!!"
       redirect_to edit_passport_path(@passport)
     end
   end
@@ -50,7 +50,7 @@ class PassportsController < ApplicationController
     if @passport.save
       flash[:success]="Successfully deleted Passport!!!"
     else
-      flash[:error]="Failed to delete !!! -><br/>#{@passport.errors.full_messages}"
+      flash[:error]=@passport.errors.full_messages<<"Failed to delete !!!"
     end
     redirect_to passports_home_path
   end
