@@ -9,7 +9,9 @@ class SearchController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: @employees }
-      format.xls
+      format.xls do
+        response.headers['Content-Disposition'] = 'attachment; filename="SearchResult.xls"'
+      end
     end
   end
 end
