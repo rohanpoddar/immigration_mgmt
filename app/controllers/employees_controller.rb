@@ -4,7 +4,9 @@ class EmployeesController < ApplicationController
     @employees = Employee.all
     respond_to do |format|
       format.html
-      format.xls
+      format.xls do
+        response.headers['Content-Disposition'] = 'attachment; filename="SearchResult.xls"'
+      end
       format.json { render json: EmployeesDatatable.new(view_context) }
     end
   end
